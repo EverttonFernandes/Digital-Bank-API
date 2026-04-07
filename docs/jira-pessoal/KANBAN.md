@@ -27,7 +27,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
 ### To Do
 
-- `HISTORIA-012` Revisar entrega final, documentação cronológica e fechamento semântico da versão
+- nenhuma historia pendente
 
 ### Doing
 
@@ -50,6 +50,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-009` Consolidar suíte de testes unitários com cobertura de converters, services, specifications e domínio
 - `HISTORIA-010` Consolidar e ampliar a suite de testes funcionais com seeders, fixtures e heuristica VADER
 - `HISTORIA-011` Consolidar README com execucao, arquitetura e decisoes tecnicas
+- `HISTORIA-012` Revisar entrega final, documentacao cronologica e fechamento semantico da versao
 
 ## Critérios de Movimentação
 
