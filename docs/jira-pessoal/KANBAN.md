@@ -27,7 +27,6 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
 ### To Do
 
-- `HISTORIA-005` Gerar movimentações financeiras associadas à transferência
 - `HISTORIA-006` Registrar notificação após transferência concluída com uso coerente de observer
 - `HISTORIA-007` Padronizar tratamento de erros e mensagens `key/value`
 - `HISTORIA-008` Publicar Swagger/OpenAPI com contratos claros
@@ -50,6 +49,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-002` Estruturar projeto Spring Boot, camadas arquiteturais e configurações base
 - `HISTORIA-003` Criar modelo de contas com seed inicial e consultas de listagem/busca
 - `HISTORIA-004` Implementar transferência entre contas com consistência transacional, lock pessimista e setup inicial dos testes funcionais em Jest
+- `HISTORIA-005` Gerar movimentações financeiras associadas à transferência e expor histórico por conta
 
 ## Critérios de Movimentação
 

@@ -23,15 +23,27 @@ describe("GET /accounts deve listar as contas pre-carregadas com nome do titular
             response.body.map((account) => [Number(account.id), account])
         );
 
-        expect(accountListByIdentifier.get(sourceAccount.id).ownerName).toBe(sourceAccount.ownerName);
-        expect(accountListByIdentifier.get(targetAccount.id).ownerName).toBe(targetAccount.ownerName);
-        expect(accountListByIdentifier.get(statementAccount.id).ownerName).toBe(statementAccount.ownerName);
-
         expect(responseAccountByIdentifier.get(sourceAccount.id).ownerName).toBe(sourceAccount.ownerName);
-        expect(Number(responseAccountByIdentifier.get(sourceAccount.id).balance)).toBe(Number(sourceAccount.balance));
+        expect(Number(responseAccountByIdentifier.get(sourceAccount.id).balance)).toBe(
+            Number(accountListByIdentifier.get(sourceAccount.id).balance)
+        );
         expect(responseAccountByIdentifier.get(targetAccount.id).ownerName).toBe(targetAccount.ownerName);
-        expect(Number(responseAccountByIdentifier.get(targetAccount.id).balance)).toBe(Number(targetAccount.balance));
+        expect(Number(responseAccountByIdentifier.get(targetAccount.id).balance)).toBe(
+            Number(accountListByIdentifier.get(targetAccount.id).balance)
+        );
         expect(responseAccountByIdentifier.get(statementAccount.id).ownerName).toBe(statementAccount.ownerName);
-        expect(Number(responseAccountByIdentifier.get(statementAccount.id).balance)).toBe(Number(statementAccount.balance));
+        expect(Number(responseAccountByIdentifier.get(statementAccount.id).balance)).toBe(
+            Number(accountListByIdentifier.get(statementAccount.id).balance)
+        );
+
+        expect(responseAccountByIdentifier.get(sourceAccount.id).ownerName).toBe(
+            accountListByIdentifier.get(sourceAccount.id).ownerName
+        );
+        expect(responseAccountByIdentifier.get(targetAccount.id).ownerName).toBe(
+            accountListByIdentifier.get(targetAccount.id).ownerName
+        );
+        expect(responseAccountByIdentifier.get(statementAccount.id).ownerName).toBe(
+            accountListByIdentifier.get(statementAccount.id).ownerName
+        );
     });
 });

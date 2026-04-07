@@ -32,7 +32,18 @@ async function rollbackAccount(fixtures, transaction) {
     });
 }
 
+async function cleanupAccount(transaction) {
+    await Account.destroy({
+        where: {},
+        truncate: true,
+        restartIdentity: true,
+        cascade: true,
+        transaction
+    });
+}
+
 module.exports = {
     seedAccount,
-    rollbackAccount
+    rollbackAccount,
+    cleanupAccount
 };

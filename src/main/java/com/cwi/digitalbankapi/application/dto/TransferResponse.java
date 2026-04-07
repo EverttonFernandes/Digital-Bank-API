@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public record TransferResponse(
     Long sourceAccountId,
     Long targetAccountId,
+    String transferReference,
     BigDecimal transferredAmount,
     BigDecimal sourceAccountBalance,
     BigDecimal targetAccountBalance

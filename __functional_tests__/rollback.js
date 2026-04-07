@@ -1,11 +1,13 @@
 const { sequelizeConnection } = require("./src/db/connection");
 const { fixtures } = require("./src/functionalTestHelper");
 const { rollbackAccount } = require("./src/seeders/account/account.seeder");
+const { cleanupAccountMovement } = require("./src/seeders/accountMovement/accountMovement.seeder");
 
 async function runRollbackers() {
     const transaction = await sequelizeConnection.transaction();
 
     try {
+        await cleanupAccountMovement(transaction);
         await rollbackAccount(fixtures, transaction);
         await transaction.commit();
         await sequelizeConnection.close();
