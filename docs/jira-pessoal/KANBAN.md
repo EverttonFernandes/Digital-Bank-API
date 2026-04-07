@@ -27,7 +27,6 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
 ### To Do
 
-- `HISTORIA-003` Criar modelo de contas com seed inicial e consultas de listagem/busca
 - `HISTORIA-004` Implementar transferência entre contas com consistência transacional e lock pessimista
 - `HISTORIA-005` Gerar movimentações financeiras associadas à transferência
 - `HISTORIA-006` Registrar notificação após transferência concluída com uso coerente de observer
@@ -50,6 +49,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
 - `HISTORIA-001` Subir ambiente isolado com Docker Compose, aplicação, Swagger e PostgreSQL em portas distintas
 - `HISTORIA-002` Estruturar projeto Spring Boot, camadas arquiteturais e configurações base
+- `HISTORIA-003` Criar modelo de contas com seed inicial e consultas de listagem/busca
 
 ## Critérios de Movimentação
 
