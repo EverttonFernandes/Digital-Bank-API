@@ -222,3 +222,16 @@ Os documentos em `docs/tasks/` e `entregas/` registram:
 - o plano de cada historia
 - o progresso operacional
 - o que foi entregue em linguagem tecnica e de negocio
+
+## Evolucao Arquitetural Implementada
+
+O projeto recebeu uma evolucao arquitetural adicional na `HISTORIA-013`.
+
+Essa entrega introduziu:
+
+- `Spring HATEOAS`
+- responses em `HAL`
+- links navegaveis entre recursos relacionados
+- Swagger refletindo os DTOs e responses HATEOAS
+
+Na pratica, a API deixou de apenas expor recursos com bons verbos HTTP e passou a guiar melhor o consumidor por meio dos links retornados nas respostas.

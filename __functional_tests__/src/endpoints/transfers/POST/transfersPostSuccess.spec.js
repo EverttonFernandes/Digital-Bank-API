@@ -28,6 +28,14 @@ describe("POST /transfers deve transferir saldo entre contas validas e refletir 
         expect(Number(response.body.targetAccountBalance)).toBe(
             Number(targetAccountBeforeTransfer.balance) + Number(successfulTransfer.amount)
         );
+        expect(response.body._links).toBeDefined();
+        expect(response.body._links.transfers).toBeDefined();
+        expect(response.body._links.sourceAccount).toBeDefined();
+        expect(response.body._links.targetAccount).toBeDefined();
+        expect(response.body._links.sourceAccountMovements).toBeDefined();
+        expect(response.body._links.targetAccountMovements).toBeDefined();
+        expect(response.body._links.sourceAccountNotifications).toBeDefined();
+        expect(response.body._links.targetAccountNotifications).toBeDefined();
         expect(sourceAccountAfterTransferResponse.status).toBe(200);
         expect(targetAccountAfterTransferResponse.status).toBe(200);
         expect(Number(sourceAccountAfterTransferResponse.body.balance)).toBe(
@@ -36,5 +44,7 @@ describe("POST /transfers deve transferir saldo entre contas validas e refletir 
         expect(Number(targetAccountAfterTransferResponse.body.balance)).toBe(
             Number(targetAccountBeforeTransfer.balance) + Number(successfulTransfer.amount)
         );
+        expect(sourceAccountAfterTransferResponse.body._links).toBeDefined();
+        expect(targetAccountAfterTransferResponse.body._links).toBeDefined();
     });
 });

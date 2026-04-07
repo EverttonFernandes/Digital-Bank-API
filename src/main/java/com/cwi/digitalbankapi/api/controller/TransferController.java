@@ -1,7 +1,8 @@
 package com.cwi.digitalbankapi.api.controller;
 
+import com.cwi.digitalbankapi.api.assembler.TransferRepresentationModelAssembler;
+import com.cwi.digitalbankapi.api.representation.TransferRepresentationModel;
 import com.cwi.digitalbankapi.application.dto.TransferRequest;
-import com.cwi.digitalbankapi.application.dto.TransferResponse;
 import com.cwi.digitalbankapi.application.service.TransferService;
 import com.cwi.digitalbankapi.shared.response.ApiErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,9 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class TransferController {
 
     private final TransferService transferService;
+    private final TransferRepresentationModelAssembler transferRepresentationModelAssembler;
 
-    public TransferController(TransferService transferService) {
+    public TransferController(TransferService transferService, TransferRepresentationModelAssembler transferRepresentationModelAssembler) {
         this.transferService = transferService;
+        this.transferRepresentationModelAssembler = transferRepresentationModelAssembler;
     }
 
     @PostMapping
@@ -33,7 +36,7 @@ public class TransferController {
         @ApiResponse(
             responseCode = "200",
             description = "Transferencia concluida com sucesso.",
-            content = @Content(schema = @Schema(implementation = TransferResponse.class))
+            content = @Content(schema = @Schema(implementation = TransferRepresentationModel.class))
         ),
         @ApiResponse(
             responseCode = "400",
@@ -46,7 +49,7 @@ public class TransferController {
             content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))
         )
     })
-    public TransferResponse transfer(@Valid @RequestBody TransferRequest transferRequest) {
-        return transferService.transfer(transferRequest);
+    public TransferRepresentationModel transfer(@Valid @RequestBody TransferRequest transferRequest) {
+        return transferRepresentationModelAssembler.toModel(transferService.transfer(transferRequest));
     }
 }

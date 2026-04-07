@@ -26,14 +26,18 @@ describe("GET /accounts/{id}/movements deve retornar o historico financeiro gera
         expect(targetAccountMovementListBeforeTransferResponse.status).toBe(200);
         expect(sourceAccountMovementsResponse.status).toBe(200);
         expect(targetAccountMovementsResponse.status).toBe(200);
-        expect(Array.isArray(sourceAccountMovementsResponse.body)).toBe(true);
-        expect(Array.isArray(targetAccountMovementsResponse.body)).toBe(true);
-        expect(sourceAccountMovementsResponse.body.length).toBe(sourceAccountMovementListBeforeTransferResponse.body.length + 1);
-        expect(targetAccountMovementsResponse.body.length).toBe(targetAccountMovementListBeforeTransferResponse.body.length + 1);
+        expect(Array.isArray(sourceAccountMovementsResponse.body._embedded.movements)).toBe(true);
+        expect(Array.isArray(targetAccountMovementsResponse.body._embedded.movements)).toBe(true);
+        expect(sourceAccountMovementsResponse.body._embedded.movements.length).toBe(
+            sourceAccountMovementListBeforeTransferResponse.body._embedded.movements.length + 1
+        );
+        expect(targetAccountMovementsResponse.body._embedded.movements.length).toBe(
+            targetAccountMovementListBeforeTransferResponse.body._embedded.movements.length + 1
+        );
 
-        const sourceAccountMovementCreatedByCurrentTransfer = sourceAccountMovementsResponse.body
+        const sourceAccountMovementCreatedByCurrentTransfer = sourceAccountMovementsResponse.body._embedded.movements
             .find((accountMovement) => accountMovement.transferReference === transferResponse.body.transferReference);
-        const targetAccountMovementCreatedByCurrentTransfer = targetAccountMovementsResponse.body
+        const targetAccountMovementCreatedByCurrentTransfer = targetAccountMovementsResponse.body._embedded.movements
             .find((accountMovement) => accountMovement.transferReference === transferResponse.body.transferReference);
 
         expect(sourceAccountMovementCreatedByCurrentTransfer).toBeDefined();
@@ -42,5 +46,9 @@ describe("GET /accounts/{id}/movements deve retornar o historico financeiro gera
         expect(targetAccountMovementCreatedByCurrentTransfer.movementType).toBe("CREDIT");
         expect(Number(sourceAccountMovementCreatedByCurrentTransfer.amount)).toBe(Number(successfulTransfer.amount));
         expect(Number(targetAccountMovementCreatedByCurrentTransfer.amount)).toBe(Number(successfulTransfer.amount));
+        expect(sourceAccountMovementCreatedByCurrentTransfer._links.account).toBeDefined();
+        expect(sourceAccountMovementCreatedByCurrentTransfer._links.collection).toBeDefined();
+        expect(targetAccountMovementCreatedByCurrentTransfer._links.account).toBeDefined();
+        expect(targetAccountMovementCreatedByCurrentTransfer._links.collection).toBeDefined();
     });
 });

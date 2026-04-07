@@ -1,0 +1,64 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-013
+ULTIMA ITERACAO_REGISTRADA: 2
+ULTIMA_FASE_CONHECIDA: FINAL_REVIEW_APPROVED
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- O menor corte seguro desta historia e enriquecer os endpoints ja existentes com `Spring HATEOAS`, sem alterar suas rotas principais, preservando a semantica atual e reduzindo risco de regressao.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- A dependencia `Spring HATEOAS` foi adicionada ao projeto.
+- Os endpoints de contas, transferencias, movimentacoes e notificacoes agora devolvem representacoes navegaveis.
+- A suite unitária passou com sucesso apos a introducao dos assemblers HATEOAS.
+- A suite funcional passou com `16` testes apos a mudanca de payload para HAL.
+- O Swagger documenta os novos models HATEOAS, incluindo DTOs com descricoes curtas e colecoes HAL com `_embedded` e `_links`.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: N_A
+- unit_tests: PASSED
+- func_tests: PASSED
+- coverage: N_A
+- sonar: N_A
+- security: PASSED
+- arch_review: PASSED
+- final_review: PASSED
+
+ULTIMA_ACAO_EXECUTADA:
+- Validar `make unit-test`, `make functional-test`, `make up`, `GET /swagger-ui.html` e `GET /v3/api-docs`, sincronizando a documentacao da historia com o estado final entregue.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Isolar os arquivos da `HISTORIA-013`, criar o commit da entrega e fechar a tag `v0.13.0`.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- build.gradle
+- Makefile
+- src/main/java/com/cwi/digitalbankapi/api/controller/AccountController.java
+- src/main/java/com/cwi/digitalbankapi/api/controller/TransferController.java
+- src/main/java/com/cwi/digitalbankapi/api/assembler/AccountRepresentationModelAssembler.java
+- src/main/java/com/cwi/digitalbankapi/api/assembler/TransferRepresentationModelAssembler.java
+- src/main/java/com/cwi/digitalbankapi/api/assembler/AccountMovementRepresentationModelAssembler.java
+- src/main/java/com/cwi/digitalbankapi/api/assembler/AccountNotificationRepresentationModelAssembler.java
+- src/main/java/com/cwi/digitalbankapi/api/representation/AccountRepresentationModel.java
+- src/main/java/com/cwi/digitalbankapi/api/representation/TransferRepresentationModel.java
+- src/main/java/com/cwi/digitalbankapi/api/representation/AccountMovementRepresentationModel.java
+- src/main/java/com/cwi/digitalbankapi/api/representation/AccountNotificationRepresentationModel.java
+- src/main/java/com/cwi/digitalbankapi/api/representation/AccountCollectionRepresentationModel.java
+- src/main/java/com/cwi/digitalbankapi/api/representation/AccountMovementCollectionRepresentationModel.java
+- src/main/java/com/cwi/digitalbankapi/api/representation/AccountNotificationCollectionRepresentationModel.java
+- src/test/java/com/cwi/digitalbankapi/api/assembler/AccountRepresentationModelAssemblerTest.java
+- src/test/java/com/cwi/digitalbankapi/api/assembler/TransferRepresentationModelAssemblerTest.java
+- src/test/java/com/cwi/digitalbankapi/api/assembler/AccountMovementRepresentationModelAssemblerTest.java
+- src/test/java/com/cwi/digitalbankapi/api/assembler/AccountNotificationRepresentationModelAssemblerTest.java
+- __functional_tests__/src/endpoints/accounts/GET/accountsGetSuccess.spec.js
+- __functional_tests__/src/endpoints/accounts/GET/accountMovementsGetSuccess.spec.js
+- __functional_tests__/src/endpoints/accounts/GET/accountNotificationsGetSuccess.spec.js
+- __functional_tests__/src/endpoints/transfers/POST/transfersPostSuccess.spec.js
+
+RISCOS_ABERTOS:
+- Nenhum risco aberto bloqueando a entrega da historia.
+
+OBSERVACOES_DE_CONTEXTO:
+- A historia esta sendo conduzida com TDD e foco forte em ausencia de regressao funcional.
+- Foi necessario corrigir o comando de `make unit-test` para evitar estouro de disco ao copiar o workspace completo para dentro do container de Gradle.

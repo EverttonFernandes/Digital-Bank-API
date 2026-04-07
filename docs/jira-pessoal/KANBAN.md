@@ -51,6 +51,11 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-010` Consolidar e ampliar a suite de testes funcionais com seeders, fixtures e heuristica VADER
 - `HISTORIA-011` Consolidar README com execucao, arquitetura e decisoes tecnicas
 - `HISTORIA-012` Revisar entrega final, documentacao cronologica e fechamento semantico da versao
+- `HISTORIA-013` Refatorar contratos e respostas para elevar a API ao topo do modelo de maturidade de Richardson
+
+## Backlog de Evolucao Arquitetural
+
+- nenhuma evolucao arquitetural pendente no momento
 
 ## Critérios de Movimentação
 
@@ -93,7 +98,9 @@ Quando o projeto estiver sendo executado em modo contínuo com o `ralph-loop`, o
 5. mover para `Done`
 6. iniciar automaticamente a próxima história
 
-Esse fluxo continua até a `HISTORIA-012`.
+Esse fluxo continua ate a `HISTORIA-012` no escopo original do desafio.
+
+A `HISTORIA-013` foi concluida como backlog evolutivo adicional e nao fazia parte obrigatoria do enunciado base.
 
 ## Observação
 

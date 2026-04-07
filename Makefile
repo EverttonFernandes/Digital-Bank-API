@@ -16,7 +16,7 @@ clean-build:
 	rm -rf build
 
 unit-test: clean-build
-	$(GRADLE_CONTAINER_EXECUTE) 'cp -R /workspace /tmp/project && cd /tmp/project && gradle --no-daemon --project-cache-dir /tmp/gradle-project-cache test'
+	$(GRADLE_CONTAINER_EXECUTE) 'gradle --no-daemon -g /tmp/gradle-home -p /workspace -Dorg.gradle.project.buildDir=/tmp/gradle-build --project-cache-dir /tmp/gradle-project-cache test'
 
 functional-test: clean-build
 	@if [ -d "__functional_tests__" ]; then \

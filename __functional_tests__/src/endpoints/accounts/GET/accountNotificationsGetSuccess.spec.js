@@ -9,7 +9,7 @@ async function waitForNotificationByTransferReference(resourcePath, transferRefe
 
     for (let attempt = 1; attempt <= maximumAttempts; attempt += 1) {
         const response = await createGetRequest(resourcePath);
-        const accountNotification = response.body.find(
+        const accountNotification = response.body._embedded.notifications.find(
             (currentAccountNotification) => currentAccountNotification.transferReference === transferReference
         );
 
@@ -56,11 +56,11 @@ describe("GET /accounts/{id}/notifications deve retornar as notificacoes geradas
         expect(targetAccountNotificationResult).toBeDefined();
         expect(sourceAccountNotificationResult.response.status).toBe(200);
         expect(targetAccountNotificationResult.response.status).toBe(200);
-        expect(sourceAccountNotificationResult.response.body.length).toBe(
-            sourceAccountNotificationListBeforeTransferResponse.body.length + 1
+        expect(sourceAccountNotificationResult.response.body._embedded.notifications.length).toBe(
+            sourceAccountNotificationListBeforeTransferResponse.body._embedded.notifications.length + 1
         );
-        expect(targetAccountNotificationResult.response.body.length).toBe(
-            targetAccountNotificationListBeforeTransferResponse.body.length + 1
+        expect(targetAccountNotificationResult.response.body._embedded.notifications.length).toBe(
+            targetAccountNotificationListBeforeTransferResponse.body._embedded.notifications.length + 1
         );
         expect(sourceAccountNotificationResult.accountNotification.notificationStatus).toBe("REGISTERED");
         expect(targetAccountNotificationResult.accountNotification.notificationStatus).toBe("REGISTERED");
@@ -70,5 +70,9 @@ describe("GET /accounts/{id}/notifications deve retornar as notificacoes geradas
         expect(targetAccountNotificationResult.accountNotification.message).toBe(
             "Transferencia recebida com sucesso da conta 1."
         );
+        expect(sourceAccountNotificationResult.accountNotification._links.account).toBeDefined();
+        expect(sourceAccountNotificationResult.accountNotification._links.collection).toBeDefined();
+        expect(targetAccountNotificationResult.accountNotification._links.account).toBeDefined();
+        expect(targetAccountNotificationResult.accountNotification._links.collection).toBeDefined();
     });
 });
