@@ -1,0 +1,52 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-010
+ULTIMA ITERACAO_REGISTRADA: 1
+ULTIMA_FASE_CONHECIDA: FINAL_REVIEW
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- A historia precisava consolidar a suite funcional iniciada na HISTORIA-004 e transformar essa base em uma validacao end-to-end completa do dominio principal da API.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- A suite funcional passou a cobrir contas, transferencias, movimentacoes e notificacoes com seeders, fixtures e rollback total ao fim da execucao.
+- Os cenarios de sucesso e falha ficaram separados e validam status code, mensagens key/value e estado final por GET quando aplicavel.
+- O setup funcional foi alinhado ao padrao do projeto e ao estilo adotado como referencia no ecossistema utilizado pelo usuario.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: PENDING
+- unit_tests: PASSED
+- func_tests: PASSED
+- coverage: PENDING
+- sonar: PENDING
+- security: PENDING
+- arch_review: PASSED
+- final_review: PASSED
+
+ULTIMA_ACAO_EXECUTADA:
+- Executar make functional-test com a suite funcional consolidada e validar o comportamento end-to-end dos principais fluxos da API.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Iniciar HISTORIA-011 consolidando README e decisoes tecnicas reais do projeto.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- __functional_tests__/runFunctionalTests.js
+- __functional_tests__/seed.js
+- __functional_tests__/rollback.js
+- __functional_tests__/src/fixtures/local.json
+- __functional_tests__/src/seeders/account/account.seeder.js
+- __functional_tests__/src/seeders/accountMovement/accountMovement.seeder.js
+- __functional_tests__/src/seeders/accountNotification/accountNotification.seeder.js
+- __functional_tests__/src/endpoints/accounts/GET/accountsGetSuccess.spec.js
+- __functional_tests__/src/endpoints/accounts/GET/accountsGetFailure.spec.js
+- __functional_tests__/src/endpoints/accounts/GET/accountMovementsGetSuccess.spec.js
+- __functional_tests__/src/endpoints/accounts/GET/accountNotificationsGetSuccess.spec.js
+- __functional_tests__/src/endpoints/transfers/POST/transfersPostSuccess.spec.js
+- __functional_tests__/src/endpoints/transfers/POST/transfersPostFailure.spec.js
+
+RISCOS_ABERTOS:
+- A suite funcional ainda pode crescer se novos endpoints surgirem, mas o nucleo do desafio esta comprovado end-to-end.
+
+OBSERVACOES_DE_CONTEXTO:
+- O setup funcional passou a subir a massa antes da suite inteira e destruir tudo ao final, sem limpeza por teste individual.
+- A historia consolida o padrao funcional que sustentou as validacoes das historias anteriores e das proximas entregas.
