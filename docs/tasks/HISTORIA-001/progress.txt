@@ -1,0 +1,51 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-001
+ULTIMA_ITERACAO_REGISTRADA: 2
+ULTIMA_FASE_CONHECIDA: DONE
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- Um bootstrap minimo em Spring Boot com Swagger seria suficiente para validar a infraestrutura isolada antes da HISTORIA-002.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- A base de build foi migrada para Gradle.
+- O alvo `make unit-test` passou com Gradle em container usando workspace temporario.
+- Docker Compose subiu PostgreSQL, aplicacao e pgAdmin.
+- A aplicacao respondeu em /api/status e /actuator/health.
+- O Swagger respondeu via /swagger-ui.html com redirecionamento para /swagger-ui/index.html.
+- O pgAdmin respondeu em `http://localhost:5050` com redirecionamento para `/browser/`.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: N/A
+- unit_tests: PASS
+- func_tests: N/A
+- coverage: N/A
+- sonar: N/A
+- security: PENDING
+- arch_review: PASS
+- final_review: PASS
+
+ULTIMA_ACAO_EXECUTADA:
+- Revisao completa da HISTORIA-001 com correcoes no Makefile, no pgAdmin e no bootstrap da aplicacao.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Iniciar a HISTORIA-002 estruturando as camadas da aplicacao sobre a base ja executavel.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- build.gradle
+- settings.gradle
+- Dockerfile
+- docker-compose.yml
+- Makefile
+- src/main/java/com/cwi/digitalbankapi/bootstrap/DigitalBankApiApplication.java
+- src/main/java/com/cwi/digitalbankapi/bootstrap/ApplicationStatusController.java
+- src/main/resources/application.properties
+- README.md
+
+RISCOS_ABERTOS:
+- Ainda nao existem camadas de dominio, testes unitarios reais ou configuracao de Sonar.
+
+OBSERVACOES_DE_CONTEXTO:
+- Esta historia cobre a base operacional necessaria para a continuidade cronologica do backlog.
+- A execucao de testes do projeto deve continuar via Gradle em container para nao depender do Gradle local da maquina.

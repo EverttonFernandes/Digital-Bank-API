@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Digital Bank PostgreSQL",
+      "Group": "Digital Bank API",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "digital_bank",
+      "Username": "digital_bank_user",
+      "SSLMode": "prefer"
+    }
+  }
+}

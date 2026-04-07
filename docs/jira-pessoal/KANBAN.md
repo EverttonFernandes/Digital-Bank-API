@@ -1,0 +1,101 @@
+# Kanban da Entrega
+
+## Objetivo
+
+Este arquivo funciona como o quadro principal de acompanhamento do projeto.
+
+Ele organiza, em ordem cronológica, as histórias necessárias para transformar a spec do desafio em entregas reais, controladas e rastreáveis.
+
+O guardião desta organização é o subagente `ralph-loop/product-manager`.
+
+## Regras do Kanban
+
+- a ordem das histórias deve refletir a sequência natural de entrega
+- toda história deve ter objetivo de negócio e objetivo técnico
+- histórias funcionais, técnicas e não funcionais devem coexistir no mesmo fluxo
+- uma história só avança quando seu `IMPLEMENTATION.md` existir
+- uma história só é considerada entregue quando existir documentação em `entregas/`
+- nenhuma história principal pode começar fora da ordem cronológica
+- a próxima história oficial é sempre a primeira ainda não concluída
+- uma história só pode entrar em `Done` se estiver comprovadamente funcionando
+
+## Épico Principal
+
+- `EPICO-001` Construção da API REST de banco digital com foco em consistência, concorrência, documentação e testabilidade
+
+## Backlog Cronológico
+
+### To Do
+
+- `HISTORIA-002` Estruturar projeto Spring Boot, camadas arquiteturais e configurações base
+- `HISTORIA-003` Criar modelo de contas com seed inicial e consultas de listagem/busca
+- `HISTORIA-004` Implementar transferência entre contas com consistência transacional e lock pessimista
+- `HISTORIA-005` Gerar movimentações financeiras associadas à transferência
+- `HISTORIA-006` Registrar notificação após transferência concluída com uso coerente de observer
+- `HISTORIA-007` Padronizar tratamento de erros e mensagens `key/value`
+- `HISTORIA-008` Publicar Swagger/OpenAPI com contratos claros
+- `HISTORIA-009` Implementar suíte de testes unitários no padrão definido
+- `HISTORIA-010` Implementar suíte de testes funcionais com seeders, fixtures e heurística VADER
+- `HISTORIA-011` Consolidar README com execução, arquitetura e decisões técnicas
+- `HISTORIA-012` Revisar entrega final, documentação cronológica e fechamento semântico da versão
+
+### Doing
+
+- nenhuma história em andamento
+
+### Review
+
+- nenhuma história em revisão
+
+### Done
+
+- `HISTORIA-001` Subir ambiente isolado com Docker Compose, aplicação, Swagger e PostgreSQL em portas distintas
+
+## Critérios de Movimentação
+
+### To Do -> Doing
+
+Pode mover quando:
+
+- a história estiver descrita
+- houver objetivo claro
+- existir `docs/tasks/<KEY>/IMPLEMENTATION.md`
+- todas as histórias anteriores já estiverem em `Done`
+
+### Doing -> Review
+
+Pode mover quando:
+
+- implementação estiver concluída
+- testes obrigatórios da história existirem
+- critérios de aceite estiverem marcados no `IMPLEMENTATION.md`
+
+### Review -> Done
+
+Pode mover quando:
+
+- QA aprovar
+- revisão final aprovar
+- QA liberar continuidade para a próxima história
+- revisão final liberar continuidade para a próxima história
+- documentação em `entregas/` existir
+- tipo de versão semântica estiver sugerido
+
+## Regra de Fluxo Contínuo
+
+Quando o projeto estiver sendo executado em modo contínuo com o `ralph-loop`, o fluxo oficial é:
+
+1. selecionar a próxima história elegível
+2. mover `To Do -> Doing`
+3. executar a história até aprovação completa
+4. documentar a entrega em `entregas/`
+5. mover para `Done`
+6. iniciar automaticamente a próxima história
+
+Esse fluxo continua até a `HISTORIA-012`.
+
+## Observação
+
+Este kanban é propositalmente textual e simples.
+
+Ele existe para servir como um Jira pessoal totalmente versionado no repositório, sem depender de ferramenta externa.

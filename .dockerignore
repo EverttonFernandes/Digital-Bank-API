@@ -1,0 +1,10 @@
+target
+build
+.gradle
+.git
+.idea
+*.iml
+.agents
+.codex
+docs
+entregas

@@ -18,7 +18,17 @@
 *.zip
 *.tar.gz
 *.rar
-
+target/
+build/
+.gradle/
+.idea/
+.env
+.env.*
+!.env.example
+# Local tooling folders used in this repository
+.codex/
+*.agents
+*.agent-packages
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
