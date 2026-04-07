@@ -1,0 +1,25 @@
+package com.cwi.digitalbankapi.api.controller;
+
+import com.cwi.digitalbankapi.application.dto.TransferRequest;
+import com.cwi.digitalbankapi.application.dto.TransferResponse;
+import com.cwi.digitalbankapi.application.service.TransferService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/transfers")
+public class TransferController {
+
+    private final TransferService transferService;
+
+    public TransferController(TransferService transferService) {
+        this.transferService = transferService;
+    }
+
+    @PostMapping
+    public TransferResponse transfer(@RequestBody TransferRequest transferRequest) {
+        return transferService.transfer(transferRequest);
+    }
+}

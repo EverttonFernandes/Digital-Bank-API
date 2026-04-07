@@ -1,0 +1,54 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-004
+ULTIMA_ITERACAO_REGISTRADA: 2
+ULTIMA_FASE_CONHECIDA: DONE
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- Antecipar a infraestrutura funcional com Jest antes da transferencia aumenta a confianca na historia mais critica do projeto e cria a base de BDD para as proximas iteracoes.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- A estrutura `__functional_tests__` foi criada com Jest, supertest, pg, fixtures e scripts de seed e rollback.
+- O `make functional-test` executou com sucesso.
+- Foram criados cenarios BDD de sucesso e falha para `GET /accounts`.
+- Foi implementado o endpoint `POST /transfers`.
+- A transferencia passou a atualizar os saldos em transacao com lock pessimista.
+- Foram validados cenarios funcionais de sucesso e falha da transferencia.
+- A base funcional restaura o banco para o estado inicial ao fim da execucao.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: PENDING
+- unit_tests: PASS
+- func_tests: PASS
+- coverage: N/A
+- sonar: N/A
+- security: PENDING
+- arch_review: PASS
+- final_review: PASS
+
+ULTIMA_ACAO_EXECUTADA:
+- Implementacao completa da transferencia entre contas com validacao unitária e funcional end-to-end.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Iniciar a HISTORIA-005 para gerar movimentacoes financeiras vinculadas a transferencia.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- __functional_tests__/package.json
+- __functional_tests__/seed.js
+- __functional_tests__/rollback.js
+- __functional_tests__/src/db/databaseStateManager.js
+- __functional_tests__/src/endpoints/accounts/GET/accountsGetSuccess.spec.js
+- __functional_tests__/src/endpoints/accounts/GET/accountsGetFailure.spec.js
+- __functional_tests__/src/endpoints/transfers/POST/transfersPostSuccess.spec.js
+- __functional_tests__/src/endpoints/transfers/POST/transfersPostFailure.spec.js
+- src/main/java/com/cwi/digitalbankapi/api/controller/TransferController.java
+- src/main/java/com/cwi/digitalbankapi/application/service/TransferService.java
+- src/main/java/com/cwi/digitalbankapi/domain/transfer/**
+- Makefile
+
+RISCOS_ABERTOS:
+- Movimentacoes financeiras e notificacao ainda dependem das proximas historias.
+
+OBSERVACOES_DE_CONTEXTO:
+- A historia entregou a transferencia como fluxo principal e deixou a base funcional pronta para evoluir o restante do dominio.

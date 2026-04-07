@@ -32,6 +32,41 @@ public class PostgreSqlAccountRepository implements AccountRepository {
             .map(this::toDomain);
     }
 
+    @Override
+    public List<Account> findAccountsByIdentifiersWithPessimisticLock(Long sourceAccountIdentifier, Long targetAccountIdentifier) {
+        return springDataAccountJpaRepository.findAccountsByIdentifiersWithPessimisticLock(
+                sourceAccountIdentifier,
+                targetAccountIdentifier
+            )
+            .stream()
+            .map(this::toDomain)
+            .toList();
+    }
+
+    @Override
+    public List<Account> saveAccounts(List<Account> accountList) {
+        List<AccountEntity> lockedAccountEntityList = springDataAccountJpaRepository.findAllById(
+            accountList.stream()
+                .map(Account::getId)
+                .toList()
+        );
+
+        for (AccountEntity accountEntity : lockedAccountEntityList) {
+            Account account = accountList.stream()
+                .filter(currentAccount -> currentAccount.getId().equals(accountEntity.getId()))
+                .findFirst()
+                .orElseThrow();
+
+            accountEntity.setBalance(account.getBalance());
+            accountEntity.setUpdatedAt(account.getUpdatedAt());
+        }
+
+        return springDataAccountJpaRepository.saveAll(lockedAccountEntityList)
+            .stream()
+            .map(this::toDomain)
+            .toList();
+    }
+
     private Account toDomain(AccountEntity accountEntity) {
         return new Account(
             accountEntity.getId(),

@@ -19,10 +19,9 @@ unit-test: clean-build
 	$(GRADLE_CONTAINER_EXECUTE) 'cp -R /workspace /tmp/project && cd /tmp/project && gradle --no-daemon --project-cache-dir /tmp/gradle-project-cache test'
 
 functional-test: clean-build
-	@if $(GRADLE_CONTAINER_EXECUTE) 'cp -R /workspace /tmp/project && cd /tmp/project && gradle --no-daemon --project-cache-dir /tmp/gradle-project-cache tasks --all' | grep -q "^functionalTest"; then \
-		$(GRADLE_CONTAINER_EXECUTE) 'cp -R /workspace /tmp/project && cd /tmp/project && gradle --no-daemon --project-cache-dir /tmp/gradle-project-cache functionalTest'; \
+	@if [ -d "__functional_tests__" ]; then \
+		cd __functional_tests__ && npm test; \
 	else \
-		echo "A task funcional ainda nao existe no Gradle."; \
-		echo "Crie a suite funcional completa antes de executar este alvo."; \
+		echo "A suite funcional em Jest ainda nao existe."; \
 		exit 1; \
 	fi

@@ -1,0 +1,67 @@
+{
+  "application": {
+    "baseUrl": "http://localhost:8080"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5433,
+    "databaseName": "digital_bank",
+    "username": "digital_bank_user",
+    "password": "digital_bank_password"
+  },
+  "accountFixtures": {
+    "sourceAccount": {
+      "id": 1,
+      "ownerName": "Ana Souza",
+      "balance": "1250.00"
+    },
+    "targetAccount": {
+      "id": 2,
+      "ownerName": "Bruno Lima",
+      "balance": "980.50"
+    },
+    "statementAccount": {
+      "id": 3,
+      "ownerName": "Carla Mendes",
+      "balance": "2100.75"
+    }
+  },
+  "nonExistingAccountId": 99,
+  "transferFixtures": {
+    "successfulTransfer": {
+      "sourceAccountId": 1,
+      "targetAccountId": 2,
+      "amount": "200.00"
+    },
+    "sameAccountTransfer": {
+      "sourceAccountId": 1,
+      "targetAccountId": 1,
+      "amount": "50.00"
+    },
+    "insufficientBalanceTransfer": {
+      "sourceAccountId": 2,
+      "targetAccountId": 3,
+      "amount": "2000.00"
+    },
+    "invalidZeroAmountTransfer": {
+      "sourceAccountId": 1,
+      "targetAccountId": 2,
+      "amount": "0.00"
+    },
+    "invalidNegativeAmountTransfer": {
+      "sourceAccountId": 1,
+      "targetAccountId": 2,
+      "amount": "-10.00"
+    },
+    "nonExistingSourceAccountTransfer": {
+      "sourceAccountId": 99,
+      "targetAccountId": 2,
+      "amount": "10.00"
+    },
+    "nonExistingTargetAccountTransfer": {
+      "sourceAccountId": 1,
+      "targetAccountId": 99,
+      "amount": "10.00"
+    }
+  }
+}

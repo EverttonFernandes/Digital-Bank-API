@@ -9,9 +9,9 @@ public class AccountResponseConverter {
 
     public AccountResponse convert(Account account) {
         return new AccountResponse(
-            account.id(),
-            account.ownerName(),
-            account.balance()
+            account.getId(),
+            account.getOwnerName(),
+            account.getBalance()
         );
     }
 }
