@@ -1,0 +1,43 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-008
+ULTIMA ITERACAO_REGISTRADA: 1
+ULTIMA_FASE_CONHECIDA: FINAL_REVIEW
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- O valor principal desta historia esta em tornar o contrato da API legivel no Swagger sem adicionar anotacoes demais ou divergir do comportamento real do codigo.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- A API passou a expor tags, schemas e descricoes claras no OpenAPI.
+- O endpoint /v3/api-docs refletiu os contratos de contas, transferencias, movimentacoes, notificacoes e erro padronizado.
+- A UI do Swagger ficou acessivel pelo redirecionamento de /swagger-ui.html.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: PENDING
+- unit_tests: PASSED
+- func_tests: N/A
+- coverage: PENDING
+- sonar: PENDING
+- security: PENDING
+- arch_review: PASSED
+- final_review: PASSED
+
+ULTIMA_ACAO_EXECUTADA:
+- Rebuildar a aplicacao, validar make unit-test e consultar /v3/api-docs e /swagger-ui.html no ambiente local.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Iniciar HISTORIA-009 consolidando a suite de testes unitarios e cobrindo pontos ainda sem garantia automatizada.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- src/main/java/com/cwi/digitalbankapi/infrastructure/config/OpenApiConfiguration.java
+- src/main/java/com/cwi/digitalbankapi/api/controller/AccountController.java
+- src/main/java/com/cwi/digitalbankapi/api/controller/TransferController.java
+- src/main/java/com/cwi/digitalbankapi/application/dto/TransferRequest.java
+- src/main/java/com/cwi/digitalbankapi/shared/response/ApiErrorResponse.java
+
+RISCOS_ABERTOS:
+- O contrato documentado precisa continuar alinhado ao codigo conforme novas historias forem implementadas.
+
+OBSERVACOES_DE_CONTEXTO:
+- A historia foi validada diretamente por /v3/api-docs e /swagger-ui.html, sem necessidade de inflar a suite funcional para documentacao.
