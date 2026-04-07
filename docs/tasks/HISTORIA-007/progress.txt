@@ -1,0 +1,44 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-007
+ULTIMA ITERACAO_REGISTRADA: 1
+ULTIMA_FASE_CONHECIDA: FINAL_REVIEW
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- O contrato de erro precisava ser endurecido principalmente para payload invalido e corpo JSON malformado, mantendo o padrao key/value usado nas regras de negocio.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- A API passou a responder INVALID_REQUEST_DATA para payload obrigatorio ausente e corpo de requisicao invalido.
+- O handler global cobre excecao de negocio, validacao, JSON invalido e parametro com formato incorreto.
+- Os testes unitarios e funcionais passaram com os novos cenarios.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: PENDING
+- unit_tests: PASSED
+- func_tests: PASSED
+- coverage: PENDING
+- sonar: PENDING
+- security: PENDING
+- arch_review: PASSED
+- final_review: PASSED
+
+ULTIMA_ACAO_EXECUTADA:
+- Rebuildar a aplicacao, rerodar make unit-test e make functional-test com cenarios adicionais de erro padronizado.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Iniciar HISTORIA-008 documentando os endpoints e contratos com Swagger/OpenAPI.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- src/main/java/com/cwi/digitalbankapi/api/controller/GlobalApiExceptionHandler.java
+- src/main/java/com/cwi/digitalbankapi/application/converter/TransferRequestConverter.java
+- src/main/java/com/cwi/digitalbankapi/shared/exception/InvalidRequestDataException.java
+- src/test/java/com/cwi/digitalbankapi/api/controller/GlobalApiExceptionHandlerTest.java
+- __functional_tests__/src/endpoints/transfers/POST/transfersPostFailure.spec.js
+
+RISCOS_ABERTOS:
+- O catalogo de mensagens ainda pode crescer com novas historias, mas o contrato base ja esta estabilizado.
+
+OBSERVACOES_DE_CONTEXTO:
+- Para manter previsibilidade, a validacao obrigatoria de campos foi centralizada em excecao de dominio de entrada invalida.
+- O handler de JSON invalido precisou ser implementado no ResponseEntityExceptionHandler para interceptar o comportamento padrao do Spring Boot.

@@ -27,9 +27,17 @@ function createPostRequest(resourcePath, payload) {
         .send(JSON.stringify(payload));
 }
 
+function createPostRequestWithRawBody(resourcePath, payload) {
+    return request(applicationBaseUrl)
+        .post(resourcePath)
+        .set("Content-Type", "application/json")
+        .send(payload);
+}
+
 module.exports = {
     fixtures,
     applicationBaseUrl,
     createGetRequest,
-    createPostRequest
+    createPostRequest,
+    createPostRequestWithRawBody
 };

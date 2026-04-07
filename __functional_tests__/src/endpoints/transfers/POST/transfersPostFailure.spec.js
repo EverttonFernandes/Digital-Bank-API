@@ -1,6 +1,7 @@
 const {
     createGetRequest,
     createPostRequest,
+    createPostRequestWithRawBody,
     fixtures
 } = require("../../../functionalTestHelper");
 
@@ -124,6 +125,54 @@ describe("POST /transfers deve rejeitar cenarios invalidos e manter os saldos or
         expect(response.status).toBe(400);
         expect(response.body.key).toBe("INSUFFICIENT_ACCOUNT_BALANCE");
         expect(response.body.value).toBe("A conta de origem nao possui saldo suficiente para a transferencia.");
+        expect(Number(sourceAccountAfterTransferResponse.body.balance)).toBe(
+            Number(sourceAccountBeforeTransferResponse.body.balance)
+        );
+        expect(Number(targetAccountAfterTransferResponse.body.balance)).toBe(
+            Number(targetAccountBeforeTransferResponse.body.balance)
+        );
+    });
+
+    it("deve retornar falha padronizada quando o campo sourceAccountId nao for informado", async () => {
+        // GIVEN
+        const invalidTransferWithoutSourceAccountId = {
+            targetAccountId: fixtures.transferFixtures.successfulTransfer.targetAccountId,
+            amount: fixtures.transferFixtures.successfulTransfer.amount
+        };
+        const targetAccountBeforeTransferResponse = await createGetRequest(
+            `/accounts/${fixtures.transferFixtures.successfulTransfer.targetAccountId}`
+        );
+
+        // WHEN
+        const response = await createPostRequest("/transfers", invalidTransferWithoutSourceAccountId);
+        const targetAccountAfterTransferResponse = await createGetRequest(
+            `/accounts/${fixtures.transferFixtures.successfulTransfer.targetAccountId}`
+        );
+
+        // THEN
+        expect(response.status).toBe(400);
+        expect(response.body.key).toBe("INVALID_REQUEST_DATA");
+        expect(response.body.value).toBe("O campo sourceAccountId e obrigatorio.");
+        expect(Number(targetAccountAfterTransferResponse.body.balance)).toBe(
+            Number(targetAccountBeforeTransferResponse.body.balance)
+        );
+    });
+
+    it("deve retornar falha padronizada quando o corpo da requisicao estiver invalido", async () => {
+        // GIVEN
+        const invalidRawRequestBody = "{\"sourceAccountId\":1,\"targetAccountId\":2,";
+        const sourceAccountBeforeTransferResponse = await createGetRequest(`/accounts/${fixtures.transferFixtures.successfulTransfer.sourceAccountId}`);
+        const targetAccountBeforeTransferResponse = await createGetRequest(`/accounts/${fixtures.transferFixtures.successfulTransfer.targetAccountId}`);
+
+        // WHEN
+        const response = await createPostRequestWithRawBody("/transfers", invalidRawRequestBody);
+        const sourceAccountAfterTransferResponse = await createGetRequest(`/accounts/${fixtures.transferFixtures.successfulTransfer.sourceAccountId}`);
+        const targetAccountAfterTransferResponse = await createGetRequest(`/accounts/${fixtures.transferFixtures.successfulTransfer.targetAccountId}`);
+
+        // THEN
+        expect(response.status).toBe(400);
+        expect(response.body.key).toBe("INVALID_REQUEST_DATA");
+        expect(response.body.value).toBe("O corpo da requisicao esta invalido.");
         expect(Number(sourceAccountAfterTransferResponse.body.balance)).toBe(
             Number(sourceAccountBeforeTransferResponse.body.balance)
         );

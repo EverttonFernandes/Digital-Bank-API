@@ -27,7 +27,6 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
 ### To Do
 
-- `HISTORIA-007` Padronizar tratamento de erros e mensagens `key/value`
 - `HISTORIA-008` Publicar Swagger/OpenAPI com contratos claros
 - `HISTORIA-009` Implementar suíte de testes unitários no padrão definido
 - `HISTORIA-010` Consolidar e ampliar a suíte de testes funcionais com seeders, fixtures e heurística VADER
@@ -50,6 +49,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-004` Implementar transferência entre contas com consistência transacional, lock pessimista e setup inicial dos testes funcionais em Jest
 - `HISTORIA-005` Gerar movimentações financeiras associadas à transferência e expor histórico por conta
 - `HISTORIA-006` Registrar notificações pós-transferência com observer explícito e consulta por conta
+- `HISTORIA-007` Padronizar tratamento de erros e mensagens key/value para regras de negócio e payload inválido
 
 ## Critérios de Movimentação
 

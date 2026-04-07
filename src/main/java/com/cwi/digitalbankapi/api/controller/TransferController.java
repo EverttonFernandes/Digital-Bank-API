@@ -3,6 +3,7 @@ package com.cwi.digitalbankapi.api.controller;
 import com.cwi.digitalbankapi.application.dto.TransferRequest;
 import com.cwi.digitalbankapi.application.dto.TransferResponse;
 import com.cwi.digitalbankapi.application.service.TransferService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class TransferController {
     }
 
     @PostMapping
-    public TransferResponse transfer(@RequestBody TransferRequest transferRequest) {
+    public TransferResponse transfer(@Valid @RequestBody TransferRequest transferRequest) {
         return transferService.transfer(transferRequest);
     }
 }
