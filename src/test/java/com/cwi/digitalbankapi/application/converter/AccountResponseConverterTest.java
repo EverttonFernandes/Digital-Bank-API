@@ -16,6 +16,7 @@ class AccountResponseConverterTest {
     @Test
     @DisplayName("Deve converter conta de dominio em resposta de conta")
     void shouldConvertDomainAccountIntoAccountResponse() {
+        // GIVEN
         Account account = new Account(
             1L,
             "Ana Souza",
@@ -24,8 +25,10 @@ class AccountResponseConverterTest {
             OffsetDateTime.parse("2026-04-07T00:00:00Z")
         );
 
+        // WHEN
         AccountResponse accountResponse = accountResponseConverter.convert(account);
 
+        // THEN
         Assertions.assertEquals(1L, accountResponse.id());
         Assertions.assertEquals("Ana Souza", accountResponse.ownerName());
         Assertions.assertEquals(new BigDecimal("1250.00"), accountResponse.balance());

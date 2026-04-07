@@ -1,0 +1,44 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-009
+ULTIMA ITERACAO_REGISTRADA: 1
+ULTIMA_FASE_CONHECIDA: FINAL_REVIEW
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- A historia precisava consolidar a suite unitária ja iniciada nas historias anteriores e cobrir explicitamente o dominio Account e os pontos simples que ainda estavam sem protecao dedicada.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- A suite unitária passou a cobrir comportamento de debit e credit do dominio Account.
+- O converter de transferencia passou a ter cobertura para campos obrigatorios ausentes.
+- Os testes remanescentes foram alinhados ao padrao GIVEN / WHEN / THEN.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: PENDING
+- unit_tests: PASSED
+- func_tests: PASSED
+- coverage: PENDING
+- sonar: PENDING
+- security: PENDING
+- arch_review: PASSED
+- final_review: PASSED
+
+ULTIMA_ACAO_EXECUTADA:
+- Executar make unit-test e make functional-test apos ampliar a suite unitária.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Iniciar HISTORIA-010 consolidando e ampliando a suite funcional com o padrao completo do projeto.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- src/test/java/com/cwi/digitalbankapi/domain/account/model/AccountTest.java
+- src/test/java/com/cwi/digitalbankapi/application/service/ApplicationStatusServiceTest.java
+- src/test/java/com/cwi/digitalbankapi/application/converter/TransferRequestConverterTest.java
+- src/test/java/com/cwi/digitalbankapi/application/service/AccountQueryServiceTest.java
+- src/test/java/com/cwi/digitalbankapi/application/converter/AccountResponseConverterTest.java
+
+RISCOS_ABERTOS:
+- Ainda existe espaco para expandir cobertura de novos componentes futuros, mas o nucleo atual esta protegido.
+
+OBSERVACOES_DE_CONTEXTO:
+- A historia consolidou o que as entregas anteriores vinham adicionando de forma incremental.
+- Os funcionais seguiram verdes apos a ampliacao unitária, o que confirma ausencia de regressao relevante.

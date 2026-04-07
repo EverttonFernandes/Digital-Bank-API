@@ -27,7 +27,6 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
 ### To Do
 
-- `HISTORIA-009` Implementar suíte de testes unitários no padrão definido
 - `HISTORIA-010` Consolidar e ampliar a suíte de testes funcionais com seeders, fixtures e heurística VADER
 - `HISTORIA-011` Consolidar README com execução, arquitetura e decisões técnicas
 - `HISTORIA-012` Revisar entrega final, documentação cronológica e fechamento semântico da versão
@@ -50,6 +49,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-006` Registrar notificações pós-transferência com observer explícito e consulta por conta
 - `HISTORIA-007` Padronizar tratamento de erros e mensagens key/value para regras de negócio e payload inválido
 - `HISTORIA-008` Publicar Swagger/OpenAPI com contratos claros dos endpoints e respostas principais
+- `HISTORIA-009` Consolidar suíte de testes unitários com cobertura de converters, services, specifications e domínio
 
 ## Critérios de Movimentação
 

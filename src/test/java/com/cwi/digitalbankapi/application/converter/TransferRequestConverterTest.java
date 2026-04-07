@@ -3,6 +3,7 @@ package com.cwi.digitalbankapi.application.converter;
 import com.cwi.digitalbankapi.application.dto.TransferRequest;
 import com.cwi.digitalbankapi.domain.transfer.exception.TransferAmountMustBePositiveException;
 import com.cwi.digitalbankapi.domain.transfer.model.TransferCommand;
+import com.cwi.digitalbankapi.shared.exception.InvalidRequestDataException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,5 +44,56 @@ class TransferRequestConverterTest {
         // THEN
         Assertions.assertEquals("TRANSFER_AMOUNT_MUST_BE_POSITIVE", exception.getKey());
         Assertions.assertEquals("O valor da transferencia deve ser maior que zero.", exception.getValue());
+    }
+
+    @Test
+    @DisplayName("Deve rejeitar requisicao de transferencia quando a conta de origem nao for informada")
+    void shouldRejectTransferRequestWhenSourceAccountIdIsNotProvided() {
+        // GIVEN
+        TransferRequest transferRequest = new TransferRequest(null, 2L, new BigDecimal("150.00"));
+
+        // WHEN
+        InvalidRequestDataException exception = Assertions.assertThrows(
+            InvalidRequestDataException.class,
+            () -> transferRequestConverter.convert(transferRequest)
+        );
+
+        // THEN
+        Assertions.assertEquals("INVALID_REQUEST_DATA", exception.getKey());
+        Assertions.assertEquals("O campo sourceAccountId e obrigatorio.", exception.getValue());
+    }
+
+    @Test
+    @DisplayName("Deve rejeitar requisicao de transferencia quando a conta de destino nao for informada")
+    void shouldRejectTransferRequestWhenTargetAccountIdIsNotProvided() {
+        // GIVEN
+        TransferRequest transferRequest = new TransferRequest(1L, null, new BigDecimal("150.00"));
+
+        // WHEN
+        InvalidRequestDataException exception = Assertions.assertThrows(
+            InvalidRequestDataException.class,
+            () -> transferRequestConverter.convert(transferRequest)
+        );
+
+        // THEN
+        Assertions.assertEquals("INVALID_REQUEST_DATA", exception.getKey());
+        Assertions.assertEquals("O campo targetAccountId e obrigatorio.", exception.getValue());
+    }
+
+    @Test
+    @DisplayName("Deve rejeitar requisicao de transferencia quando o valor nao for informado")
+    void shouldRejectTransferRequestWhenAmountIsNotProvided() {
+        // GIVEN
+        TransferRequest transferRequest = new TransferRequest(1L, 2L, null);
+
+        // WHEN
+        InvalidRequestDataException exception = Assertions.assertThrows(
+            InvalidRequestDataException.class,
+            () -> transferRequestConverter.convert(transferRequest)
+        );
+
+        // THEN
+        Assertions.assertEquals("INVALID_REQUEST_DATA", exception.getKey());
+        Assertions.assertEquals("O campo amount e obrigatorio.", exception.getValue());
     }
 }
