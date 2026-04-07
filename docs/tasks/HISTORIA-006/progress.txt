@@ -1,0 +1,45 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-006
+ULTIMA ITERACAO_REGISTRADA: 1
+ULTIMA_FASE_CONHECIDA: FINAL_REVIEW
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- A transferencia precisa publicar um evento observavel que gere notificacoes rastreaveis sem acoplar o controller ou o caso de uso principal ao detalhe da notificacao.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- O observer de notificacao passou a registrar notificacoes por conta apos transferencia bem-sucedida.
+- O endpoint GET /accounts/{id}/notifications respondeu corretamente para sucesso e falha.
+- Os testes unitarios e funcionais da historia passaram.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: PENDING
+- unit_tests: PASSED
+- func_tests: PASSED
+- coverage: PENDING
+- sonar: PENDING
+- security: PENDING
+- arch_review: PASSED
+- final_review: PASSED
+
+ULTIMA_ACAO_EXECUTADA:
+- Rebuildar a aplicacao, rerodar a suite funcional completa e validar o observer de notificacao junto com os cenarios de falha.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Iniciar HISTORIA-007 reforcando o contrato global de erros e mensagens da API.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- src/main/java/com/cwi/digitalbankapi/infrastructure/notification/SpringTransferCompletedEventPublisher.java
+- src/main/java/com/cwi/digitalbankapi/application/service/RegisterTransferNotificationObserver.java
+- src/main/java/com/cwi/digitalbankapi/api/controller/AccountNotificationController.java
+- src/main/resources/db/migration/V3__create_account_notification_table.sql
+- __functional_tests__/src/endpoints/accounts/GET/accountNotificationsGetSuccess.spec.js
+- __functional_tests__/src/endpoints/accounts/GET/accountNotificationsGetFailure.spec.js
+
+RISCOS_ABERTOS:
+- O contrato global de mensagens ainda sera consolidado na proxima historia.
+
+OBSERVACOES_DE_CONTEXTO:
+- A suite funcional agora espera a aplicacao ficar pronta antes de executar seeders.
+- Os cenarios de notificacao usam transferencia pequena e validacao incremental para conviver com estado acumulado da suite.

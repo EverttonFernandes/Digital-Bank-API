@@ -33,6 +33,11 @@
       "targetAccountId": 2,
       "amount": "200.00"
     },
+    "smallSuccessfulTransfer": {
+      "sourceAccountId": 1,
+      "targetAccountId": 2,
+      "amount": "50.00"
+    },
     "sameAccountTransfer": {
       "sourceAccountId": 1,
       "targetAccountId": 1,

@@ -41,13 +41,13 @@ async function waitForApplicationReadiness() {
 }
 
 async function runFunctionalSuite() {
+    await waitForApplicationReadiness();
+
     const seedExitCode = runCommand("node", ["seed.js"]);
 
     if (seedExitCode !== 0) {
         process.exit(seedExitCode);
     }
-
-    await waitForApplicationReadiness();
 
     try {
         jestExitCode = runCommand("npx", ["jest", "--runInBand"]);

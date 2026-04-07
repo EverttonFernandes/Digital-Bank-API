@@ -27,7 +27,6 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
 ### To Do
 
-- `HISTORIA-006` Registrar notificação após transferência concluída com uso coerente de observer
 - `HISTORIA-007` Padronizar tratamento de erros e mensagens `key/value`
 - `HISTORIA-008` Publicar Swagger/OpenAPI com contratos claros
 - `HISTORIA-009` Implementar suíte de testes unitários no padrão definido
@@ -50,6 +49,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-003` Criar modelo de contas com seed inicial e consultas de listagem/busca
 - `HISTORIA-004` Implementar transferência entre contas com consistência transacional, lock pessimista e setup inicial dos testes funcionais em Jest
 - `HISTORIA-005` Gerar movimentações financeiras associadas à transferência e expor histórico por conta
+- `HISTORIA-006` Registrar notificações pós-transferência com observer explícito e consulta por conta
 
 ## Critérios de Movimentação
 

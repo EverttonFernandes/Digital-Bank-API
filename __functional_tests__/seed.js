@@ -3,11 +3,13 @@ const { fixtures } = require("./src/functionalTestHelper");
 const { seedAccount } = require("./src/seeders/account/account.seeder");
 const { cleanupAccountMovement } = require("./src/seeders/accountMovement/accountMovement.seeder");
 const { cleanupAccount } = require("./src/seeders/account/account.seeder");
+const { cleanupAccountNotification } = require("./src/seeders/accountNotification/accountNotification.seeder");
 
 async function runSeeders() {
     const transaction = await sequelizeConnection.transaction();
 
     try {
+        await cleanupAccountNotification(transaction);
         await cleanupAccountMovement(transaction);
         await cleanupAccount(transaction);
         await seedAccount(fixtures, transaction);

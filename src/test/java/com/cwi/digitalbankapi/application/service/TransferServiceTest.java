@@ -6,6 +6,7 @@ import com.cwi.digitalbankapi.application.dto.TransferResponse;
 import com.cwi.digitalbankapi.domain.account.exception.AccountNotFoundException;
 import com.cwi.digitalbankapi.domain.account.model.Account;
 import com.cwi.digitalbankapi.domain.account.repository.AccountRepository;
+import com.cwi.digitalbankapi.domain.notification.gateway.TransferCompletedEventPublisher;
 import com.cwi.digitalbankapi.domain.statement.repository.AccountMovementRepository;
 import com.cwi.digitalbankapi.domain.transfer.specification.CompositeTransferSpecification;
 import com.cwi.digitalbankapi.domain.transfer.specification.TransferAccountsMustBeDifferentSpecification;
@@ -26,9 +27,11 @@ class TransferServiceTest {
 
     private final AccountRepository accountRepository = mock(AccountRepository.class);
     private final AccountMovementRepository accountMovementRepository = mock(AccountMovementRepository.class);
+    private final TransferCompletedEventPublisher transferCompletedEventPublisher = mock(TransferCompletedEventPublisher.class);
     private final TransferService transferService = new TransferService(
         accountRepository,
         accountMovementRepository,
+        transferCompletedEventPublisher,
         new TransferRequestConverter(),
         new CompositeTransferSpecification(List.of(
             new TransferAccountsMustBeDifferentSpecification(),
@@ -58,6 +61,7 @@ class TransferServiceTest {
         Assertions.assertEquals(new BigDecimal("200.00"), transferResponse.transferredAmount());
         Assertions.assertEquals(new BigDecimal("1050.00"), transferResponse.sourceAccountBalance());
         Assertions.assertEquals(new BigDecimal("1180.50"), transferResponse.targetAccountBalance());
+        BDDMockito.then(transferCompletedEventPublisher).should().publish(BDDMockito.any());
     }
 
     @Test

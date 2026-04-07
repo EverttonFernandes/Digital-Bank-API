@@ -6,6 +6,8 @@ import com.cwi.digitalbankapi.application.dto.TransferResponse;
 import com.cwi.digitalbankapi.domain.account.exception.AccountNotFoundException;
 import com.cwi.digitalbankapi.domain.account.model.Account;
 import com.cwi.digitalbankapi.domain.account.repository.AccountRepository;
+import com.cwi.digitalbankapi.domain.notification.gateway.TransferCompletedEventPublisher;
+import com.cwi.digitalbankapi.domain.notification.model.TransferCompletedEvent;
 import com.cwi.digitalbankapi.domain.statement.model.AccountMovement;
 import com.cwi.digitalbankapi.domain.statement.model.AccountMovementType;
 import com.cwi.digitalbankapi.domain.statement.repository.AccountMovementRepository;
@@ -24,17 +26,20 @@ public class TransferService {
 
     private final AccountRepository accountRepository;
     private final AccountMovementRepository accountMovementRepository;
+    private final TransferCompletedEventPublisher transferCompletedEventPublisher;
     private final TransferRequestConverter transferRequestConverter;
     private final CompositeTransferSpecification compositeTransferSpecification;
 
     public TransferService(
         AccountRepository accountRepository,
         AccountMovementRepository accountMovementRepository,
+        TransferCompletedEventPublisher transferCompletedEventPublisher,
         TransferRequestConverter transferRequestConverter,
         CompositeTransferSpecification compositeTransferSpecification
     ) {
         this.accountRepository = accountRepository;
         this.accountMovementRepository = accountMovementRepository;
+        this.transferCompletedEventPublisher = transferCompletedEventPublisher;
         this.transferRequestConverter = transferRequestConverter;
         this.compositeTransferSpecification = compositeTransferSpecification;
     }
@@ -88,6 +93,16 @@ public class TransferService {
                 "Credito recebido da transferencia da conta " + sourceAccount.getId() + ".",
                 movementCreatedAt
             )
+        ));
+
+        transferCompletedEventPublisher.publish(new TransferCompletedEvent(
+            sourceAccount.getId(),
+            sourceAccount.getOwnerName(),
+            targetAccount.getId(),
+            targetAccount.getOwnerName(),
+            transferReference,
+            transfer.amount(),
+            movementCreatedAt
         ));
 
         return new TransferResponse(
