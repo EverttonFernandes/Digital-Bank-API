@@ -1,0 +1,48 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-002
+ULTIMA_ITERACAO_REGISTRADA: 1
+ULTIMA_FASE_CONHECIDA: DONE
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- Estruturar os pacotes em camadas e mover o endpoint de status para api/application prepara a base sem antecipar regra de dominio.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- A base estrutural foi distribuida entre `api`, `application`, `domain`, `infrastructure` e `shared`.
+- O `make unit-test` executou com sucesso.
+- O ambiente subiu com sucesso apos a reorganizacao estrutural.
+- `GET /api/status` respondeu `200 OK`.
+- `GET /actuator/health` respondeu `200 OK`.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: PENDING
+- unit_tests: PENDING
+- func_tests: N/A
+- coverage: N/A
+- sonar: N/A
+- security: PENDING
+- arch_review: PENDING
+- final_review: PENDING
+- arch_review: PASS
+- final_review: PASS
+
+ULTIMA_ACAO_EXECUTADA:
+- Criacao da estrutura de pacotes em camadas, configuracao de persistencia, realocacao do endpoint de status para `api` e `application` e validacao completa da base.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Iniciar a HISTORIA-003 com a base estrutural pronta para contas.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- src/main/java/com/cwi/digitalbankapi/DigitalBankApiApplication.java
+- src/main/java/com/cwi/digitalbankapi/api/controller/ApplicationStatusController.java
+- src/main/java/com/cwi/digitalbankapi/application/service/ApplicationStatusService.java
+- src/main/java/com/cwi/digitalbankapi/infrastructure/config/PersistenceConfiguration.java
+- src/main/java/com/cwi/digitalbankapi/**/package-info.java
+- docs/tasks/HISTORIA-002/progress.txt
+
+RISCOS_ABERTOS:
+- Ainda nao existem entidades persistentes ou regras funcionais; isso fica para as proximas historias.
+
+OBSERVACOES_DE_CONTEXTO:
+- Esta historia deve preparar a base da aplicacao sem implementar comportamento funcional de contas.

@@ -1,4 +1,4 @@
-package com.cwi.digitalbankapi.bootstrap;
+package com.cwi.digitalbankapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
