@@ -136,6 +136,10 @@ O repositorio possui automacao de `CI/CD` em `.github/workflows`:
 - `release.yml`
   executa em tags semanticas `v*.*.*`
 
+O ganho arquitetural dessa esteira nao e apenas automatizar build e release. Ela atua como guardiao da integridade do
+que ja foi entregue, reduz risco de regressao a cada nova mudanca e cria uma base segura para continuar evoluindo a API
+com refatoracoes, novas historias e incrementos funcionais sem perder confiabilidade.
+
 ### O que o CI valida
 
 - `checkout` do repositorio
