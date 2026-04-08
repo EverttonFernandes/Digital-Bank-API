@@ -35,21 +35,21 @@ PROXIMA_ACAO_RECOMENDADA:
 ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
 - docs/jira-pessoal/KANBAN.md
 - docs/tasks/HISTORIA-016/IMPLEMENTATION.md
-- docs/padrao-umovme-team.md
-- docs/jira-pessoal/historias/HISTORIA-016-ALINHAMENTO-DE-PADRAO-COM-UMOVME-TEAM.md
+- docs/padrao-referencia-backend.md
+- docs/jira-pessoal/historias/HISTORIA-016-ALINHAMENTO-DE-PADRAO-DE-CODIGO-EM-CAMADAS.md
 - docs/tasks/HISTORIA-016/progress.txt
-- src/main/java/com/cwi/digitalbankapi/api/controller/AccountController.java
-- src/main/java/com/cwi/digitalbankapi/application/service/AccountService.java
-- src/main/java/com/cwi/digitalbankapi/application/service/TransferService.java
-- src/main/java/com/cwi/digitalbankapi/application/converter/CreateAccountRequestConverter.java
-- src/main/java/com/cwi/digitalbankapi/application/converter/TransferRequestConverter.java
-- src/main/java/com/cwi/digitalbankapi/domain/account/model/Account.java
-- src/main/java/com/cwi/digitalbankapi/domain/transfer/model/Transfer.java
+- src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountController.java
+- src/main/java/com/avaliadora/digitalbankapi/application/service/AccountService.java
+- src/main/java/com/avaliadora/digitalbankapi/application/service/TransferService.java
+- src/main/java/com/avaliadora/digitalbankapi/application/converter/CreateAccountRequestConverter.java
+- src/main/java/com/avaliadora/digitalbankapi/application/converter/TransferRequestConverter.java
+- src/main/java/com/avaliadora/digitalbankapi/domain/account/model/Account.java
+- src/main/java/com/avaliadora/digitalbankapi/domain/transfer/model/Transfer.java
 
 RISCOS_ABERTOS:
 - Nenhum risco funcional aberto apos a revalidacao final dos testes.
 
 OBSERVACOES_DE_CONTEXTO:
-- Esta história foi aberta a partir da leitura direta do módulo `umovme-business-team`.
+- Esta história foi aberta a partir da leitura direta do módulo `projeto-referencia-backend-em-camadas`.
 - O objetivo é alinhar padrão, não clonar a implementação de referência.
 - A convergencia final preservou os contratos HTTP e usou a suite funcional como guardiao principal de regressao.

@@ -118,7 +118,8 @@ Mesmo sendo uma história de base estrutural, a entrega deve ter validação obj
 
 ### Observação
 
-Nesta etapa, o foco principal não é ainda a profundidade de testes de domínio, mas a validação de que a base do projeto está correta e pronta para receber as histórias funcionais.
+Nesta etapa, o foco principal não é ainda a profundidade de testes de domínio, mas a validação de que a base do projeto
+está correta e pronta para receber as histórias funcionais.
 
 ## Arquivos Provavelmente Afetados
 
@@ -179,5 +180,6 @@ Arquivos esperados nesta entrega:
 - O endpoint de status foi movido para `api/controller` e passou a depender de um serviço em `application/service`.
 - Foi criada a configuração de persistência em `infrastructure/config`.
 - Foram materializados os pacotes estruturais da arquitetura por meio de `package-info.java`.
-- Houve uma regressão temporária de `404` em `/api/status`, corrigida movendo a classe principal para o pacote raiz `com.cwi.digitalbankapi`.
+- Houve uma regressão temporária de `404` em `/api/status`, corrigida movendo a classe principal para o pacote raiz
+  `com.avaliadora.digitalbankapi`.
 - A validação final confirmou build íntegro e ambiente funcional.

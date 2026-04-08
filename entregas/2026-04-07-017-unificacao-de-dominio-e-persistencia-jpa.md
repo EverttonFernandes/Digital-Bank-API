@@ -4,7 +4,8 @@
 
 Esta entrega eliminou a duplicação estrutural remanescente entre domínio e entidades JPA/Hibernate.
 
-Ao final da história, os próprios modelos de domínio persistentes passaram a ser usados diretamente pela camada de persistência, seguindo o padrão mais simples e direto observado no `wishlist-api`.
+Ao final da história, os próprios modelos de domínio persistentes passaram a ser usados diretamente pela camada de
+persistência, seguindo o padrão mais simples e direto observado no `wishlist-api`.
 
 ## O Que Foi Eliminado
 
@@ -21,9 +22,11 @@ Ao final da história, os próprios modelos de domínio persistentes passaram a 
 
 ## Tradução Entre Técnica e Negócio
 
-Do ponto de vista técnico, a solução ficou mais simples, com menos classes duplicadas e menos transformação acidental entre camadas.
+Do ponto de vista técnico, a solução ficou mais simples, com menos classes duplicadas e menos transformação acidental
+entre camadas.
 
-Do ponto de vista de negócio, isso reduz custo de manutenção e facilita a evolução da API sem aumentar complexidade estrutural desnecessária.
+Do ponto de vista de negócio, isso reduz custo de manutenção e facilita a evolução da API sem aumentar complexidade
+estrutural desnecessária.
 
 ## Comportamentos Preservados
 
@@ -59,4 +62,5 @@ O projeto saiu de um desenho com separação redundante entre `domain` e `entity
 
 ## Impacto Final
 
-Esta entrega conclui a limpeza arquitetural que vinha sendo pedida desde a revisão da `HISTORIA-015`, deixando o back-end mais enxuto, mais coerente e mais alinhado ao padrão desejado.
+Esta entrega conclui a limpeza arquitetural que vinha sendo pedida desde a revisão da `HISTORIA-015`, deixando o
+back-end mais enxuto, mais coerente e mais alinhado ao padrão desejado.

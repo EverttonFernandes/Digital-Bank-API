@@ -6,7 +6,8 @@
 
 ## Objetivo da Historia
 
-Refatorar a camada de persistencia para explicitar o mapeamento relacional entre as entidades que ja possuem tabela no banco, usando anotacoes JPA/Hibernate mais completas e coerentes com o modelo relacional real.
+Refatorar a camada de persistencia para explicitar o mapeamento relacional entre as entidades que ja possuem tabela no
+banco, usando anotacoes JPA/Hibernate mais completas e coerentes com o modelo relacional real.
 
 ## Esclarecimento Arquitetural Importante
 
@@ -18,11 +19,13 @@ O ponto que esta historia busca evoluir nao e “adotar JPA do zero”, e sim:
 - reduzir o uso de chaves estrangeiras como campos escalares isolados quando o relacionamento ja existe no banco
 - deixar a camada `infrastructure.persistence.entity` mais fiel ao modelo relacional
 
-Esta historia nao deve colapsar o dominio dentro da persistencia nem transformar a camada `domain` em entidade JPA apenas por conveniencia.
+Esta historia nao deve colapsar o dominio dentro da persistencia nem transformar a camada `domain` em entidade JPA
+apenas por conveniencia.
 
 ## Valor de Negocio
 
-Esta entrega aumenta a maturidade tecnica da persistencia, melhora legibilidade para banca tecnica e reduz ambiguidade entre o modelo do banco e o modelo persistido pela aplicacao.
+Esta entrega aumenta a maturidade tecnica da persistencia, melhora legibilidade para banca tecnica e reduz ambiguidade
+entre o modelo do banco e o modelo persistido pela aplicacao.
 
 ## Problema Atual
 
@@ -85,4 +88,5 @@ Revisar e ajustar:
 
 ## Proxima Historia Natural
 
-- refinamentos adicionais de persistencia e possivel introducao de entidades de transferencia apenas se houver ganho real de dominio
+- refinamentos adicionais de persistencia e possivel introducao de entidades de transferencia apenas se houver ganho
+  real de dominio

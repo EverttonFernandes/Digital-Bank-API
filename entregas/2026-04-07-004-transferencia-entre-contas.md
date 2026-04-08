@@ -10,9 +10,12 @@
 
 ## Resumo Executivo
 
-Esta entrega colocou a principal capacidade do banco digital em funcionamento: transferir dinheiro entre duas contas com validacoes claras, consistencia transacional e protecao contra concorrencia.
+Esta entrega colocou a principal capacidade do banco digital em funcionamento: transferir dinheiro entre duas contas com
+validacoes claras, consistencia transacional e protecao contra concorrencia.
 
-Ao mesmo tempo, a historia deixou pronta a base funcional em Jest para validar o fluxo principal com BDD. Isso aumenta a confianca da entrega porque a transferencia agora foi comprovada tanto por testes unitarios quanto por testes funcionais de ponta a ponta.
+Ao mesmo tempo, a historia deixou pronta a base funcional em Jest para validar o fluxo principal com BDD. Isso aumenta a
+confianca da entrega porque a transferencia agora foi comprovada tanto por testes unitarios quanto por testes funcionais
+de ponta a ponta.
 
 ## Linguagem Ubiqua da Entrega
 
@@ -24,9 +27,11 @@ Ao mesmo tempo, a historia deixou pronta a base funcional em Jest para validar o
 
 ## Problema de Negocio
 
-Antes desta entrega, o sistema conseguia apenas consultar contas. Ainda nao existia a operacao central de um banco digital: mover saldo entre contas com seguranca.
+Antes desta entrega, o sistema conseguia apenas consultar contas. Ainda nao existia a operacao central de um banco
+digital: mover saldo entre contas com seguranca.
 
-Isso impedia que o desafio demonstrasse seu principal valor. Era necessario que a API passasse a validar regras reais de transferencia, impedisse operacoes invalidas e mostrasse efeito concreto no saldo das contas.
+Isso impedia que o desafio demonstrasse seu principal valor. Era necessario que a API passasse a validar regras reais de
+transferencia, impedisse operacoes invalidas e mostrasse efeito concreto no saldo das contas.
 
 ## O Que Foi Entregue
 
@@ -78,9 +83,12 @@ Isso impedia que o desafio demonstrasse seu principal valor. Era necessario que 
 
 ## Estrategia Tecnica Aplicada
 
-A entrega foi estruturada com `TransferRequest`, `TransferRequestConverter`, modelo de dominio `Transfer`, specifications de negocio e `TransferService` transacional. A persistencia das contas passou a oferecer leitura com lock pessimista e salvamento consolidado dos saldos atualizados.
+A entrega foi estruturada com `TransferRequest`, `TransferRequestConverter`, modelo de dominio `Transfer`,
+specifications de negocio e `TransferService` transacional. A persistencia das contas passou a oferecer leitura com lock
+pessimista e salvamento consolidado dos saldos atualizados.
 
-Na camada funcional, a estrutura `__functional_tests__` foi consolidada com seeders, fixtures, queries de apoio e cenarios BDD para a transferencia.
+Na camada funcional, a estrutura `__functional_tests__` foi consolidada com seeders, fixtures, queries de apoio e
+cenarios BDD para a transferencia.
 
 ## Evidencias de Validacao
 
@@ -92,10 +100,10 @@ Na camada funcional, a estrutura `__functional_tests__` foi consolidada com seed
 
 ## Arquivos ou Modulos Mais Relevantes
 
-- `src/main/java/com/cwi/digitalbankapi/api/controller/TransferController.java`
-- `src/main/java/com/cwi/digitalbankapi/application/service/TransferService.java`
-- `src/main/java/com/cwi/digitalbankapi/domain/transfer`
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository`
+- `src/main/java/com/avaliadora/digitalbankapi/api/controller/TransferController.java`
+- `src/main/java/com/avaliadora/digitalbankapi/application/service/TransferService.java`
+- `src/main/java/com/avaliadora/digitalbankapi/domain/transfer`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository`
 - `__functional_tests__/src/endpoints/transfers/POST`
 
 ## Riscos, Limitacoes ou Pendencias
@@ -106,7 +114,8 @@ Na camada funcional, a estrutura `__functional_tests__` foi consolidada com seed
 
 ## Relacao com a Spec Principal
 
-Esta entrega concretiza a parte central da spec: transferencia de fundos entre contas com consistencia, regras de negocio e base de validacao robusta.
+Esta entrega concretiza a parte central da spec: transferencia de fundos entre contas com consistencia, regras de
+negocio e base de validacao robusta.
 
 ## Pronto Para Fechamento de Versao
 

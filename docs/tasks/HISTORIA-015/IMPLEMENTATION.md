@@ -2,9 +2,11 @@
 
 ## Contexto da História
 
-Esta historia nasce da percepcao de que a API ja usa `Spring Data JPA` e `Hibernate`, mas ainda nao explicita plenamente os relacionamentos entre as entidades persistentes que representam tabelas reais do banco.
+Esta historia nasce da percepcao de que a API ja usa `Spring Data JPA` e `Hibernate`, mas ainda nao explicita plenamente
+os relacionamentos entre as entidades persistentes que representam tabelas reais do banco.
 
-O objetivo nao e mover JPA para o dominio. O objetivo e amadurecer a camada de persistencia para que ela reflita melhor o modelo relacional.
+O objetivo nao e mover JPA para o dominio. O objetivo e amadurecer a camada de persistencia para que ela reflita melhor
+o modelo relacional.
 
 ## Objetivo da Entrega Atual
 
@@ -121,9 +123,9 @@ Refatorar:
 
 ## Arquivos Provavelmente Afetados
 
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/entity/AccountEntity.java`
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/entity/AccountMovementEntity.java`
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/entity/AccountNotificationEntity.java`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/entity/AccountEntity.java`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/entity/AccountMovementEntity.java`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/entity/AccountNotificationEntity.java`
 - repositorios Spring Data impactados
 - mapeadores persistencia -> dominio impactados
 - testes unitarios relacionados

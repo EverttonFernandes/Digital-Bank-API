@@ -34,11 +34,11 @@ PROXIMA_ACAO_RECOMENDADA:
 - Iniciar a HISTORIA-003 com a base estrutural pronta para contas.
 
 ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
-- src/main/java/com/cwi/digitalbankapi/DigitalBankApiApplication.java
-- src/main/java/com/cwi/digitalbankapi/api/controller/ApplicationStatusController.java
-- src/main/java/com/cwi/digitalbankapi/application/service/ApplicationStatusService.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/config/PersistenceConfiguration.java
-- src/main/java/com/cwi/digitalbankapi/**/package-info.java
+- src/main/java/com/avaliadora/digitalbankapi/DigitalBankApiApplication.java
+- src/main/java/com/avaliadora/digitalbankapi/api/controller/ApplicationStatusController.java
+- src/main/java/com/avaliadora/digitalbankapi/application/service/ApplicationStatusService.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/config/PersistenceConfiguration.java
+- src/main/java/com/avaliadora/digitalbankapi/**/package-info.java
 - docs/tasks/HISTORIA-002/progress.txt
 
 RISCOS_ABERTOS:

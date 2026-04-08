@@ -4,7 +4,8 @@
 
 Esta história é a primeira entrega funcional do domínio do banco digital.
 
-Ela sucede a preparação do ambiente e da estrutura base da aplicação, e passa a materializar o conceito central de conta dentro do sistema.
+Ela sucede a preparação do ambiente e da estrutura base da aplicação, e passa a materializar o conceito central de conta
+dentro do sistema.
 
 Ela nasce diretamente de:
 
@@ -86,7 +87,8 @@ Disponibilizar endpoints de leitura simples:
 
 ### Tratamento de Erro
 
-Buscar resposta consistente para conta inexistente, sem ainda expandir demais o tratamento global de mensagens além do necessário para esta etapa.
+Buscar resposta consistente para conta inexistente, sem ainda expandir demais o tratamento global de mensagens além do
+necessário para esta etapa.
 
 ## Camadas Afetadas
 
@@ -195,4 +197,5 @@ Arquivos esperados nesta entrega:
 - Foi disponibilizada a leitura de contas por meio de `GET /accounts` e `GET /accounts/{id}`.
 - Foi adicionado tratamento mínimo de erro para conta inexistente com resposta `key/value`.
 - Foram criados testes unitários para conversão de resposta e consulta de contas.
-- Não foram detectados testes funcionais implementados no projeto nesta etapa, portanto o gate `func_tests` permaneceu `N/A` de forma documentada.
+- Não foram detectados testes funcionais implementados no projeto nesta etapa, portanto o gate `func_tests` permaneceu
+  `N/A` de forma documentada.

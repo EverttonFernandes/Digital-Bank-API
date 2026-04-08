@@ -6,11 +6,12 @@ O projeto já convergiu em arquitetura e persistência, mas ainda está com nome
 
 ## Objetivo da Entrega Atual
 
-Renomear de ponta a ponta as classes que divergem do padrão adotado como referência, mantendo o comportamento da aplicação intacto.
+Renomear de ponta a ponta as classes que divergem do padrão adotado como referência, mantendo o comportamento da
+aplicação intacto.
 
 ## Referência
 
-- [HISTORIA-018-PADRONIZACAO-DE-NOMENCLATURA-ARQUITETURAL.md](/home/umov/Documents/ProjetosPessoais/DigitalBankAPI/docs/jira-pessoal/historias/HISTORIA-018-PADRONIZACAO-DE-NOMENCLATURA-ARQUITETURAL.md)
+- [HISTORIA-018-PADRONIZACAO-DE-NOMENCLATURA-ARQUITETURAL.md](docs/jira-pessoal/historias/HISTORIA-018-PADRONIZACAO-DE-NOMENCLATURA-ARQUITETURAL.md)
 
 ## Escopo Incluído
 

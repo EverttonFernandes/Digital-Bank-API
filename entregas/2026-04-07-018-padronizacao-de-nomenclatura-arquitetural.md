@@ -2,7 +2,8 @@
 
 ## Resumo Executivo
 
-Esta entrega padronizou a nomenclatura das classes principais do projeto para alinhar o back-end ao estilo do `wishlist-api`.
+Esta entrega padronizou a nomenclatura das classes principais do projeto para alinhar o back-end ao estilo do
+`wishlist-api`.
 
 O objetivo foi remover heterogeneidade de naming entre camadas, sem alterar o comportamento da API.
 
@@ -28,7 +29,8 @@ O objetivo foi remover heterogeneidade de naming entre camadas, sem alterar o co
 
 Do ponto de vista técnico, a entrega reduz ruído cognitivo e melhora a previsibilidade da base.
 
-Do ponto de vista de negócio, isso facilita manutenção, onboarding e apresentação técnica da solução, porque a nomenclatura passa a seguir um padrão único e defensável.
+Do ponto de vista de negócio, isso facilita manutenção, onboarding e apresentação técnica da solução, porque a
+nomenclatura passa a seguir um padrão único e defensável.
 
 ## Evidências de Validação
 

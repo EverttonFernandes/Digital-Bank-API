@@ -14,7 +14,8 @@ Ela nasce diretamente de:
 
 ## Objetivo da Entrega Atual
 
-Padronizar respostas de erro e mensagens da API, com foco em clareza, previsibilidade e aderência ao padrão `key` e `value`.
+Padronizar respostas de erro e mensagens da API, com foco em clareza, previsibilidade e aderência ao padrão `key` e
+`value`.
 
 ## Escopo Incluído
 

@@ -2,16 +2,18 @@
 
 ## Contexto da História
 
-Esta história continua a simplificação estrutural iniciada nas histórias anteriores e ataca uma redundância objetiva do projeto: a duplicação entre domínio e entidades JPA.
+Esta história continua a simplificação estrutural iniciada nas histórias anteriores e ataca uma redundância objetiva do
+projeto: a duplicação entre domínio e entidades JPA.
 
 ## Objetivo da Entrega Atual
 
-Refatorar o back-end para que os modelos de domínio persistentes passem a refletir diretamente o mapeamento JPA/Hibernate, começando pela fatia de conta, sem regressão funcional.
+Refatorar o back-end para que os modelos de domínio persistentes passem a refletir diretamente o mapeamento
+JPA/Hibernate, começando pela fatia de conta, sem regressão funcional.
 
 ## Referências
 
-- [HISTORIA-017-UNIFICACAO-DE-DOMINIO-E-PERSISTENCIA-JPA.md](/home/umov/Documents/ProjetosPessoais/DigitalBankAPI/docs/jira-pessoal/historias/HISTORIA-017-UNIFICACAO-DE-DOMINIO-E-PERSISTENCIA-JPA.md)
-- [padrao-umovme-team.md](/home/umov/Documents/ProjetosPessoais/DigitalBankAPI/docs/padrao-umovme-team.md)
+- [HISTORIA-017-UNIFICACAO-DE-DOMINIO-E-PERSISTENCIA-JPA.md](docs/jira-pessoal/historias/HISTORIA-017-UNIFICACAO-DE-DOMINIO-E-PERSISTENCIA-JPA.md)
+- [padrao-padrao-de-referencia-em-camadas.md](docs/padrao-referencia-backend.md)
 
 ## Escopo Incluído
 

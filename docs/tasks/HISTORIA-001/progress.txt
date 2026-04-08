@@ -38,8 +38,8 @@ ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
 - Dockerfile
 - docker-compose.yml
 - Makefile
-- src/main/java/com/cwi/digitalbankapi/bootstrap/DigitalBankApiApplication.java
-- src/main/java/com/cwi/digitalbankapi/bootstrap/ApplicationStatusController.java
+- src/main/java/com/avaliadora/digitalbankapi/bootstrap/DigitalBankApiApplication.java
+- src/main/java/com/avaliadora/digitalbankapi/bootstrap/ApplicationStatusController.java
 - src/main/resources/application.properties
 - README.md
 

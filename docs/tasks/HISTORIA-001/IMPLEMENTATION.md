@@ -84,9 +84,9 @@ Esta entrega deve seguir uma abordagem simples e direta.
 ### Documentação
 
 - registrar no `README.md` como subir e acessar:
-  - aplicação
-  - Swagger
-  - banco
+    - aplicação
+    - Swagger
+    - banco
 
 ## Camadas Afetadas
 
@@ -118,7 +118,8 @@ Mesmo sendo uma história de infraestrutura, a entrega deve prever validação o
 
 ### Observação
 
-Se nesta etapa ainda não houver suíte automatizada suficiente para validar tudo, isso deve ser registrado explicitamente como limitação temporária da história, sem fingir cobertura inexistente.
+Se nesta etapa ainda não houver suíte automatizada suficiente para validar tudo, isso deve ser registrado explicitamente
+como limitação temporária da história, sem fingir cobertura inexistente.
 
 ## Arquivos Provavelmente Afetados
 
@@ -186,15 +187,19 @@ Arquivos esperados nesta entrega:
 
 ### Iteração 1
 
-- Foi criado um bootstrap mínimo em Spring Boot para suportar a validação da infraestrutura sem invadir o escopo arquitetural da `HISTORIA-002`.
+- Foi criado um bootstrap mínimo em Spring Boot para suportar a validação da infraestrutura sem invadir o escopo
+  arquitetural da `HISTORIA-002`.
 - Foi criado `docker-compose.yml` com serviços separados para aplicação e PostgreSQL.
 - Foi criado `Dockerfile` multi-stage para build e execução da aplicação.
 - Foi registrada documentação mínima no `README.md`.
-- A validação operacional confirmou aplicação em `8080`, Swagger acessível pela rota própria e PostgreSQL disponível em `5433`.
+- A validação operacional confirmou aplicação em `8080`, Swagger acessível pela rota própria e PostgreSQL disponível em
+  `5433`.
 
 ### Iteração 2
 
 - O caminho de build foi endurecido para Gradle em container via `Makefile`, eliminando dependência do Gradle local.
-- O alvo `make unit-test` foi ajustado para executar em workspace temporário dentro do container, evitando falhas de permissão no repositório local.
+- O alvo `make unit-test` foi ajustado para executar em workspace temporário dentro do container, evitando falhas de
+  permissão no repositório local.
 - O `pgAdmin` foi corrigido com e-mail válido e passou a subir corretamente na porta `5050`.
-- Foi adicionado `spring-boot-starter-validation` e removida a configuração explícita do dialeto PostgreSQL para eliminar warnings desnecessários do bootstrap.
+- Foi adicionado `spring-boot-starter-validation` e removida a configuração explícita do dialeto PostgreSQL para
+  eliminar warnings desnecessários do bootstrap.

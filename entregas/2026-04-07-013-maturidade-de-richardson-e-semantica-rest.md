@@ -10,9 +10,11 @@
 
 ## Resumo Executivo
 
-Esta entrega elevou a maturidade da interface HTTP da API sem alterar o dominio central do projeto. O resultado foi uma API mais navegavel, mais coerente com REST e mais preparada para apresentacao tecnica.
+Esta entrega elevou a maturidade da interface HTTP da API sem alterar o dominio central do projeto. O resultado foi uma
+API mais navegavel, mais coerente com REST e mais preparada para apresentacao tecnica.
 
-Na pratica, contas, transferencias, movimentacoes e notificacoes passaram a devolver links navegaveis, permitindo que o proprio response indique recursos relacionados e proximos passos do consumidor.
+Na pratica, contas, transferencias, movimentacoes e notificacoes passaram a devolver links navegaveis, permitindo que o
+proprio response indique recursos relacionados e proximos passos do consumidor.
 
 ## Linguagem Ubiqua da Entrega
 
@@ -24,7 +26,8 @@ Na pratica, contas, transferencias, movimentacoes e notificacoes passaram a devo
 
 ## Problema de Negocio
 
-Antes desta entrega, a API ja funcionava bem e usava recursos e verbos HTTP coerentes, mas as respostas ainda eram pouco navegaveis. O consumidor precisava conhecer previamente varias rotas para continuar a exploracao da API.
+Antes desta entrega, a API ja funcionava bem e usava recursos e verbos HTTP coerentes, mas as respostas ainda eram pouco
+navegaveis. O consumidor precisava conhecer previamente varias rotas para continuar a exploracao da API.
 
 Era necessario tornar a interface mais autoexplicativa e mais alinhada com uma defesa tecnica madura de REST.
 
@@ -88,9 +91,11 @@ Era necessario tornar a interface mais autoexplicativa e mais alinhada com uma d
 
 ## Estrategia Tecnica Aplicada
 
-O caminho adotado foi o menor corte seguro: manter as rotas principais do dominio e evoluir apenas a representacao devolvida. Isso evitou regressao de semantica e concentrou o ganho na navegacao e na clareza do contrato.
+O caminho adotado foi o menor corte seguro: manter as rotas principais do dominio e evoluir apenas a representacao
+devolvida. Isso evitou regressao de semantica e concentrou o ganho na navegacao e na clareza do contrato.
 
-Foram criados `RepresentationModel` e assemblers dedicados para cada response principal, com links gerados a partir dos proprios controllers.
+Foram criados `RepresentationModel` e assemblers dedicados para cada response principal, com links gerados a partir dos
+proprios controllers.
 
 ## Evidencias de Validacao
 
@@ -104,11 +109,11 @@ Foram criados `RepresentationModel` e assemblers dedicados para cada response pr
 
 - `build.gradle`
 - `Makefile`
-- `src/main/java/com/cwi/digitalbankapi/api/controller/AccountController.java`
-- `src/main/java/com/cwi/digitalbankapi/api/controller/TransferController.java`
-- `src/main/java/com/cwi/digitalbankapi/api/assembler/*`
-- `src/main/java/com/cwi/digitalbankapi/api/representation/*`
-- `src/test/java/com/cwi/digitalbankapi/api/assembler/*`
+- `src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountController.java`
+- `src/main/java/com/avaliadora/digitalbankapi/api/controller/TransferController.java`
+- `src/main/java/com/avaliadora/digitalbankapi/api/assembler/*`
+- `src/main/java/com/avaliadora/digitalbankapi/api/representation/*`
+- `src/test/java/com/avaliadora/digitalbankapi/api/assembler/*`
 - `__functional_tests__/src/endpoints/**/*`
 
 ## Riscos, Limitacoes ou Pendencias
@@ -118,7 +123,8 @@ Foram criados `RepresentationModel` e assemblers dedicados para cada response pr
 
 ## Relacao com a Spec Principal
 
-Esta entrega aprofunda a qualidade arquitetural da API alem do escopo minimo do desafio, reforcando semantica REST, discoverability e coerencia entre contrato e documentacao.
+Esta entrega aprofunda a qualidade arquitetural da API alem do escopo minimo do desafio, reforcando semantica REST,
+discoverability e coerencia entre contrato e documentacao.
 
 ## Pronto Para Fechamento de Versao
 

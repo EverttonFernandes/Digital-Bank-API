@@ -10,7 +10,7 @@ Tornar o caso de concorrência da transferência previsível e amigável para o 
 
 ## Referência
 
-- [HISTORIA-020-RESILIENCIA-DE-CONCORRENCIA-NA-TRANSFERENCIA.md](/home/umov/Documents/ProjetosPessoais/DigitalBankAPI/docs/jira-pessoal/historias/HISTORIA-020-RESILIENCIA-DE-CONCORRENCIA-NA-TRANSFERENCIA.md)
+- [HISTORIA-020-RESILIENCIA-DE-CONCORRENCIA-NA-TRANSFERENCIA.md](docs/jira-pessoal/historias/HISTORIA-020-RESILIENCIA-DE-CONCORRENCIA-NA-TRANSFERENCIA.md)
 
 ## Estratégia Técnica
 

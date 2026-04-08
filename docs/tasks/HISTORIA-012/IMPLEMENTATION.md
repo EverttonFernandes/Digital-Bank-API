@@ -4,7 +4,8 @@
 
 Esta história fecha o ciclo da entrega.
 
-Ela existe para garantir que o projeto não termine apenas implementado, mas também organizado, documentado e pronto para fechamento semântico de versão.
+Ela existe para garantir que o projeto não termine apenas implementado, mas também organizado, documentado e pronto para
+fechamento semântico de versão.
 
 Ela nasce diretamente de:
 

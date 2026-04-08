@@ -4,7 +4,8 @@
 
 Esta história completa o fluxo principal da transferência ao adicionar a comunicação posterior ao sucesso da operação.
 
-Ela garante que, depois de uma transferência concluída com consistência, exista também um registro claro de notificação associada ao evento.
+Ela garante que, depois de uma transferência concluída com consistência, exista também um registro claro de notificação
+associada ao evento.
 
 Ela nasce diretamente de:
 
@@ -59,7 +60,8 @@ Representar a notificação como consequência de uma transferência concluída 
 
 ### Design
 
-Aplicar `Observer` de forma parcimoniosa e apenas no contexto de notificação, conforme `padrões-de-projeto-e-design-de-codigo.md`.
+Aplicar `Observer` de forma parcimoniosa e apenas no contexto de notificação, conforme
+`padrões-de-projeto-e-design-de-codigo.md`.
 
 ### Persistência
 

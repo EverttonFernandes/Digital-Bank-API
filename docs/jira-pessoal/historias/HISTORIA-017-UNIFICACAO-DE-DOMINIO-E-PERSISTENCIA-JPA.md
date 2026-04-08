@@ -6,16 +6,18 @@
 
 ## Objetivo da História
 
-Eliminar a duplicação entre modelos de domínio e entidades JPA, aproximando o projeto do padrão observado no `wishlist-api` e no `umovme-business`, onde o próprio domínio é persistido diretamente.
+Eliminar a duplicação entre modelos de domínio e entidades JPA, aproximando o projeto do padrão observado no
+`wishlist-api` e no `projeto-referencia-backend`, onde o próprio domínio é persistido diretamente.
 
 ## Referências Arquiteturais
 
-- [padrao-umovme-team.md](/home/umov/Documents/ProjetosPessoais/DigitalBankAPI/docs/padrao-umovme-team.md)
+- [padrao-padrao-de-referencia-em-camadas.md](docs/padrao-referencia-backend.md)
 - `wishlist-api` como referência principal de simplificação
 
 ## Valor de Negócio
 
-Esta história reduz redundância estrutural, simplifica repositórios concretos e deixa a solução mais fácil de entender, manter e defender tecnicamente.
+Esta história reduz redundância estrutural, simplifica repositórios concretos e deixa a solução mais fácil de entender,
+manter e defender tecnicamente.
 
 ## Problema Atual
 

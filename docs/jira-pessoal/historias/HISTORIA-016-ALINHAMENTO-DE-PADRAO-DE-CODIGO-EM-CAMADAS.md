@@ -1,4 +1,4 @@
-# HISTORIA-016 — Alinhamento de Padrão com umovme-team
+# HISTORIA-016 — Alinhamento de Padrão com padrao-de-referencia-em-camadas
 
 ## Tipo
 
@@ -6,23 +6,27 @@
 
 ## Objetivo da Historia
 
-Refatorar TODO o back-end do projeto para aproximar seu padrão de código ao contexto `umovme-team` do repositório `umovme-business`, preservando comportamento funcional da API e usando a suíte funcional como garantia principal de não regressão.
+Refatorar TODO o back-end do projeto para aproximar seu padrão de código ao contexto `padrao-de-referencia-em-camadas` do repositório
+`projeto-referencia-backend`, preservando comportamento funcional da API e usando a suíte funcional como garantia principal de não
+regressão.
 
 ## Referência Arquitetural
 
 Referência formal desta história:
 
-- [padrao-umovme-team.md](/home/umov/Documents/ProjetosPessoais/DigitalBankAPI/docs/padrao-umovme-team.md)
+- [padrao-padrao-de-referencia-em-camadas.md](docs/padrao-referencia-backend.md)
 
 ## Valor de Negocio
 
-Esta história aumenta a consistência estrutural do projeto e melhora a defesa técnica da solução, aproximando a base de código de um padrão arquitetural já validado e maduro que o autor conhece bem.
+Esta história aumenta a consistência estrutural do projeto e melhora a defesa técnica da solução, aproximando a base de
+código de um padrão arquitetural já validado e maduro que o autor conhece bem.
 
 ## Problema Atual
 
-Embora o projeto já tenha boa separação entre `api`, `application`, `domain` e `infrastructure`, ainda existe heterogeneidade na distribuição de responsabilidades.
+Embora o projeto já tenha boa separação entre `api`, `application`, `domain` e `infrastructure`, ainda existe
+heterogeneidade na distribuição de responsabilidades.
 
-O padrão do `umovme-team` é mais uniforme em:
+O padrão do `padrao-de-referencia-em-camadas` é mais uniforme em:
 
 - controllers finos
 - services orquestradores

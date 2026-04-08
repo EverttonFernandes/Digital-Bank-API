@@ -36,15 +36,15 @@ ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
 - docs/jira-pessoal/historias/HISTORIA-015-MAPEAMENTO-RELACIONAL-JPA-HIBERNATE.md
 - docs/tasks/HISTORIA-015/IMPLEMENTATION.md
 - docs/tasks/HISTORIA-015/progress.txt
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/entity/AccountEntity.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/entity/AccountMovementEntity.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/entity/AccountNotificationEntity.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountMovementJpaRepository.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountNotificationJpaRepository.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountMovementRepository.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountNotificationRepository.java
-- src/test/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountMovementRepositoryTest.java
-- src/test/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountNotificationRepositoryTest.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/entity/AccountEntity.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/entity/AccountMovementEntity.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/entity/AccountNotificationEntity.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountMovementJpaRepository.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountNotificationJpaRepository.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountMovementRepository.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountNotificationRepository.java
+- src/test/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountMovementRepositoryTest.java
+- src/test/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountNotificationRepositoryTest.java
 - README.md
 
 RISCOS_ABERTOS:

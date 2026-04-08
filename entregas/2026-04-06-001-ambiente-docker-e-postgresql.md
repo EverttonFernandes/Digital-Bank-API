@@ -10,7 +10,9 @@
 
 ## Resumo Executivo
 
-Foi entregue a primeira base executável do projeto. A API agora sobe em container próprio, o PostgreSQL sobe em container separado e o Swagger fica acessível para inspeção manual dos contratos. Isso reduz a fricção de validação e cria um ambiente previsível para as próximas histórias.
+Foi entregue a primeira base executável do projeto. A API agora sobe em container próprio, o PostgreSQL sobe em
+container separado e o Swagger fica acessível para inspeção manual dos contratos. Isso reduz a fricção de validação e
+cria um ambiente previsível para as próximas histórias.
 
 ## Linguagem Ubíqua da Entrega
 
@@ -21,7 +23,9 @@ Foi entregue a primeira base executável do projeto. A API agora sobe em contain
 
 ## Problema de Negócio
 
-Antes desta entrega, o projeto não tinha uma forma simples e reproduzível de ser iniciado. Isso dificultava validação, demonstração e continuidade técnica. Depois desta entrega, qualquer pessoa com Docker consegue subir a aplicação e o banco com portas claras e comportamento previsível.
+Antes desta entrega, o projeto não tinha uma forma simples e reproduzível de ser iniciado. Isso dificultava validação,
+demonstração e continuidade técnica. Depois desta entrega, qualquer pessoa com Docker consegue subir a aplicação e o
+banco com portas claras e comportamento previsível.
 
 ## O Que Foi Entregue
 
@@ -88,7 +92,9 @@ Antes desta entrega, o projeto não tinha uma forma simples e reproduzível de s
 
 ## Estratégia Técnica Aplicada
 
-Foi adotada uma solução mínima e pragmática: um bootstrap em Spring Boot com configuração externa de banco via variáveis de ambiente, Dockerfile multi-stage para empacotamento da aplicação, `docker-compose.yml` orquestrando aplicação, PostgreSQL e pgAdmin, e `Makefile` para simplificar a operação do ambiente.
+Foi adotada uma solução mínima e pragmática: um bootstrap em Spring Boot com configuração externa de banco via variáveis
+de ambiente, Dockerfile multi-stage para empacotamento da aplicação, `docker-compose.yml` orquestrando aplicação,
+PostgreSQL e pgAdmin, e `Makefile` para simplificar a operação do ambiente.
 
 ## Evidências de Validação
 
@@ -109,7 +115,7 @@ Foi adotada uma solução mínima e pragmática: um bootstrap em Spring Boot com
 - `Makefile`
 - `Dockerfile`
 - `docker-compose.yml`
-- `src/main/java/com/cwi/digitalbankapi/bootstrap/`
+- `src/main/java/com/avaliadora/digitalbankapi/bootstrap/`
 - `src/main/resources/application.properties`
 - `README.md`
 
@@ -121,7 +127,8 @@ Foi adotada uma solução mínima e pragmática: um bootstrap em Spring Boot com
 
 ## Relação com a Spec Principal
 
-Esta entrega concretiza a base operacional do desafio: ambiente local simples, previsível, com banco isolado e documentação HTTP acessível para início das validações.
+Esta entrega concretiza a base operacional do desafio: ambiente local simples, previsível, com banco isolado e
+documentação HTTP acessível para início das validações.
 
 ## Pronto Para Fechamento de Versão
 

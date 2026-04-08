@@ -30,9 +30,9 @@ PROXIMA_ACAO_RECOMENDADA:
 - Iniciar HISTORIA-007 reforcando o contrato global de erros e mensagens da API.
 
 ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
-- src/main/java/com/cwi/digitalbankapi/infrastructure/notification/SpringTransferCompletedEventPublisher.java
-- src/main/java/com/cwi/digitalbankapi/application/service/RegisterTransferNotificationObserver.java
-- src/main/java/com/cwi/digitalbankapi/api/controller/AccountNotificationController.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/notification/SpringTransferCompletedEventPublisher.java
+- src/main/java/com/avaliadora/digitalbankapi/application/service/RegisterTransferNotificationObserver.java
+- src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountNotificationController.java
 - src/main/resources/db/migration/V3__create_account_notification_table.sql
 - __functional_tests__/src/endpoints/accounts/GET/accountNotificationsGetSuccess.spec.js
 - __functional_tests__/src/endpoints/accounts/GET/accountNotificationsGetFailure.spec.js

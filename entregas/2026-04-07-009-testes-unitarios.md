@@ -10,7 +10,9 @@
 
 ## Resumo Executivo
 
-Esta entrega consolidou a proteção unitária da aplicação. Depois dela, a solução passou a ter cobertura mais explícita para converters, services, specifications e comportamento relevante do domínio, tudo dentro do padrão de escrita definido para o projeto.
+Esta entrega consolidou a proteção unitária da aplicação. Depois dela, a solução passou a ter cobertura mais explícita
+para converters, services, specifications e comportamento relevante do domínio, tudo dentro do padrão de escrita
+definido para o projeto.
 
 O ganho prático foi reduzir o risco de regressão no núcleo do desafio sem depender apenas dos testes funcionais.
 
@@ -24,7 +26,9 @@ O ganho prático foi reduzir o risco de regressão no núcleo do desafio sem dep
 
 ## Problema de Negocio
 
-Antes desta entrega, o projeto já tinha boa parte da cobertura unitária construída ao longo das histórias funcionais, mas ainda faltava consolidar a suíte como um ativo explícito do projeto e cobrir pontos importantes do domínio e de serviços simples.
+Antes desta entrega, o projeto já tinha boa parte da cobertura unitária construída ao longo das histórias funcionais,
+mas ainda faltava consolidar a suíte como um ativo explícito do projeto e cobrir pontos importantes do domínio e de
+serviços simples.
 
 Era necessário fechar essa lacuna para aumentar confiança na evolução da solução.
 
@@ -71,7 +75,9 @@ Era necessário fechar essa lacuna para aumentar confiança na evolução da sol
 
 ## Estrategia Tecnica Aplicada
 
-Em vez de criar uma suíte paralela artificial, esta história consolidou e ampliou a cobertura já construída nas histórias anteriores. O reforço foi direcionado para os pontos que ainda não estavam protegidos explicitamente: domínio `Account`, `ApplicationStatusService` e validações ausentes no `TransferRequestConverter`.
+Em vez de criar uma suíte paralela artificial, esta história consolidou e ampliou a cobertura já construída nas
+histórias anteriores. O reforço foi direcionado para os pontos que ainda não estavam protegidos explicitamente: domínio
+`Account`, `ApplicationStatusService` e validações ausentes no `TransferRequestConverter`.
 
 Essa abordagem mantém a suíte enxuta e focada em comportamento relevante, sem inflar testes de baixo valor.
 
@@ -83,11 +89,11 @@ Essa abordagem mantém a suíte enxuta e focada em comportamento relevante, sem 
 
 ## Arquivos ou Modulos Mais Relevantes
 
-- `src/test/java/com/cwi/digitalbankapi/domain/account/model/AccountTest.java`
-- `src/test/java/com/cwi/digitalbankapi/application/service/ApplicationStatusServiceTest.java`
-- `src/test/java/com/cwi/digitalbankapi/application/converter/TransferRequestConverterTest.java`
-- `src/test/java/com/cwi/digitalbankapi/application/service/AccountQueryServiceTest.java`
-- `src/test/java/com/cwi/digitalbankapi/application/converter/AccountResponseConverterTest.java`
+- `src/test/java/com/avaliadora/digitalbankapi/domain/account/model/AccountTest.java`
+- `src/test/java/com/avaliadora/digitalbankapi/application/service/ApplicationStatusServiceTest.java`
+- `src/test/java/com/avaliadora/digitalbankapi/application/converter/TransferRequestConverterTest.java`
+- `src/test/java/com/avaliadora/digitalbankapi/application/service/AccountQueryServiceTest.java`
+- `src/test/java/com/avaliadora/digitalbankapi/application/converter/AccountResponseConverterTest.java`
 
 ## Riscos, Limitacoes ou Pendencias
 

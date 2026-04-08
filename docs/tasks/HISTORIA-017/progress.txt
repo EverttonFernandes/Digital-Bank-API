@@ -38,15 +38,15 @@ ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
 - docs/jira-pessoal/historias/HISTORIA-017-UNIFICACAO-DE-DOMINIO-E-PERSISTENCIA-JPA.md
 - docs/tasks/HISTORIA-017/IMPLEMENTATION.md
 - docs/tasks/HISTORIA-017/progress.txt
-- src/main/java/com/cwi/digitalbankapi/domain/account/model/Account.java
-- src/main/java/com/cwi/digitalbankapi/domain/statement/model/AccountMovement.java
-- src/main/java/com/cwi/digitalbankapi/domain/notification/model/AccountNotification.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountRepository.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountMovementRepository.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountNotificationRepository.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountJpaRepository.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountMovementJpaRepository.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountNotificationJpaRepository.java
+- src/main/java/com/avaliadora/digitalbankapi/domain/account/model/Account.java
+- src/main/java/com/avaliadora/digitalbankapi/domain/statement/model/AccountMovement.java
+- src/main/java/com/avaliadora/digitalbankapi/domain/notification/model/AccountNotification.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountRepository.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountMovementRepository.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountNotificationRepository.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountJpaRepository.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountMovementJpaRepository.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountNotificationJpaRepository.java
 
 RISCOS_ABERTOS:
 - Nenhum risco funcional aberto apos a validacao final da migracao completa.

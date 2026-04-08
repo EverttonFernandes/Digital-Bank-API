@@ -30,11 +30,11 @@ PROXIMA_ACAO_RECOMENDADA:
 - Iniciar HISTORIA-010 consolidando e ampliando a suite funcional com o padrao completo do projeto.
 
 ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
-- src/test/java/com/cwi/digitalbankapi/domain/account/model/AccountTest.java
-- src/test/java/com/cwi/digitalbankapi/application/service/ApplicationStatusServiceTest.java
-- src/test/java/com/cwi/digitalbankapi/application/converter/TransferRequestConverterTest.java
-- src/test/java/com/cwi/digitalbankapi/application/service/AccountQueryServiceTest.java
-- src/test/java/com/cwi/digitalbankapi/application/converter/AccountResponseConverterTest.java
+- src/test/java/com/avaliadora/digitalbankapi/domain/account/model/AccountTest.java
+- src/test/java/com/avaliadora/digitalbankapi/application/service/ApplicationStatusServiceTest.java
+- src/test/java/com/avaliadora/digitalbankapi/application/converter/TransferRequestConverterTest.java
+- src/test/java/com/avaliadora/digitalbankapi/application/service/AccountQueryServiceTest.java
+- src/test/java/com/avaliadora/digitalbankapi/application/converter/AccountResponseConverterTest.java
 
 RISCOS_ABERTOS:
 - Ainda existe espaco para expandir cobertura de novos componentes futuros, mas o nucleo atual esta protegido.

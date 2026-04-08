@@ -1,16 +1,17 @@
-# Padrão de Código de Referência — umovme-business-team
+# Padrão de Código de Referência — projeto-referencia-backend-em-camadas
 
 ## Contexto da Referência
 
 Este documento resume o padrão arquitetural e de código observado no módulo:
 
-- `/home/umov/Documents/ProjetosUmovme/umovme-business/umovme-business-team`
+- `projeto-de-referencia-backend-em-camadas`
 
-O objetivo deste registro não é copiar mecanicamente a solução de origem, e sim documentar os princípios estruturais que devem orientar a futura refatoração do back-end deste projeto.
+O objetivo deste registro não é copiar mecanicamente a solução de origem, e sim documentar os princípios estruturais que
+devem orientar a futura refatoração do back-end deste projeto.
 
 ## Leitura Geral do Padrão
 
-O contexto `umovme-team` adota uma separação clara entre:
+O contexto `padrao-de-referencia-em-camadas` adota uma separação clara entre:
 
 - `api`
 - `application`
@@ -31,7 +32,7 @@ Com algumas características fortes:
 
 Referência lida:
 
-- `me/umov/business/team/api/TeamApi.java`
+- `me/referencia/business/team/api/TeamApi.java`
 
 Padrão observado:
 
@@ -52,7 +53,7 @@ Leitura aplicada ao nosso projeto:
 
 Referência lida:
 
-- `me/umov/business/team/application/service/TeamService.java`
+- `me/referencia/business/team/application/service/TeamService.java`
 
 Padrão observado:
 
@@ -71,7 +72,7 @@ Leitura aplicada ao nosso projeto:
 
 Referência lida:
 
-- `me/umov/business/team/application/converter/TeamCreateDTOConverter.java`
+- `me/referencia/business/team/application/converter/TeamCreateDTOConverter.java`
 
 Padrão observado:
 
@@ -90,8 +91,8 @@ Leitura aplicada ao nosso projeto:
 
 Referência lida:
 
-- `me/umov/business/team/domain/Teams.java`
-- `me/umov/business/team/domain/specification/CompositeSpecificationForTeam.java`
+- `me/referencia/business/team/domain/Teams.java`
+- `me/referencia/business/team/domain/specification/CompositeSpecificationForTeam.java`
 
 Padrão observado:
 
@@ -112,7 +113,7 @@ Leitura aplicada ao nosso projeto:
 
 Referência lida:
 
-- `me/umov/business/team/infra/TeamsRepositoryImpl.java`
+- `me/referencia/business/team/infra/TeamsRepositoryImpl.java`
 
 Padrão observado:
 
@@ -129,7 +130,7 @@ Leitura aplicada ao nosso projeto:
 
 ## Diferenças Relevantes em Relação ao Projeto Atual
 
-Hoje, no `DigitalBankAPI`, o desenho já tem boa separação, mas ainda difere do padrão `umovme-team` em alguns pontos:
+Hoje, no `DigitalBankAPI`, o desenho já tem boa separação, mas ainda difere do padrão `padrao-de-referencia-em-camadas` em alguns pontos:
 
 - services ainda concentram parte da montagem do fluxo que poderia ser deslocada para converters e agregados
 - domínio ainda está mais simples e menos orientado a agregado rico
@@ -165,11 +166,12 @@ Se a suíte funcional continuar verde ao final da refatoração:
 
 ## Conclusão
 
-O padrão `umovme-team` é útil como referência de:
+O padrão `padrao-de-referencia-em-camadas` é útil como referência de:
 
 - organização de camadas
 - responsabilidade de cada camada
 - centralidade do agregado
 - força dos converters e specifications
 
-O objetivo da futura história não será clonar aquele módulo, e sim trazer este projeto para um nível de consistência estrutural semelhante, preservando o domínio e os contratos já construídos aqui.
+O objetivo da futura história não será clonar aquele módulo, e sim trazer este projeto para um nível de consistência
+estrutural semelhante, preservando o domínio e os contratos já construídos aqui.

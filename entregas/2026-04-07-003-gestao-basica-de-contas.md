@@ -10,9 +10,12 @@
 
 ## Resumo Executivo
 
-Esta entrega colocou as contas do banco digital em funcionamento. A aplicacao passou a iniciar com contas pre-carregadas e agora permite consultar tanto a lista de contas quanto uma conta especifica pelo identificador.
+Esta entrega colocou as contas do banco digital em funcionamento. A aplicacao passou a iniciar com contas pre-carregadas
+e agora permite consultar tanto a lista de contas quanto uma conta especifica pelo identificador.
 
-Na pratica, isso resolve a ausencia de dados reais para demonstracao e cria a primeira capacidade funcional do dominio. Quem avalia o projeto ja consegue enxergar titulares e saldos pela API, o que prepara a base para a historia de transferencia.
+Na pratica, isso resolve a ausencia de dados reais para demonstracao e cria a primeira capacidade funcional do dominio.
+Quem avalia o projeto ja consegue enxergar titulares e saldos pela API, o que prepara a base para a historia de
+transferencia.
 
 ## Linguagem Ubiqua da Entrega
 
@@ -23,9 +26,12 @@ Na pratica, isso resolve a ausencia de dados reais para demonstracao e cria a pr
 
 ## Problema de Negocio
 
-Antes desta entrega, a aplicacao possuia apenas a base estrutural e de infraestrutura. Ainda nao havia um conceito funcional de conta que pudesse ser consultado pela API.
+Antes desta entrega, a aplicacao possuia apenas a base estrutural e de infraestrutura. Ainda nao havia um conceito
+funcional de conta que pudesse ser consultado pela API.
 
-Para o desafio, isso era um bloqueio relevante, porque transferencia e movimentacao dependem da existencia de contas reais. O sistema precisava passar a iniciar com contas disponiveis e permitir que o avaliador enxergasse nome do titular e saldo sem preparacao manual do banco.
+Para o desafio, isso era um bloqueio relevante, porque transferencia e movimentacao dependem da existencia de contas
+reais. O sistema precisava passar a iniciar com contas disponiveis e permitir que o avaliador enxergasse nome do titular
+e saldo sem preparacao manual do banco.
 
 ## O Que Foi Entregue
 
@@ -79,9 +85,11 @@ Para o desafio, isso era um bloqueio relevante, porque transferencia e movimenta
 
 ## Estrategia Tecnica Aplicada
 
-A entrega foi construida com repositorio de dominio para contas, adaptador de persistencia em PostgreSQL, migration para criar tabela e seed inicial, service de consulta e controller REST dedicado.
+A entrega foi construida com repositorio de dominio para contas, adaptador de persistencia em PostgreSQL, migration para
+criar tabela e seed inicial, service de consulta e controller REST dedicado.
 
-Tambem foi usado um converter para transformar conta de dominio em resposta da API, preservando a separacao entre modelo de negocio e contrato exposto ao consumidor.
+Tambem foi usado um converter para transformar conta de dominio em resposta da API, preservando a separacao entre modelo
+de negocio e contrato exposto ao consumidor.
 
 ## Evidencias de Validacao
 
@@ -93,10 +101,10 @@ Tambem foi usado um converter para transformar conta de dominio em resposta da A
 
 ## Arquivos ou Modulos Mais Relevantes
 
-- `src/main/java/com/cwi/digitalbankapi/domain/account`
-- `src/main/java/com/cwi/digitalbankapi/application/service/AccountQueryService.java`
-- `src/main/java/com/cwi/digitalbankapi/api/controller/AccountController.java`
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/persistence`
+- `src/main/java/com/avaliadora/digitalbankapi/domain/account`
+- `src/main/java/com/avaliadora/digitalbankapi/application/service/AccountQueryService.java`
+- `src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountController.java`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence`
 - `src/main/resources/db/migration/V1__create_account_table_and_seed_initial_accounts.sql`
 
 ## Riscos, Limitacoes ou Pendencias
@@ -107,7 +115,8 @@ Tambem foi usado um converter para transformar conta de dominio em resposta da A
 
 ## Relacao com a Spec Principal
 
-Esta entrega concretiza a parte da spec que exige gestao basica de contas e base pre-carregada para validacao do sistema. Ela tambem prepara o terreno tecnico e de negocio para a transferencia entre contas.
+Esta entrega concretiza a parte da spec que exige gestao basica de contas e base pre-carregada para validacao do
+sistema. Ela tambem prepara o terreno tecnico e de negocio para a transferencia entre contas.
 
 ## Pronto Para Fechamento de Versao
 

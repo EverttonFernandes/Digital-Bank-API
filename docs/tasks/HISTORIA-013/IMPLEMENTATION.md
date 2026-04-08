@@ -2,9 +2,11 @@
 
 ## Contexto da História
 
-Esta historia nasce da necessidade de fortalecer a semantica REST da API sob a lente do modelo de maturidade de Richardson.
+Esta historia nasce da necessidade de fortalecer a semantica REST da API sob a lente do modelo de maturidade de
+Richardson.
 
-Ela nao existe para adicionar regra de negocio nova, e sim para refinar a forma como a API expoe recursos, respostas e navegacao entre estados.
+Ela nao existe para adicionar regra de negocio nova, e sim para refinar a forma como a API expoe recursos, respostas e
+navegacao entre estados.
 
 Ela nasce diretamente de:
 
@@ -14,9 +16,11 @@ Ela nasce diretamente de:
 
 ## Objetivo da Entrega Atual
 
-Refatorar a API para aumentar aderencia ao modelo de maturidade de Richardson e tornar a interface mais explicitamente RESTful.
+Refatorar a API para aumentar aderencia ao modelo de maturidade de Richardson e tornar a interface mais explicitamente
+RESTful.
 
-Essa refatoracao deve usar `Spring HATEOAS` como mecanismo oficial para representar links, navegacao entre recursos e descoberta de proximos passos pela propria resposta da API.
+Essa refatoracao deve usar `Spring HATEOAS` como mecanismo oficial para representar links, navegacao entre recursos e
+descoberta de proximos passos pela propria resposta da API.
 
 ## Escopo Incluído
 
@@ -59,11 +63,13 @@ Esta historia nao precisa incluir:
 
 - `Hipermidia`
   Impacto no dominio: permite que a resposta aponte proximos recursos ou proximas acoes possiveis
-  Beneficio para o negocio: aproxima a API de um desenho REST mais maduro e reduz acoplamento de clientes a conhecimento externo
+  Beneficio para o negocio: aproxima a API de um desenho REST mais maduro e reduz acoplamento de clientes a conhecimento
+  externo
 
 - `Spring HATEOAS`
   Impacto no dominio: padroniza a representacao de links e a navegacao entre recursos do proprio dominio
-  Beneficio para o negocio: transforma a API em uma interface mais guiada, mais didatica e mais profissional para integracao e apresentacao
+  Beneficio para o negocio: transforma a API em uma interface mais guiada, mais didatica e mais profissional para
+  integracao e apresentacao
 
 - `Semantica de recursos`
   Impacto no dominio: faz a interface conversar na linguagem dos objetos do negocio
@@ -107,7 +113,8 @@ Diagnostico inicial baseado no estado atual do projeto:
 ### Referencias de Mercado Adotadas
 
 - `Spring HATEOAS Reference Documentation`
-  Direciona o uso de `RepresentationModel`, `EntityModel`, `CollectionModel`, `PagedModel` e `RepresentationModelAssembler`
+  Direciona o uso de `RepresentationModel`, `EntityModel`, `CollectionModel`, `PagedModel` e
+  `RepresentationModelAssembler`
 
 - `Richardson Maturity Model`
   Direciona a meta da historia: sair de uma API boa em recursos e verbos para uma interface mais discoverable
@@ -120,15 +127,15 @@ Diagnostico inicial baseado no estado atual do projeto:
 
 ### Matriz de Refatoracao Esperada
 
-| Endpoint atual | Problema ou limite de design | Endpoint alvo | Verbo HTTP esperado | Ajuste de resposta |
-| --- | --- | --- | --- | --- |
-| `GET /accounts` | baixo nivel de navegacao no payload | `GET /accounts` | `GET` | adicionar links `self`, `account`, `movements`, `notifications` |
-| `GET /accounts/{accountId}` | payload ainda pouco navegavel | `GET /accounts/{accountId}` | `GET` | adicionar links relacionados ao estado da conta |
-| `POST /transfers` | response ainda pode evoluir para guiar melhor o consumidor | `POST /transfers` ou variante subordinada por conta, conforme decisao final | `POST` | adicionar links para origem, destino, movimentacoes e notificacoes |
-| `GET /accounts/{accountId}/movements` | falta navegacao entre movimento, conta e transferencia | `GET /accounts/{accountId}/movements` | `GET` | adicionar links de navegacao por item e colecao |
-| `GET /accounts/{accountId}/notifications` | falta navegacao entre notificacao e conta | `GET /accounts/{accountId}/notifications` | `GET` | adicionar links por item e colecao |
-| ausencia de atualizacao explicita de conta | sem decisao formal de `PUT` ou `PATCH` | `PUT /accounts/{accountId}` e/ou `PATCH /accounts/{accountId}` se o dominio justificar | `PUT` / `PATCH` | resposta deve voltar com `self` e links relacionados |
-| ausencia de remocao explicita de conta | sem decisao formal de `DELETE` | `DELETE /accounts/{accountId}` se o dominio justificar | `DELETE` | manter semantica correta para exclusao ou inativacao |
+| Endpoint atual                             | Problema ou limite de design                               | Endpoint alvo                                                                          | Verbo HTTP esperado | Ajuste de resposta                                                 |
+|--------------------------------------------|------------------------------------------------------------|----------------------------------------------------------------------------------------|---------------------|--------------------------------------------------------------------|
+| `GET /accounts`                            | baixo nivel de navegacao no payload                        | `GET /accounts`                                                                        | `GET`               | adicionar links `self`, `account`, `movements`, `notifications`    |
+| `GET /accounts/{accountId}`                | payload ainda pouco navegavel                              | `GET /accounts/{accountId}`                                                            | `GET`               | adicionar links relacionados ao estado da conta                    |
+| `POST /transfers`                          | response ainda pode evoluir para guiar melhor o consumidor | `POST /transfers` ou variante subordinada por conta, conforme decisao final            | `POST`              | adicionar links para origem, destino, movimentacoes e notificacoes |
+| `GET /accounts/{accountId}/movements`      | falta navegacao entre movimento, conta e transferencia     | `GET /accounts/{accountId}/movements`                                                  | `GET`               | adicionar links de navegacao por item e colecao                    |
+| `GET /accounts/{accountId}/notifications`  | falta navegacao entre notificacao e conta                  | `GET /accounts/{accountId}/notifications`                                              | `GET`               | adicionar links por item e colecao                                 |
+| ausencia de atualizacao explicita de conta | sem decisao formal de `PUT` ou `PATCH`                     | `PUT /accounts/{accountId}` e/ou `PATCH /accounts/{accountId}` se o dominio justificar | `PUT` / `PATCH`     | resposta deve voltar com `self` e links relacionados               |
+| ausencia de remocao explicita de conta     | sem decisao formal de `DELETE`                             | `DELETE /accounts/{accountId}` se o dominio justificar                                 | `DELETE`            | manter semantica correta para exclusao ou inativacao               |
 
 ### Refatoracao
 
@@ -162,20 +169,21 @@ Decisao inicial sugerida:
 
 ### Hipermidia
 
-Aplicar com parcimonia usando `Spring HATEOAS`. O objetivo e aumentar clareza arquitetural e melhorar a experiencia de consumo da API, nao inflar a interface artificialmente.
+Aplicar com parcimonia usando `Spring HATEOAS`. O objetivo e aumentar clareza arquitetural e melhorar a experiencia de
+consumo da API, nao inflar a interface artificialmente.
 
 Exemplos esperados:
 
 - resposta de transferencia apontando para:
-  - conta de origem
-  - conta de destino
-  - movimentacoes da conta de origem
-  - movimentacoes da conta de destino
-  - notificacoes associadas
+    - conta de origem
+    - conta de destino
+    - movimentacoes da conta de origem
+    - movimentacoes da conta de destino
+    - notificacoes associadas
 
 - resposta de notificacao apontando para:
-  - conta relacionada
-  - colecao de notificacoes daquela conta
+    - conta relacionada
+    - colecao de notificacoes daquela conta
 
 ### Modelagem de Response Recomendada
 
@@ -313,7 +321,8 @@ Exemplos concretos de payload alvo:
 - hipermidia excessiva pode complicar a API sem ganho proporcional
 - o objetivo e maturidade REST, nao reescrita desnecessaria da solucao
 - os links devem ter valor real de navegacao, nao apenas existir por formalidade
-- nem todo recurso precisara necessariamente expor `PUT`, `PATCH` ou `DELETE`; isso deve ser decidido pelo dominio e documentado com clareza
+- nem todo recurso precisara necessariamente expor `PUT`, `PATCH` ou `DELETE`; isso deve ser decidido pelo dominio e
+  documentado com clareza
 - Swagger desatualizado em relacao ao DTO ou ao response real enfraquece diretamente a qualidade da entrega
 
 ## Restrições Pragmáticas e Padrões

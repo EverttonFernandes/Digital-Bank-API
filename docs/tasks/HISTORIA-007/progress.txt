@@ -30,10 +30,10 @@ PROXIMA_ACAO_RECOMENDADA:
 - Iniciar HISTORIA-008 documentando os endpoints e contratos com Swagger/OpenAPI.
 
 ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
-- src/main/java/com/cwi/digitalbankapi/api/controller/GlobalApiExceptionHandler.java
-- src/main/java/com/cwi/digitalbankapi/application/converter/TransferRequestConverter.java
-- src/main/java/com/cwi/digitalbankapi/shared/exception/InvalidRequestDataException.java
-- src/test/java/com/cwi/digitalbankapi/api/controller/GlobalApiExceptionHandlerTest.java
+- src/main/java/com/avaliadora/digitalbankapi/api/controller/GlobalApiExceptionHandler.java
+- src/main/java/com/avaliadora/digitalbankapi/application/converter/TransferRequestConverter.java
+- src/main/java/com/avaliadora/digitalbankapi/shared/exception/InvalidRequestDataException.java
+- src/test/java/com/avaliadora/digitalbankapi/api/controller/GlobalApiExceptionHandlerTest.java
 - __functional_tests__/src/endpoints/transfers/POST/transfersPostFailure.spec.js
 
 RISCOS_ABERTOS:

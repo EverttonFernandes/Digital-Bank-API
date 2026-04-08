@@ -10,7 +10,9 @@
 
 ## Resumo Executivo
 
-Esta entrega consolidou a narrativa tecnica do projeto. Depois dela, uma pessoa avaliadora consegue subir o ambiente, executar os testes, entender os endpoints principais e compreender as decisoes arquiteturais adotadas sem depender de explicacoes externas.
+Esta entrega consolidou a narrativa tecnica do projeto. Depois dela, uma pessoa avaliadora consegue subir o ambiente,
+executar os testes, entender os endpoints principais e compreender as decisoes arquiteturais adotadas sem depender de
+explicacoes externas.
 
 O ganho pratico foi transformar o projeto em uma entrega mais legivel, executavel e defensavel.
 
@@ -24,7 +26,9 @@ O ganho pratico foi transformar o projeto em uma entrega mais legivel, executave
 
 ## Problema de Negocio
 
-Antes desta entrega, o projeto ja funcionava, mas o documento principal ainda refletia muito mais a fase inicial da infraestrutura do que o produto realmente construido. Era necessario consolidar as instrucoes e resumir as decisoes tecnicas para facilitar avaliacao e manutencao.
+Antes desta entrega, o projeto ja funcionava, mas o documento principal ainda refletia muito mais a fase inicial da
+infraestrutura do que o produto realmente construido. Era necessario consolidar as instrucoes e resumir as decisoes
+tecnicas para facilitar avaliacao e manutencao.
 
 ## O Que Foi Entregue
 
@@ -67,7 +71,8 @@ Antes desta entrega, o projeto ja funcionava, mas o documento principal ainda re
 
 ## Estrategia Tecnica Aplicada
 
-O README foi reescrito com base no estado real do repositório, evitando repetir documentos internos demais. O foco foi manter alta utilidade pratica: executar, validar, entender arquitetura e compreender as escolhas centrais do projeto.
+O README foi reescrito com base no estado real do repositório, evitando repetir documentos internos demais. O foco foi
+manter alta utilidade pratica: executar, validar, entender arquitetura e compreender as escolhas centrais do projeto.
 
 ## Evidencias de Validacao
 
@@ -85,7 +90,8 @@ O README foi reescrito com base no estado real do repositório, evitando repetir
 
 ## Relacao com a Spec Principal
 
-Esta entrega atende ao requisito de entregar um README explicando como rodar o projeto e quais decisoes de design e arquitetura foram adotadas.
+Esta entrega atende ao requisito de entregar um README explicando como rodar o projeto e quais decisoes de design e
+arquitetura foram adotadas.
 
 ## Pronto Para Fechamento de Versao
 

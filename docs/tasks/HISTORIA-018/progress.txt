@@ -34,12 +34,12 @@ ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
 - docs/jira-pessoal/KANBAN.md
 - docs/tasks/HISTORIA-018/IMPLEMENTATION.md
 - docs/tasks/HISTORIA-018/progress.txt
-- src/main/java/com/cwi/digitalbankapi/api/controller/AccountApi.java
-- src/main/java/com/cwi/digitalbankapi/api/controller/TransferApi.java
-- src/main/java/com/cwi/digitalbankapi/application/dto/AccountCreateDTO.java
-- src/main/java/com/cwi/digitalbankapi/application/dto/TransferDTO.java
-- src/main/java/com/cwi/digitalbankapi/application/converter/AccountCreateDTOConverter.java
-- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/AccountRepositoryImpl.java
+- src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountApi.java
+- src/main/java/com/avaliadora/digitalbankapi/api/controller/TransferApi.java
+- src/main/java/com/avaliadora/digitalbankapi/application/dto/AccountCreateDTO.java
+- src/main/java/com/avaliadora/digitalbankapi/application/dto/TransferDTO.java
+- src/main/java/com/avaliadora/digitalbankapi/application/converter/AccountCreateDTOConverter.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/AccountRepositoryImpl.java
 
 RISCOS_ABERTOS:
 - Nenhum risco funcional aberto apos a validacao final.

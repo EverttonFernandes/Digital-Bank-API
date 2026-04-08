@@ -10,9 +10,11 @@
 
 ## Resumo Executivo
 
-Esta entrega consolidou a prova end-to-end da API. Depois dela, os fluxos principais do banco digital passaram a ser validados com massa previsivel, chamadas reais aos endpoints e confirmacao do estado final do sistema.
+Esta entrega consolidou a prova end-to-end da API. Depois dela, os fluxos principais do banco digital passaram a ser
+validados com massa previsivel, chamadas reais aos endpoints e confirmacao do estado final do sistema.
 
-Na pratica, isso aumenta a confianca da entrega como um todo, porque a API deixa de ser validada apenas por comportamento interno e passa a ser comprovada de ponta a ponta no ambiente real do projeto.
+Na pratica, isso aumenta a confianca da entrega como um todo, porque a API deixa de ser validada apenas por
+comportamento interno e passa a ser comprovada de ponta a ponta no ambiente real do projeto.
 
 ## Linguagem Ubiqua da Entrega
 
@@ -24,7 +26,9 @@ Na pratica, isso aumenta a confianca da entrega como um todo, porque a API deixa
 
 ## Problema de Negocio
 
-Antes desta entrega, o projeto ja tinha um setup inicial de testes funcionais, mas ele ainda precisava ser tratado como um ativo formal da solucao. Era necessario comprovar com clareza que contas, transferencias, movimentacoes e notificacoes funcionavam de ponta a ponta com dados reais e comportamento previsivel.
+Antes desta entrega, o projeto ja tinha um setup inicial de testes funcionais, mas ele ainda precisava ser tratado como
+um ativo formal da solucao. Era necessario comprovar com clareza que contas, transferencias, movimentacoes e
+notificacoes funcionavam de ponta a ponta com dados reais e comportamento previsivel.
 
 Sem isso, a confianca na entrega ficaria concentrada demais em testes unitarios e em verificacoes manuais.
 
@@ -55,7 +59,8 @@ Sem isso, a confianca na entrega ficaria concentrada demais em testes unitarios 
 
 - `Validacao do estado final por GET`
   Impacto no dominio: confirma que a operacao produziu o efeito real esperado
-  Beneficio para o negocio: prova que a API nao apenas responde corretamente, mas realmente altera o sistema como deveria
+  Beneficio para o negocio: prova que a API nao apenas responde corretamente, mas realmente altera o sistema como
+  deveria
 
 ## Regras de Negocio Atendidas
 
@@ -90,7 +95,9 @@ Sem isso, a confianca na entrega ficaria concentrada demais em testes unitarios 
 
 ## Estrategia Tecnica Aplicada
 
-A base funcional foi consolidada com `Jest`, `supertest` e `Sequelize`, mantendo seeders e fixtures previsiveis. O fluxo operacional da suite ficou centralizado em um runner que prepara a massa no inicio, executa todos os cenarios e destroi tudo ao final.
+A base funcional foi consolidada com `Jest`, `supertest` e `Sequelize`, mantendo seeders e fixtures previsiveis. O fluxo
+operacional da suite ficou centralizado em um runner que prepara a massa no inicio, executa todos os cenarios e destroi
+tudo ao final.
 
 Os testes seguem `GIVEN / WHEN / THEN`, separacao entre sucesso e falha e validacao end-to-end por meio da propria API.
 
@@ -120,7 +127,8 @@ Os testes seguem `GIVEN / WHEN / THEN`, separacao entre sucesso e falha e valida
 
 ## Relacao com a Spec Principal
 
-Esta entrega concretiza o requisito nao funcional de testes funcionais end-to-end, usando seeders, fixtures, mensagens padronizadas e validacao do efeito real da API.
+Esta entrega concretiza o requisito nao funcional de testes funcionais end-to-end, usando seeders, fixtures, mensagens
+padronizadas e validacao do efeito real da API.
 
 ## Pronto Para Fechamento de Versao
 

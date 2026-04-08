@@ -10,9 +10,11 @@
 
 ## Resumo Executivo
 
-Esta entrega encerra o epico do banco digital. Depois dela, o projeto fica nao apenas implementado, mas tambem organizado, documentado e versionado em ordem cronologica para defesa e avaliacao.
+Esta entrega encerra o epico do banco digital. Depois dela, o projeto fica nao apenas implementado, mas tambem
+organizado, documentado e versionado em ordem cronologica para defesa e avaliacao.
 
-O efeito pratico e simples: qualquer pessoa consegue entender o que foi feito, em que ordem foi feito e como cada fatia foi validada e fechada.
+O efeito pratico e simples: qualquer pessoa consegue entender o que foi feito, em que ordem foi feito e como cada fatia
+foi validada e fechada.
 
 ## Linguagem Ubiqua da Entrega
 
@@ -24,7 +26,9 @@ O efeito pratico e simples: qualquer pessoa consegue entender o que foi feito, e
 
 ## Problema de Negocio
 
-Antes desta entrega, o projeto ja estava funcional e documentado, mas ainda faltava o fechamento formal do ciclo. Era necessario consolidar o historico final, confirmar a coerencia entre backlog e artefatos e encerrar o desafio com rastreabilidade completa.
+Antes desta entrega, o projeto ja estava funcional e documentado, mas ainda faltava o fechamento formal do ciclo. Era
+necessario consolidar o historico final, confirmar a coerencia entre backlog e artefatos e encerrar o desafio com
+rastreabilidade completa.
 
 ## O Que Foi Entregue
 
@@ -46,7 +50,8 @@ Antes desta entrega, o projeto ja estava funcional e documentado, mas ainda falt
 
 - `Entrega cronologica final`
   Impacto no dominio: resume a construcao da solucao em linguagem compreensivel
-  Beneficio para o negocio: ajuda avaliadores tecnicos e nao tecnicos a entender o projeto sem precisar navegar por todo o historico bruto do Git
+  Beneficio para o negocio: ajuda avaliadores tecnicos e nao tecnicos a entender o projeto sem precisar navegar por todo
+  o historico bruto do Git
 
 - `Fechamento semantico da versao`
   Impacto no dominio: liga documentacao, commit e tag em um mesmo ponto de fechamento
@@ -65,7 +70,9 @@ Antes desta entrega, o projeto ja estava funcional e documentado, mas ainda falt
 
 ## Estrategia Tecnica Aplicada
 
-O fechamento foi feito revisando os artefatos produzidos ao longo do projeto: kanban, historias, implementacoes, progresso, README e entregas cronologicas. A etapa final organiza esses elementos para que o historico do desafio fique claro, linear e conferivel.
+O fechamento foi feito revisando os artefatos produzidos ao longo do projeto: kanban, historias, implementacoes,
+progresso, README e entregas cronologicas. A etapa final organiza esses elementos para que o historico do desafio fique
+claro, linear e conferivel.
 
 ## Evidencias de Validacao
 
@@ -88,7 +95,8 @@ O fechamento foi feito revisando os artefatos produzidos ao longo do projeto: ka
 
 ## Relacao com a Spec Principal
 
-Esta entrega fecha o ciclo completo da spec principal, consolidando as fatias funcionais, nao funcionais e de organizacao da entrega em um historico unico e coerente.
+Esta entrega fecha o ciclo completo da spec principal, consolidando as fatias funcionais, nao funcionais e de
+organizacao da entrega em um historico unico e coerente.
 
 ## Pronto Para Fechamento de Versao
 

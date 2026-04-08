@@ -6,7 +6,8 @@
 
 ## Objetivo da História
 
-Permitir a transferência de valor entre conta de origem e conta de destino com segurança transacional, já preparando a confiança da entrega por meio do setup inicial dos testes funcionais em Jest.
+Permitir a transferência de valor entre conta de origem e conta de destino com segurança transacional, já preparando a
+confiança da entrega por meio do setup inicial dos testes funcionais em Jest.
 
 ## Valor de Negócio
 

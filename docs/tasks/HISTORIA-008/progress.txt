@@ -30,11 +30,11 @@ PROXIMA_ACAO_RECOMENDADA:
 - Iniciar HISTORIA-009 consolidando a suite de testes unitarios e cobrindo pontos ainda sem garantia automatizada.
 
 ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
-- src/main/java/com/cwi/digitalbankapi/infrastructure/config/OpenApiConfiguration.java
-- src/main/java/com/cwi/digitalbankapi/api/controller/AccountController.java
-- src/main/java/com/cwi/digitalbankapi/api/controller/TransferController.java
-- src/main/java/com/cwi/digitalbankapi/application/dto/TransferRequest.java
-- src/main/java/com/cwi/digitalbankapi/shared/response/ApiErrorResponse.java
+- src/main/java/com/avaliadora/digitalbankapi/infrastructure/config/OpenApiConfiguration.java
+- src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountController.java
+- src/main/java/com/avaliadora/digitalbankapi/api/controller/TransferController.java
+- src/main/java/com/avaliadora/digitalbankapi/application/dto/TransferRequest.java
+- src/main/java/com/avaliadora/digitalbankapi/shared/response/ApiErrorResponse.java
 
 RISCOS_ABERTOS:
 - O contrato documentado precisa continuar alinhado ao codigo conforme novas historias forem implementadas.

@@ -42,9 +42,9 @@ ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
 - __functional_tests__/src/endpoints/accounts/GET/accountsGetFailure.spec.js
 - __functional_tests__/src/endpoints/transfers/POST/transfersPostSuccess.spec.js
 - __functional_tests__/src/endpoints/transfers/POST/transfersPostFailure.spec.js
-- src/main/java/com/cwi/digitalbankapi/api/controller/TransferController.java
-- src/main/java/com/cwi/digitalbankapi/application/service/TransferService.java
-- src/main/java/com/cwi/digitalbankapi/domain/transfer/**
+- src/main/java/com/avaliadora/digitalbankapi/api/controller/TransferController.java
+- src/main/java/com/avaliadora/digitalbankapi/application/service/TransferService.java
+- src/main/java/com/avaliadora/digitalbankapi/domain/transfer/**
 - Makefile
 
 RISCOS_ABERTOS:

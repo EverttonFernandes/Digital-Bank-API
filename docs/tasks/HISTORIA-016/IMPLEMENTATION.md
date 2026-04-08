@@ -2,9 +2,11 @@
 
 ## Contexto da História
 
-Esta historia nasce da decisao de alinhar o back-end deste projeto ao padrão de código observado no contexto `umovme-team` do `umovme-business`.
+Esta historia nasce da decisao de alinhar o back-end deste projeto ao padrão de código observado no contexto
+`padrao-de-referencia-em-camadas` do `projeto-referencia-backend`.
 
-Nao se trata de copiar cegamente a estrutura da referência. Trata-se de trazer para este projeto um nível maior de consistência estrutural entre:
+Nao se trata de copiar cegamente a estrutura da referência. Trata-se de trazer para este projeto um nível maior de
+consistência estrutural entre:
 
 - `api`
 - `application`
@@ -13,11 +15,12 @@ Nao se trata de copiar cegamente a estrutura da referência. Trata-se de trazer 
 
 ## Objetivo da Entrega Atual
 
-Refatorar todo o back-end para que o padrão de organização das camadas fique mais próximo do `umovme-team`, preservando comportamento funcional e tratando a suíte funcional como o principal guardião de regressão.
+Refatorar todo o back-end para que o padrão de organização das camadas fique mais próximo do `padrao-de-referencia-em-camadas`, preservando
+comportamento funcional e tratando a suíte funcional como o principal guardião de regressão.
 
 ## Fonte de Verdade da Referência
 
-- [padrao-umovme-team.md](/home/umov/Documents/ProjetosPessoais/DigitalBankAPI/docs/padrao-umovme-team.md)
+- [padrao-padrao-de-referencia-em-camadas.md](docs/padrao-referencia-backend.md)
 
 ## Escopo Incluído
 

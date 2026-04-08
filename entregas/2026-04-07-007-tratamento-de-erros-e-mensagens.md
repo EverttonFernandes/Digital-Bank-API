@@ -10,9 +10,12 @@
 
 ## Resumo Executivo
 
-Esta entrega estabilizou a forma como a API comunica falhas. Depois dela, os consumidores da API passam a receber respostas mais previsiveis, com `key` e `value` claros tanto para regras de negocio quanto para erros de entrada invalida.
+Esta entrega estabilizou a forma como a API comunica falhas. Depois dela, os consumidores da API passam a receber
+respostas mais previsiveis, com `key` e `value` claros tanto para regras de negocio quanto para erros de entrada
+invalida.
 
-Isso fortalece a legibilidade da API e torna os testes funcionais mais confiaveis, porque o contrato de erro deixa de depender de comportamento implicito do framework.
+Isso fortalece a legibilidade da API e torna os testes funcionais mais confiaveis, porque o contrato de erro deixa de
+depender de comportamento implicito do framework.
 
 ## Linguagem Ubiqua da Entrega
 
@@ -24,7 +27,9 @@ Isso fortalece a legibilidade da API e torna os testes funcionais mais confiavei
 
 ## Problema de Negocio
 
-Antes desta entrega, a API ja respondia com `key` e `value` em alguns cenarios de dominio, mas ainda havia inconsistencias quando o payload chegava incompleto ou com JSON invalido. Isso fragilizava quem consome a API e tambem reduzia a confianca dos testes funcionais.
+Antes desta entrega, a API ja respondia com `key` e `value` em alguns cenarios de dominio, mas ainda havia
+inconsistencias quando o payload chegava incompleto ou com JSON invalido. Isso fragilizava quem consome a API e tambem
+reduzia a confianca dos testes funcionais.
 
 Era necessario unificar esse comportamento sob um contrato simples e previsivel.
 
@@ -73,9 +78,13 @@ Era necessario unificar esse comportamento sob um contrato simples e previsivel.
 
 ## Estrategia Tecnica Aplicada
 
-O `GlobalApiExceptionHandler` foi consolidado como ponto unico de traducao de falhas. Para erros de payload ausente, a validacao obrigatoria foi reforcada no fluxo de conversao com `InvalidRequestDataException`. Para JSON malformado, o tratamento foi movido para o `ResponseEntityExceptionHandler`, que intercepta corretamente o comportamento padrao do Spring Boot.
+O `GlobalApiExceptionHandler` foi consolidado como ponto unico de traducao de falhas. Para erros de payload ausente, a
+validacao obrigatoria foi reforcada no fluxo de conversao com `InvalidRequestDataException`. Para JSON malformado, o
+tratamento foi movido para o `ResponseEntityExceptionHandler`, que intercepta corretamente o comportamento padrao do
+Spring Boot.
 
-Na camada funcional, os cenarios de falha de transferencia foram ampliados para validar mensagem padronizada sem alterar o estado final das contas.
+Na camada funcional, os cenarios de falha de transferencia foram ampliados para validar mensagem padronizada sem alterar
+o estado final das contas.
 
 ## Evidencias de Validacao
 
@@ -87,10 +96,10 @@ Na camada funcional, os cenarios de falha de transferencia foram ampliados para 
 
 ## Arquivos ou Modulos Mais Relevantes
 
-- `src/main/java/com/cwi/digitalbankapi/api/controller/GlobalApiExceptionHandler.java`
-- `src/main/java/com/cwi/digitalbankapi/application/converter/TransferRequestConverter.java`
-- `src/main/java/com/cwi/digitalbankapi/shared/exception/InvalidRequestDataException.java`
-- `src/test/java/com/cwi/digitalbankapi/api/controller/GlobalApiExceptionHandlerTest.java`
+- `src/main/java/com/avaliadora/digitalbankapi/api/controller/GlobalApiExceptionHandler.java`
+- `src/main/java/com/avaliadora/digitalbankapi/application/converter/TransferRequestConverter.java`
+- `src/main/java/com/avaliadora/digitalbankapi/shared/exception/InvalidRequestDataException.java`
+- `src/test/java/com/avaliadora/digitalbankapi/api/controller/GlobalApiExceptionHandlerTest.java`
 - `__functional_tests__/src/endpoints/transfers/POST/transfersPostFailure.spec.js`
 
 ## Riscos, Limitacoes ou Pendencias
@@ -100,7 +109,8 @@ Na camada funcional, os cenarios de falha de transferencia foram ampliados para 
 
 ## Relacao com a Spec Principal
 
-Esta entrega atende a exigencia de mensagens claras e testaveis para as falhas da API, fortalecendo o comportamento funcional e nao funcional do desafio.
+Esta entrega atende a exigencia de mensagens claras e testaveis para as falhas da API, fortalecendo o comportamento
+funcional e nao funcional do desafio.
 
 ## Pronto Para Fechamento de Versao
 

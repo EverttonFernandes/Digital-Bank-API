@@ -6,7 +6,9 @@
 
 ## Objetivo da História
 
-Padronizar a nomenclatura das classes do projeto para ficar coerente com o estilo observado no `wishlist-api`, eliminando nomes mistos como `Controller`, `Request`, `Response`, `SpringData*JpaRepository` e `PostgreSql*Repository` quando eles divergem do padrão desejado.
+Padronizar a nomenclatura das classes do projeto para ficar coerente com o estilo observado no `wishlist-api`,
+eliminando nomes mistos como `Controller`, `Request`, `Response`, `SpringData*JpaRepository` e `PostgreSql*Repository`
+quando eles divergem do padrão desejado.
 
 ## Referência Principal
 

@@ -10,7 +10,8 @@ Criar a base do projeto Spring Boot respeitando a arquitetura documentada.
 
 ## Valor de Negócio
 
-Esta história prepara o terreno para que as próximas funcionalidades sejam implementadas com clareza, testabilidade e baixo acoplamento.
+Esta história prepara o terreno para que as próximas funcionalidades sejam implementadas com clareza, testabilidade e
+baixo acoplamento.
 
 ## Critérios de Aceite
 

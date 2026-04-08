@@ -10,7 +10,8 @@
 
 ## Resumo Executivo
 
-Esta entrega tornou os contratos da API navegaveis e mais simples de validar. Depois dela, a aplicacao passou a expor um OpenAPI claro para contas, transferencias, movimentacoes, notificacoes e respostas de erro.
+Esta entrega tornou os contratos da API navegaveis e mais simples de validar. Depois dela, a aplicacao passou a expor um
+OpenAPI claro para contas, transferencias, movimentacoes, notificacoes e respostas de erro.
 
 Isso melhora a demonstracao tecnica do projeto e reduz a friccao para quem quiser entender rapidamente o que a API faz.
 
@@ -24,7 +25,8 @@ Isso melhora a demonstracao tecnica do projeto e reduz a friccao para quem quise
 
 ## Problema de Negocio
 
-Antes desta entrega, a API ja possuia endpoints funcionais, mas a leitura dos contratos dependia de inspeção direta no codigo ou de tentativa e erro. Isso dificultava avaliacao, demonstracao e integracao.
+Antes desta entrega, a API ja possuia endpoints funcionais, mas a leitura dos contratos dependia de inspeção direta no
+codigo ou de tentativa e erro. Isso dificultava avaliacao, demonstracao e integracao.
 
 Era necessario expor a documentacao navegavel de forma coerente com o comportamento real da API.
 
@@ -75,9 +77,11 @@ Era necessario expor a documentacao navegavel de forma coerente com o comportame
 
 ## Estrategia Tecnica Aplicada
 
-Foi criada uma configuracao global simples de OpenAPI com metadados do projeto. Os DTOs principais receberam `@Schema` e os controllers receberam `@Tag`, `@Operation` e respostas documentadas apenas onde isso adiciona valor real.
+Foi criada uma configuracao global simples de OpenAPI com metadados do projeto. Os DTOs principais receberam `@Schema` e
+os controllers receberam `@Tag`, `@Operation` e respostas documentadas apenas onde isso adiciona valor real.
 
-A historia foi validada por compilacao e pela leitura direta do `/v3/api-docs` em runtime, garantindo que a documentacao publicada corresponde ao que a aplicacao realmente expoe.
+A historia foi validada por compilacao e pela leitura direta do `/v3/api-docs` em runtime, garantindo que a documentacao
+publicada corresponde ao que a aplicacao realmente expoe.
 
 ## Evidencias de Validacao
 
@@ -88,11 +92,11 @@ A historia foi validada por compilacao e pela leitura direta do `/v3/api-docs` e
 
 ## Arquivos ou Modulos Mais Relevantes
 
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/config/OpenApiConfiguration.java`
-- `src/main/java/com/cwi/digitalbankapi/api/controller/AccountController.java`
-- `src/main/java/com/cwi/digitalbankapi/api/controller/TransferController.java`
-- `src/main/java/com/cwi/digitalbankapi/application/dto/TransferRequest.java`
-- `src/main/java/com/cwi/digitalbankapi/shared/response/ApiErrorResponse.java`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/config/OpenApiConfiguration.java`
+- `src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountController.java`
+- `src/main/java/com/avaliadora/digitalbankapi/api/controller/TransferController.java`
+- `src/main/java/com/avaliadora/digitalbankapi/application/dto/TransferRequest.java`
+- `src/main/java/com/avaliadora/digitalbankapi/shared/response/ApiErrorResponse.java`
 
 ## Riscos, Limitacoes ou Pendencias
 

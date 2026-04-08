@@ -10,9 +10,11 @@
 
 ## Resumo Executivo
 
-Esta entrega amadureceu a camada de persistencia ao explicitar os relacionamentos JPA/Hibernate entre conta, movimentacao e notificacao, sem alterar o contrato HTTP da API e sem misturar persistencia com o dominio.
+Esta entrega amadureceu a camada de persistencia ao explicitar os relacionamentos JPA/Hibernate entre conta,
+movimentacao e notificacao, sem alterar o contrato HTTP da API e sem misturar persistencia com o dominio.
 
-Na pratica, a infraestrutura ficou mais fiel ao modelo relacional do banco, e a suite funcional completa permaneceu verde ao final da refatoracao.
+Na pratica, a infraestrutura ficou mais fiel ao modelo relacional do banco, e a suite funcional completa permaneceu
+verde ao final da refatoracao.
 
 ## Linguagem Ubiqua da Entrega
 
@@ -23,7 +25,8 @@ Na pratica, a infraestrutura ficou mais fiel ao modelo relacional do banco, e a 
 
 ## Problema de Negocio
 
-Antes desta entrega, o projeto ja usava JPA/Hibernate, mas parte das relacoes persistentes ainda aparecia apenas como identificadores escalares, o que deixava a camada relacional menos expressiva do que o banco realmente era.
+Antes desta entrega, o projeto ja usava JPA/Hibernate, mas parte das relacoes persistentes ainda aparecia apenas como
+identificadores escalares, o que deixava a camada relacional menos expressiva do que o banco realmente era.
 
 ## O Que Foi Entregue
 
@@ -74,13 +77,16 @@ O corte adotado foi pragmatico:
 
 ## Arquivos ou Modulos Mais Relevantes
 
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/entity/AccountEntity.java`
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/entity/AccountMovementEntity.java`
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/entity/AccountNotificationEntity.java`
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountMovementRepository.java`
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountNotificationRepository.java`
-- `src/test/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountMovementRepositoryTest.java`
-- `src/test/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountNotificationRepositoryTest.java`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/entity/AccountEntity.java`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/entity/AccountMovementEntity.java`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/entity/AccountNotificationEntity.java`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountMovementRepository.java`
+-
+`src/main/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountNotificationRepository.java`
+-
+`src/test/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountMovementRepositoryTest.java`
+-
+`src/test/java/com/avaliadora/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountNotificationRepositoryTest.java`
 
 ## Riscos, Limitacoes ou Pendencias
 
@@ -89,7 +95,8 @@ O corte adotado foi pragmatico:
 
 ## Relacao com a Spec Principal
 
-Esta entrega nao muda o escopo funcional principal do desafio. Ela fortalece a camada de persistencia e melhora a defesa tecnica da arquitetura adotada.
+Esta entrega nao muda o escopo funcional principal do desafio. Ela fortalece a camada de persistencia e melhora a defesa
+tecnica da arquitetura adotada.
 
 ## Pronto Para Fechamento de Versao
 

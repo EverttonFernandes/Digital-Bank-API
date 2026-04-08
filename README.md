@@ -1,6 +1,7 @@
 # Digital Bank API
 
-API REST simplificada para um banco digital, construída em `Java 17` com `Spring Boot`, `Gradle`, `PostgreSQL`, `Docker Compose` e documentação `OpenAPI`.
+API REST simplificada para um banco digital, construída em `Java 17` com `Spring Boot`, `Gradle`, `PostgreSQL`,
+`Docker Compose` e documentação `OpenAPI`.
 
 O projeto cobre:
 
@@ -156,28 +157,35 @@ O projeto segue uma separacao pragmatica inspirada em DDD:
 ## Principais Decisoes Tecnicas
 
 - `Converter antes da regra de negocio`
-  A entrada HTTP e convertida antes da orquestracao principal. Isso ajuda a validar formato e a montar o objeto correto antes de aplicar regra de dominio.
+  A entrada HTTP e convertida antes da orquestracao principal. Isso ajuda a validar formato e a montar o objeto correto
+  antes de aplicar regra de dominio.
 
 - `Regras de negocio explicitas`
-  As validacoes centrais de transferencia foram mantidas de forma clara para preservar legibilidade e previsibilidade do fluxo.
+  As validacoes centrais de transferencia foram mantidas de forma clara para preservar legibilidade e previsibilidade do
+  fluxo.
 
 - `Transacao com lock pessimista`
-  A transferencia usa controle transacional e lock pessimista nas contas para reduzir risco de inconsistencia em concorrencia.
+  A transferencia usa controle transacional e lock pessimista nas contas para reduzir risco de inconsistencia em
+  concorrencia.
 
 - `Observer para notificacao`
-  A notificacao pos-transferencia foi desacoplada da operacao principal para abrir caminho para futuras evolucoes como fila, e-mail ou SMS.
+  A notificacao pos-transferencia foi desacoplada da operacao principal para abrir caminho para futuras evolucoes como
+  fila, e-mail ou SMS.
 
 - `Erro padronizado com key e value`
   As falhas de negocio e de entrada retornam um contrato uniforme para facilitar teste, leitura e manutencao.
 
 - `Testes funcionais com seeders e fixtures`
-  A suite funcional usa massa deterministica e validacao end-to-end via API, inclusive confirmando o estado final por `GET` quando aplicavel.
+  A suite funcional usa massa deterministica e validacao end-to-end via API, inclusive confirmando o estado final por
+  `GET` quando aplicavel.
 
 - `Criacao de conta com semantica REST`
-  A abertura de conta usa `POST /accounts`, persiste o recurso, devolve `201 Created`, header `Location` e response `HAL` com links navegaveis.
+  A abertura de conta usa `POST /accounts`, persiste o recurso, devolve `201 Created`, header `Location` e response
+  `HAL` com links navegaveis.
 
 - `Mapeamento relacional explicito na persistencia`
-  A camada JPA/Hibernate explicita as relacoes entre conta, movimentacao e notificacao sem misturar persistencia com o dominio.
+  A camada JPA/Hibernate explicita as relacoes entre conta, movimentacao e notificacao sem misturar persistencia com o
+  dominio.
 
 ## Estrategia de Testes
 
@@ -244,4 +252,5 @@ Essa entrega introduziu:
 - links navegaveis entre recursos relacionados
 - Swagger refletindo os DTOs e responses HATEOAS
 
-Na pratica, a API deixou de apenas expor recursos com bons verbos HTTP e passou a guiar melhor o consumidor por meio dos links retornados nas respostas.
+Na pratica, a API deixou de apenas expor recursos com bons verbos HTTP e passou a guiar melhor o consumidor por meio dos
+links retornados nas respostas.

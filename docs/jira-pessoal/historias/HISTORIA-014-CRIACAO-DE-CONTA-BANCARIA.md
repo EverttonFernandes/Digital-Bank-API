@@ -6,11 +6,15 @@
 
 ## Objetivo da Historia
 
-Implementar o endpoint `POST /accounts` para permitir a criacao de uma nova conta bancaria no dominio, cobrindo persistencia, validacao de entrada, semantica REST correta, contrato HATEOAS e documentacao Swagger coerente com o comportamento real.
+Implementar o endpoint `POST /accounts` para permitir a criacao de uma nova conta bancaria no dominio, cobrindo
+persistencia, validacao de entrada, semantica REST correta, contrato HATEOAS e documentacao Swagger coerente com o
+comportamento real.
 
 ## Valor de Negocio
 
-Esta historia fecha uma lacuna natural do dominio: hoje a API permite consultar contas, transferir valores, consultar movimentacoes e notificacoes, mas ainda nao permite abrir uma nova conta. Com isso, o fluxo de vida da conta deixa de depender apenas de seed inicial.
+Esta historia fecha uma lacuna natural do dominio: hoje a API permite consultar contas, transferir valores, consultar
+movimentacoes e notificacoes, mas ainda nao permite abrir uma nova conta. Com isso, o fluxo de vida da conta deixa de
+depender apenas de seed inicial.
 
 ## Comportamento Esperado
 
@@ -22,10 +26,10 @@ O endpoint deve:
 - retornar `201 Created`
 - retornar `Location` apontando para o recurso criado
 - retornar body em formato `HAL` com links para:
-  - `self`
-  - `accounts`
-  - `movements`
-  - `notifications`
+    - `self`
+    - `accounts`
+    - `movements`
+    - `notifications`
 
 ## Contrato Inicial Proposto
 
@@ -105,4 +109,5 @@ Na resposta da conta criada, expor pelo menos:
 
 ## Proxima Historia Natural
 
-- refinamentos futuros de manutencao do ciclo de vida da conta, como atualizacao parcial ou desativacao, apenas se o dominio justificar
+- refinamentos futuros de manutencao do ciclo de vida da conta, como atualizacao parcial ou desativacao, apenas se o
+  dominio justificar

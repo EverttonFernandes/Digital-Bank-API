@@ -30,9 +30,9 @@ PROXIMA_ACAO_RECOMENDADA:
 - Iniciar HISTORIA-006 implementando notificacao pos-transferencia sem romper a transacao principal.
 
 ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
-- src/main/java/com/cwi/digitalbankapi/application/service/TransferService.java
-- src/main/java/com/cwi/digitalbankapi/application/service/AccountMovementQueryService.java
-- src/main/java/com/cwi/digitalbankapi/api/controller/AccountMovementController.java
+- src/main/java/com/avaliadora/digitalbankapi/application/service/TransferService.java
+- src/main/java/com/avaliadora/digitalbankapi/application/service/AccountMovementQueryService.java
+- src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountMovementController.java
 - src/main/resources/db/migration/V2__create_account_movement_table.sql
 - __functional_tests__/src/endpoints/accounts/GET/accountMovementsGetSuccess.spec.js
 - __functional_tests__/src/endpoints/accounts/GET/accountMovementsGetFailure.spec.js

@@ -1,0 +1,38 @@
+STATUS DA HISTORIA: NOT_STARTED
+CHAVE DA HISTORIA: <KEY>
+ULTIMA ITERACAO_REGISTRADA: 0
+ULTIMA_FASE_CONHECIDA: PLANNING
+CONTINUITY_STATUS: BLOCKED_FOR_NEXT_STORY
+COMPLETION_PROMISE: PENDING
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- Ainda nao iniciada.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- Nenhuma execucao registrada.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: PENDING
+- unit_tests: PENDING
+- func_tests: PENDING
+- coverage: PENDING
+- sonar: PENDING
+- security: PENDING
+- arch_review: PENDING
+- final_review: PENDING
+
+ULTIMA_ACAO_EXECUTADA:
+- Nenhuma.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Ler IMPLEMENTATION.md e iniciar a primeira iteracao do loop.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- Nenhum.
+
+RISCOS_ABERTOS:
+- Historia ainda sem execucao.
+
+OBSERVACOES_DE_CONTEXTO:
+- Este arquivo e a memoria operacional curta da historia.
+- Toda nova janela de contexto deve reiniciar a partir deste arquivo e do IMPLEMENTATION.md.

@@ -6,7 +6,8 @@
 
 ## Objetivo da História
 
-Consolidar e ampliar o comportamento end-to-end da API com seeders, fixtures e validação do estado final, partindo do setup inicial introduzido na `HISTORIA-004`.
+Consolidar e ampliar o comportamento end-to-end da API com seeders, fixtures e validação do estado final, partindo do
+setup inicial introduzido na `HISTORIA-004`.
 
 ## Valor de Negócio
 

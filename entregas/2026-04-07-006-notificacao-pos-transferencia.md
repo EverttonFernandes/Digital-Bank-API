@@ -10,9 +10,12 @@
 
 ## Resumo Executivo
 
-Esta entrega adicionou comunicacao rastreavel ao fluxo principal do banco digital. Depois dela, uma transferencia concluida com sucesso nao altera apenas saldo e historico financeiro: ela tambem registra notificacoes consultaveis para as contas envolvidas.
+Esta entrega adicionou comunicacao rastreavel ao fluxo principal do banco digital. Depois dela, uma transferencia
+concluida com sucesso nao altera apenas saldo e historico financeiro: ela tambem registra notificacoes consultaveis para
+as contas envolvidas.
 
-O resultado e um fluxo mais coerente com o dominio financeiro e mais preparado para evoluir depois para e-mail, SMS, fila ou outros canais.
+O resultado e um fluxo mais coerente com o dominio financeiro e mais preparado para evoluir depois para e-mail, SMS,
+fila ou outros canais.
 
 ## Linguagem Ubiqua da Entrega
 
@@ -24,9 +27,12 @@ O resultado e um fluxo mais coerente com o dominio financeiro e mais preparado p
 
 ## Problema de Negocio
 
-Antes desta entrega, o sistema transferia saldo e registrava movimentacoes, mas ainda nao mostrava nenhuma consequencia de comunicacao apos o sucesso da operacao. Isso limitava a auditabilidade do processo e fechava pouco o fluxo do ponto de vista do cliente.
+Antes desta entrega, o sistema transferia saldo e registrava movimentacoes, mas ainda nao mostrava nenhuma consequencia
+de comunicacao apos o sucesso da operacao. Isso limitava a auditabilidade do processo e fechava pouco o fluxo do ponto
+de vista do cliente.
 
-Era necessario deixar evidente que a transferencia concluida pode disparar comportamentos adicionais sem acoplar tudo ao caso de uso principal.
+Era necessario deixar evidente que a transferencia concluida pode disparar comportamentos adicionais sem acoplar tudo ao
+caso de uso principal.
 
 ## O Que Foi Entregue
 
@@ -76,9 +82,14 @@ Era necessario deixar evidente que a transferencia concluida pode disparar compo
 
 ## Estrategia Tecnica Aplicada
 
-Foi aplicado `Observer` de forma parcimoniosa no ponto exato em que ele agrega valor: a consequencia da transferencia concluida. O `TransferService` publica um evento de transferencia concluida e o observer `RegisterTransferNotificationObserver` materializa as notificacoes sem acoplar o fluxo principal ao detalhe da persistencia.
+Foi aplicado `Observer` de forma parcimoniosa no ponto exato em que ele agrega valor: a consequencia da transferencia
+concluida. O `TransferService` publica um evento de transferencia concluida e o observer
+`RegisterTransferNotificationObserver` materializa as notificacoes sem acoplar o fluxo principal ao detalhe da
+persistencia.
 
-Para manter confianca na automacao, a suite funcional passou a esperar a disponibilidade da aplicacao antes de preparar a massa. Os cenarios de notificacao validam o efeito end-to-end via `GET` e confirmam que falhas de transferencia nao criam registros indevidos.
+Para manter confianca na automacao, a suite funcional passou a esperar a disponibilidade da aplicacao antes de preparar
+a massa. Os cenarios de notificacao validam o efeito end-to-end via `GET` e confirmam que falhas de transferencia nao
+criam registros indevidos.
 
 ## Evidencias de Validacao
 
@@ -90,10 +101,10 @@ Para manter confianca na automacao, a suite funcional passou a esperar a disponi
 
 ## Arquivos ou Modulos Mais Relevantes
 
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/notification/SpringTransferCompletedEventPublisher.java`
-- `src/main/java/com/cwi/digitalbankapi/application/service/RegisterTransferNotificationObserver.java`
-- `src/main/java/com/cwi/digitalbankapi/api/controller/AccountNotificationController.java`
-- `src/main/java/com/cwi/digitalbankapi/domain/notification`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/notification/SpringTransferCompletedEventPublisher.java`
+- `src/main/java/com/avaliadora/digitalbankapi/application/service/RegisterTransferNotificationObserver.java`
+- `src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountNotificationController.java`
+- `src/main/java/com/avaliadora/digitalbankapi/domain/notification`
 - `src/main/resources/db/migration/V3__create_account_notification_table.sql`
 - `__functional_tests__/src/endpoints/accounts/GET/accountNotificationsGetSuccess.spec.js`
 
@@ -105,7 +116,8 @@ Para manter confianca na automacao, a suite funcional passou a esperar a disponi
 
 ## Relacao com a Spec Principal
 
-Esta entrega cobre a exigencia de notificacao apos transferencia concluida com uma solucao evolutiva e coerente com a arquitetura proposta.
+Esta entrega cobre a exigencia de notificacao apos transferencia concluida com uma solucao evolutiva e coerente com a
+arquitetura proposta.
 
 ## Pronto Para Fechamento de Versao
 

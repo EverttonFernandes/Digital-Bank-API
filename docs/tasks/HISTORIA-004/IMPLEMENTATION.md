@@ -4,7 +4,8 @@
 
 Esta história é o núcleo funcional do projeto.
 
-É nela que o banco digital passa a cumprir sua principal responsabilidade: transferir valor entre contas de forma segura, consistente e aderente às regras de negócio.
+É nela que o banco digital passa a cumprir sua principal responsabilidade: transferir valor entre contas de forma
+segura, consistente e aderente às regras de negócio.
 
 Ela nasce diretamente de:
 
@@ -46,7 +47,8 @@ Esta entrega ainda não precisa incluir de forma completa:
 
 Observação:
 
-Movimentações financeiras e notificação possuem histórias próprias, mas esta entrega já deve ser preparada para integrá-las corretamente.
+Movimentações financeiras e notificação possuem histórias próprias, mas esta entrega já deve ser preparada para
+integrá-las corretamente.
 
 ## Critérios de Aceite
 
@@ -86,7 +88,8 @@ Esta entrega deve seguir rigorosamente a arquitetura documentada.
 
 A requisição de transferência deve ser recebida via DTO e convertida de forma estruturada.
 
-Validações de entrada devem ficar na camada apropriada de converter ou validação estrutural, sem misturar isso com regra de negócio profunda.
+Validações de entrada devem ficar na camada apropriada de converter ou validação estrutural, sem misturar isso com regra
+de negócio profunda.
 
 ### Domínio
 
@@ -126,7 +129,8 @@ Isso significa incluir já nesta etapa:
 
 ### Observação de ordem determinística
 
-Se necessário para reduzir risco de deadlock, a leitura das contas deve considerar ordem determinística por identificador.
+Se necessário para reduzir risco de deadlock, a leitura das contas deve considerar ordem determinística por
+identificador.
 
 ## Camadas Afetadas
 
@@ -231,19 +235,20 @@ Arquivos esperados nesta entrega:
 
 ### Iteração 1
 
-- foi criada a estrutura `__functional_tests__` inspirada nos exemplos de `wishlist-api` e `umovme-business`
+- foi criada a estrutura `__functional_tests__` inspirada nos exemplos de `wishlist-api` e `projeto-referencia-backend`
 - foi configurado `Jest` com `supertest`, `pg`, `fixtures`, `seed.js` e `rollback.js`
 - foi atualizado o alvo `make functional-test` para executar a suíte funcional em Jest
 - foram criados dois cenários BDD iniciais para contas:
-  - sucesso em `GET /accounts`
-  - falha em `GET /accounts/{id}` para conta inexistente
+    - sucesso em `GET /accounts`
+    - falha em `GET /accounts/{id}` para conta inexistente
 - o `make functional-test` foi validado com sucesso contra a aplicação real e o PostgreSQL do ambiente Docker
 
 ### Estado Atual da História
 
 O setup funcional da história já está pronto e validado.
 
-O próximo passo desta mesma história é usar essa base para implementar a transferência entre contas com TDD e expandir os cenários funcionais para o fluxo principal de negócio.
+O próximo passo desta mesma história é usar essa base para implementar a transferência entre contas com TDD e expandir
+os cenários funcionais para o fluxo principal de negócio.
 
 ### Iteração 2
 

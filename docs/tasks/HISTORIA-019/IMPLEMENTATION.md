@@ -12,7 +12,7 @@ criação de conta, transferência, consulta de movimentações e consulta de no
 
 ## Referência
 
-- [HISTORIA-019-EXPERIENCIA-DE-USO-DO-SWAGGER-E-CONTRATO-OPENAPI.md](/home/umov/Documents/ProjetosPessoais/DigitalBankAPI/docs/jira-pessoal/historias/HISTORIA-019-EXPERIENCIA-DE-USO-DO-SWAGGER-E-CONTRATO-OPENAPI.md)
+- [HISTORIA-019-EXPERIENCIA-DE-USO-DO-SWAGGER-E-CONTRATO-OPENAPI.md](docs/jira-pessoal/historias/HISTORIA-019-EXPERIENCIA-DE-USO-DO-SWAGGER-E-CONTRATO-OPENAPI.md)
 
 ## Escopo Incluído
 

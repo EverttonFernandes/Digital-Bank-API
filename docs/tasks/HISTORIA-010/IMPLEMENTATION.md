@@ -4,7 +4,8 @@
 
 Esta história comprova o comportamento da solução de ponta a ponta.
 
-Ela garante que a API funcione no ambiente real do projeto com seeders, fixtures e validações alinhadas ao padrão definido.
+Ela garante que a API funcione no ambiente real do projeto com seeders, fixtures e validações alinhadas ao padrão
+definido.
 
 Ela nasce diretamente de:
 
@@ -63,7 +64,8 @@ Esta história não precisa incluir:
   Benefício para o negócio: aumentam confiabilidade da validação e evitam dependência de base manual
 
 - `Expansão da suíte iniciada na HISTORIA-004`
-  Impacto no domínio: reaproveita a base funcional criada para a transferência e amplia a cobertura para o restante do sistema
+  Impacto no domínio: reaproveita a base funcional criada para a transferência e amplia a cobertura para o restante do
+  sistema
   Benefício para o negócio: evita que a confiança da entrega fique concentrada em um único fluxo
 
 ## Estratégia Técnica

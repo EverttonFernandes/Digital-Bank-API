@@ -10,9 +10,12 @@
 
 ## Resumo Executivo
 
-Esta entrega fez a transferencia deixar rastros claros no dominio do banco digital. A partir dela, transferir dinheiro nao altera apenas saldo: a API tambem registra o debito na conta de origem, o credito na conta de destino e disponibiliza esse historico para consulta.
+Esta entrega fez a transferencia deixar rastros claros no dominio do banco digital. A partir dela, transferir dinheiro
+nao altera apenas saldo: a API tambem registra o debito na conta de origem, o credito na conta de destino e
+disponibiliza esse historico para consulta.
 
-Na pratica, isso aumenta a auditabilidade da operacao principal do sistema e deixa o desafio mais coerente com um contexto financeiro real.
+Na pratica, isso aumenta a auditabilidade da operacao principal do sistema e deixa o desafio mais coerente com um
+contexto financeiro real.
 
 ## Linguagem Ubiqua da Entrega
 
@@ -24,7 +27,8 @@ Na pratica, isso aumenta a auditabilidade da operacao principal do sistema e dei
 
 ## Problema de Negocio
 
-Antes desta entrega, a API conseguia transferir saldo, mas nao oferecia historico financeiro do que tinha acontecido. Isso enfraquecia a rastreabilidade da operacao e limitava a capacidade de explicar o estado atual de uma conta.
+Antes desta entrega, a API conseguia transferir saldo, mas nao oferecia historico financeiro do que tinha acontecido.
+Isso enfraquecia a rastreabilidade da operacao e limitava a capacidade de explicar o estado atual de uma conta.
 
 Era necessario que cada transferencia deixasse evidencias consultaveis para origem e destino.
 
@@ -72,13 +76,19 @@ Era necessario que cada transferencia deixasse evidencias consultaveis para orig
 
 - `GET /accounts/{id}/movements`
   Objetivo: consultar o historico financeiro da conta
-  Resultado esperado: retornar as movimentacoes registradas para a conta ou falhar com `ACCOUNT_NOT_FOUND` quando a conta nao existir
+  Resultado esperado: retornar as movimentacoes registradas para a conta ou falhar com `ACCOUNT_NOT_FOUND` quando a
+  conta nao existir
 
 ## Estrategia Tecnica Aplicada
 
-A transferencia passou a gerar dois objetos de dominio `AccountMovement`, um de debito e outro de credito, persistidos na mesma transacao em que os saldos sao atualizados. A consulta do historico foi separada em `AccountMovementQueryService`, preservando a responsabilidade do fluxo de transferencia e mantendo a leitura em endpoint proprio.
+A transferencia passou a gerar dois objetos de dominio `AccountMovement`, um de debito e outro de credito, persistidos
+na mesma transacao em que os saldos sao atualizados. A consulta do historico foi separada em
+`AccountMovementQueryService`, preservando a responsabilidade do fluxo de transferencia e mantendo a leitura em endpoint
+proprio.
 
-Na base funcional, a suite em Jest foi endurecida para refletir o estado acumulado da execucao completa. A preparacao continua ocorrendo uma unica vez no inicio e o rollback total ocorre somente ao final, com limpeza ordenada entre `account_movement` e `account`.
+Na base funcional, a suite em Jest foi endurecida para refletir o estado acumulado da execucao completa. A preparacao
+continua ocorrendo uma unica vez no inicio e o rollback total ocorre somente ao final, com limpeza ordenada entre
+`account_movement` e `account`.
 
 ## Evidencias de Validacao
 
@@ -90,10 +100,10 @@ Na base funcional, a suite em Jest foi endurecida para refletir o estado acumula
 
 ## Arquivos ou Modulos Mais Relevantes
 
-- `src/main/java/com/cwi/digitalbankapi/application/service/TransferService.java`
-- `src/main/java/com/cwi/digitalbankapi/application/service/AccountMovementQueryService.java`
-- `src/main/java/com/cwi/digitalbankapi/api/controller/AccountMovementController.java`
-- `src/main/java/com/cwi/digitalbankapi/domain/statement`
+- `src/main/java/com/avaliadora/digitalbankapi/application/service/TransferService.java`
+- `src/main/java/com/avaliadora/digitalbankapi/application/service/AccountMovementQueryService.java`
+- `src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountMovementController.java`
+- `src/main/java/com/avaliadora/digitalbankapi/domain/statement`
 - `src/main/resources/db/migration/V2__create_account_movement_table.sql`
 - `__functional_tests__/src/endpoints/accounts/GET/accountMovementsGetSuccess.spec.js`
 
@@ -105,7 +115,8 @@ Na base funcional, a suite em Jest foi endurecida para refletir o estado acumula
 
 ## Relacao com a Spec Principal
 
-Esta entrega concretiza a parte da spec que fala em consulta de movimentacoes financeiras. Ela transforma a transferencia em uma operacao auditavel e observavel do ponto de vista do dominio.
+Esta entrega concretiza a parte da spec que fala em consulta de movimentacoes financeiras. Ela transforma a
+transferencia em uma operacao auditavel e observavel do ponto de vista do dominio.
 
 ## Pronto Para Fechamento de Versao
 

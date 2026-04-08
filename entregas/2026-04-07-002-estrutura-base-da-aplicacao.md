@@ -10,7 +10,9 @@
 
 ## Resumo Executivo
 
-Foi criada a base estrutural da aplicação para sustentar as próximas histórias funcionais. A API agora possui separação explícita entre entrada HTTP, aplicação, domínio, infraestrutura e componentes compartilhados, reduzindo retrabalho estrutural e preparando a evolução para contas, transferências e movimentações.
+Foi criada a base estrutural da aplicação para sustentar as próximas histórias funcionais. A API agora possui separação
+explícita entre entrada HTTP, aplicação, domínio, infraestrutura e componentes compartilhados, reduzindo retrabalho
+estrutural e preparando a evolução para contas, transferências e movimentações.
 
 ## Linguagem Ubíqua da Entrega
 
@@ -22,7 +24,9 @@ Foi criada a base estrutural da aplicação para sustentar as próximas históri
 
 ## Problema de Negócio
 
-Antes desta entrega, a aplicação subia, mas a estrutura interna ainda não refletia a arquitetura do projeto. Isso criava risco de crescimento desorganizado nas próximas histórias. Depois desta entrega, a base já está separada em camadas claras e preparada para evolução disciplinada.
+Antes desta entrega, a aplicação subia, mas a estrutura interna ainda não refletia a arquitetura do projeto. Isso criava
+risco de crescimento desorganizado nas próximas histórias. Depois desta entrega, a base já está separada em camadas
+claras e preparada para evolução disciplinada.
 
 ## O Que Foi Entregue
 
@@ -74,7 +78,9 @@ Antes desta entrega, a aplicação subia, mas a estrutura interna ainda não ref
 
 ## Estratégia Técnica Aplicada
 
-Foi adotada uma materialização mínima e explícita da arquitetura: o endpoint existente foi reposicionado entre `api` e `application`, a classe principal foi corrigida para o pacote raiz e os demais pacotes estruturais foram criados com foco em clareza e preparação para as próximas histórias, sem antecipar regra de negócio.
+Foi adotada uma materialização mínima e explícita da arquitetura: o endpoint existente foi reposicionado entre `api` e
+`application`, a classe principal foi corrigida para o pacote raiz e os demais pacotes estruturais foram criados com
+foco em clareza e preparação para as próximas histórias, sem antecipar regra de negócio.
 
 ## Evidências de Validação
 
@@ -86,11 +92,11 @@ Foi adotada uma materialização mínima e explícita da arquitetura: o endpoint
 
 ## Arquivos ou Módulos Mais Relevantes
 
-- `src/main/java/com/cwi/digitalbankapi/DigitalBankApiApplication.java`
-- `src/main/java/com/cwi/digitalbankapi/api/controller/`
-- `src/main/java/com/cwi/digitalbankapi/application/service/`
-- `src/main/java/com/cwi/digitalbankapi/infrastructure/config/PersistenceConfiguration.java`
-- `src/main/java/com/cwi/digitalbankapi/**/package-info.java`
+- `src/main/java/com/avaliadora/digitalbankapi/DigitalBankApiApplication.java`
+- `src/main/java/com/avaliadora/digitalbankapi/api/controller/`
+- `src/main/java/com/avaliadora/digitalbankapi/application/service/`
+- `src/main/java/com/avaliadora/digitalbankapi/infrastructure/config/PersistenceConfiguration.java`
+- `src/main/java/com/avaliadora/digitalbankapi/**/package-info.java`
 
 ## Riscos, Limitações ou Pendências
 
@@ -99,7 +105,8 @@ Foi adotada uma materialização mínima e explícita da arquitetura: o endpoint
 
 ## Relação com a Spec Principal
 
-Esta entrega concretiza a preparação estrutural da aplicação para que as próximas histórias funcionais sejam implementadas sobre uma base coerente com a arquitetura do projeto.
+Esta entrega concretiza a preparação estrutural da aplicação para que as próximas histórias funcionais sejam
+implementadas sobre uma base coerente com a arquitetura do projeto.
 
 ## Pronto Para Fechamento de Versão
 

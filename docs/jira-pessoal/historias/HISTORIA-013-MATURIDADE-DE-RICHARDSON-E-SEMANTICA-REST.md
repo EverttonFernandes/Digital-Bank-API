@@ -6,9 +6,11 @@
 
 ## Objetivo da Historia
 
-Refatorar os endpoints e os contratos de resposta para elevar a API ao topo do modelo de maturidade de Richardson, aproximando a solucao de uma API explicitamente RESTful, e nao apenas uma API que usa HTTP.
+Refatorar os endpoints e os contratos de resposta para elevar a API ao topo do modelo de maturidade de Richardson,
+aproximando a solucao de uma API explicitamente RESTful, e nao apenas uma API que usa HTTP.
 
-Essa evolucao deve usar `Spring HATEOAS` como base tecnica para expor links de navegacao coerentes entre recursos relacionados.
+Essa evolucao deve usar `Spring HATEOAS` como base tecnica para expor links de navegacao coerentes entre recursos
+relacionados.
 
 ## Valor de Negocio
 
@@ -26,20 +28,21 @@ Esta historia fortalece a qualidade arquitetural da API e melhora a defesa tecni
 - o Swagger deve explicar claramente o que cada atributo dos DTOs representa
 - cada endpoint deve expor no Swagger os responses esperados segundo o novo padrao adotado
 - o Swagger deve refletir os links e estruturas de resposta do modelo com `Spring HATEOAS` quando aplicavel
-- respostas de transferencia devem apontar para recursos relacionados, como conta de origem, conta de destino, movimentacoes e notificacoes quando aplicavel
+- respostas de transferencia devem apontar para recursos relacionados, como conta de origem, conta de destino,
+  movimentacoes e notificacoes quando aplicavel
 - respostas de notificacao devem apontar para a consulta das notificacoes da conta relacionada
 
 ## Mapa Inicial de Refatoracao da API
 
-| Endpoint atual | Leitura de design atual | Endpoint alvo | Verbo correto | Evolucao de HATEOAS esperada |
-| --- | --- | --- | --- | --- |
-| `GET /accounts` | Ja e recurso bem nomeado | `GET /accounts` | `GET` | cada conta pode expor links para `self`, `movements`, `notifications` |
-| `GET /accounts/{accountId}` | Ja e recurso bem nomeado | `GET /accounts/{accountId}` | `GET` | conta pode expor links para `self`, `movements` e `notifications` |
-| `POST /transfers` | funcional, mas precisa response mais orientado a recurso | `POST /transfers` ou `POST /accounts/{accountId}/transfers` conforme decisao final de modelagem | `POST` | response deve apontar para conta de origem, conta de destino, movimentacoes e notificacoes |
-| `GET /accounts/{accountId}/movements` | bom recurso subordinado | `GET /accounts/{accountId}/movements` | `GET` | cada movimentacao pode apontar para conta associada e colecao da conta |
-| `GET /accounts/{accountId}/notifications` | bom recurso subordinado | `GET /accounts/{accountId}/notifications` | `GET` | cada notificacao pode apontar para conta associada e colecao da conta |
-| contrato atual sem atualizacao de conta | recurso ainda incompleto para maturidade plena | `PUT /accounts/{accountId}` e/ou `PATCH /accounts/{accountId}` | `PUT` / `PATCH` | response deve apontar para `self` e recursos subordinados |
-| contrato atual sem remocao de conta | recurso ainda incompleto para semantica completa | `DELETE /accounts/{accountId}` se o dominio permitir | `DELETE` | resposta deve manter semantica coerente com exclusao ou desativacao |
+| Endpoint atual                            | Leitura de design atual                                  | Endpoint alvo                                                                                   | Verbo correto   | Evolucao de HATEOAS esperada                                                               |
+|-------------------------------------------|----------------------------------------------------------|-------------------------------------------------------------------------------------------------|-----------------|--------------------------------------------------------------------------------------------|
+| `GET /accounts`                           | Ja e recurso bem nomeado                                 | `GET /accounts`                                                                                 | `GET`           | cada conta pode expor links para `self`, `movements`, `notifications`                      |
+| `GET /accounts/{accountId}`               | Ja e recurso bem nomeado                                 | `GET /accounts/{accountId}`                                                                     | `GET`           | conta pode expor links para `self`, `movements` e `notifications`                          |
+| `POST /transfers`                         | funcional, mas precisa response mais orientado a recurso | `POST /transfers` ou `POST /accounts/{accountId}/transfers` conforme decisao final de modelagem | `POST`          | response deve apontar para conta de origem, conta de destino, movimentacoes e notificacoes |
+| `GET /accounts/{accountId}/movements`     | bom recurso subordinado                                  | `GET /accounts/{accountId}/movements`                                                           | `GET`           | cada movimentacao pode apontar para conta associada e colecao da conta                     |
+| `GET /accounts/{accountId}/notifications` | bom recurso subordinado                                  | `GET /accounts/{accountId}/notifications`                                                       | `GET`           | cada notificacao pode apontar para conta associada e colecao da conta                      |
+| contrato atual sem atualizacao de conta   | recurso ainda incompleto para maturidade plena           | `PUT /accounts/{accountId}` e/ou `PATCH /accounts/{accountId}`                                  | `PUT` / `PATCH` | response deve apontar para `self` e recursos subordinados                                  |
+| contrato atual sem remocao de conta       | recurso ainda incompleto para semantica completa         | `DELETE /accounts/{accountId}` se o dominio permitir                                            | `DELETE`        | resposta deve manter semantica coerente com exclusao ou desativacao                        |
 
 ## Observacao Importante
 
@@ -73,10 +76,12 @@ Mas a historia deve deixar explicito:
 ### Endpoints que eu ajustaria
 
 - `GET /api/status`
-  Ajuste sugerido: manter apenas como endpoint tecnico auxiliar ou substituir sua importancia funcional por `GET /actuator/health`
+  Ajuste sugerido: manter apenas como endpoint tecnico auxiliar ou substituir sua importancia funcional por
+  `GET /actuator/health`
   Motivo: ele nao representa recurso de negocio e nao agrega para a maturidade REST do dominio principal
 
-- responses atuais de `GET /accounts`, `GET /accounts/{accountId}`, `POST /transfers`, `GET /accounts/{accountId}/movements` e `GET /accounts/{accountId}/notifications`
+- responses atuais de `GET /accounts`, `GET /accounts/{accountId}`, `POST /transfers`,
+  `GET /accounts/{accountId}/movements` e `GET /accounts/{accountId}/notifications`
   Ajuste sugerido: incorporar `Spring HATEOAS`
   Motivo: hoje os endpoints usam bem HTTP e recursos, mas ainda nao guiam o consumidor por links navegaveis
 

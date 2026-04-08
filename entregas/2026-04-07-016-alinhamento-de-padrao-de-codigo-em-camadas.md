@@ -1,10 +1,12 @@
-# Entrega 016 — Alinhamento de Padrão com umovme-team
+# Entrega 016 — Alinhamento de Padrão com padrao-de-referencia-em-camadas
 
 ## Resumo Executivo
 
-Esta entrega refatorou a organização interna do back-end para aproximar o projeto do padrão estrutural observado no `umovme-team`, sem alterar o comportamento externo da API.
+Esta entrega refatorou a organização interna do back-end para aproximar o projeto do padrão estrutural observado no
+`padrao-de-referencia-em-camadas`, sem alterar o comportamento externo da API.
 
-O foco não foi criar novas regras de negócio. O foco foi redistribuir responsabilidades para deixar a solução mais coerente, previsível e próxima de um padrão maduro já conhecido pelo autor.
+O foco não foi criar novas regras de negócio. O foco foi redistribuir responsabilidades para deixar a solução mais
+coerente, previsível e próxima de um padrão maduro já conhecido pelo autor.
 
 ## O Que Mudou
 
@@ -19,7 +21,8 @@ O foco não foi criar novas regras de negócio. O foco foi redistribuir responsa
 
 Do ponto de vista técnico, a entrega reduziu a fragmentação da lógica entre camadas.
 
-Do ponto de vista de negócio, isso significa que a API fica mais sustentável para evoluções futuras, com menor risco de espalhar regra em lugares errados e maior clareza na defesa arquitetural da solução.
+Do ponto de vista de negócio, isso significa que a API fica mais sustentável para evoluções futuras, com menor risco de
+espalhar regra em lugares errados e maior clareza na defesa arquitetural da solução.
 
 ## Comportamentos Preservados
 
@@ -48,7 +51,7 @@ Resultado observado:
 
 ## Decisão Arquitetural Relevante
 
-A principal decisão desta entrega foi evitar “copiar” o `umovme-team` literalmente.
+A principal decisão desta entrega foi evitar “copiar” o `padrao-de-referencia-em-camadas` literalmente.
 
 Em vez disso, o projeto absorveu o padrão que fazia sentido:
 
@@ -59,4 +62,5 @@ Em vez disso, o projeto absorveu o padrão que fazia sentido:
 
 ## Impacto Final
 
-Esta história deixou o back-end mais coerente com o padrão de código esperado pelo autor, preservando a API pública e usando os testes funcionais como guardião real de regressão.
+Esta história deixou o back-end mais coerente com o padrão de código esperado pelo autor, preservando a API pública e
+usando os testes funcionais como guardião real de regressão.

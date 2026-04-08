@@ -10,9 +10,11 @@
 
 ## Resumo Executivo
 
-Esta entrega completou o ciclo basico de vida da conta dentro da API ao introduzir a criacao de contas por `POST /accounts`.
+Esta entrega completou o ciclo basico de vida da conta dentro da API ao introduzir a criacao de contas por
+`POST /accounts`.
 
-Na pratica, a API deixou de depender apenas de contas pre-carregadas e passou a permitir abertura de nova conta com persistencia real, semantica REST coerente e response navegavel em `HAL`.
+Na pratica, a API deixou de depender apenas de contas pre-carregadas e passou a permitir abertura de nova conta com
+persistencia real, semantica REST coerente e response navegavel em `HAL`.
 
 ## Linguagem Ubiqua da Entrega
 
@@ -23,9 +25,11 @@ Na pratica, a API deixou de depender apenas de contas pre-carregadas e passou a 
 
 ## Problema de Negocio
 
-Antes desta entrega, a API permitia consultar contas existentes, transferir valores, consultar movimentacoes e consultar notificacoes, mas nao permitia abrir uma nova conta pelo contrato publico.
+Antes desta entrega, a API permitia consultar contas existentes, transferir valores, consultar movimentacoes e consultar
+notificacoes, mas nao permitia abrir uma nova conta pelo contrato publico.
 
-Isso deixava a solucao funcionalmente correta para o desafio original, mas ainda incompleta como ciclo de vida do recurso `Account`.
+Isso deixava a solucao funcionalmente correta para o desafio original, mas ainda incompleta como ciclo de vida do
+recurso `Account`.
 
 ## O Que Foi Entregue
 
@@ -85,7 +89,8 @@ O corte adotado reaproveitou a arquitetura existente:
 - persistencia via repositório já existente
 - reuso do `AccountRepresentationModelAssembler` introduzido na `HISTORIA-013`
 
-Tambem foi adicionada migration para que o identificador de conta passe a ser gerado pelo banco em novas insercoes, preservando os registros seedados ja existentes.
+Tambem foi adicionada migration para que o identificador de conta passe a ser gerado pelo banco em novas insercoes,
+preservando os registros seedados ja existentes.
 
 ## Evidencias de Validacao
 
@@ -96,11 +101,11 @@ Tambem foi adicionada migration para que o identificador de conta passe a ser ge
 
 ## Arquivos ou Modulos Mais Relevantes
 
-- `src/main/java/com/cwi/digitalbankapi/api/controller/AccountController.java`
-- `src/main/java/com/cwi/digitalbankapi/application/dto/CreateAccountRequest.java`
-- `src/main/java/com/cwi/digitalbankapi/application/converter/CreateAccountRequestConverter.java`
-- `src/main/java/com/cwi/digitalbankapi/application/service/CreateAccountService.java`
-- `src/main/java/com/cwi/digitalbankapi/domain/account/specification/*`
+- `src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountController.java`
+- `src/main/java/com/avaliadora/digitalbankapi/application/dto/CreateAccountRequest.java`
+- `src/main/java/com/avaliadora/digitalbankapi/application/converter/CreateAccountRequestConverter.java`
+- `src/main/java/com/avaliadora/digitalbankapi/application/service/CreateAccountService.java`
+- `src/main/java/com/avaliadora/digitalbankapi/domain/account/specification/*`
 - `src/main/resources/db/migration/V4__make_account_identifier_generated_by_default.sql`
 - `__functional_tests__/src/endpoints/accounts/POST/*`
 
@@ -111,7 +116,8 @@ Tambem foi adicionada migration para que o identificador de conta passe a ser ge
 
 ## Relacao com a Spec Principal
 
-Esta entrega aproveita a abertura do enunciado original, que permitia base pre-carregada ou cadastro basico de conta. O projeto agora passa a atender os dois caminhos.
+Esta entrega aproveita a abertura do enunciado original, que permitia base pre-carregada ou cadastro basico de conta. O
+projeto agora passa a atender os dois caminhos.
 
 ## Pronto Para Fechamento de Versao
 
