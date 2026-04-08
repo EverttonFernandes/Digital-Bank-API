@@ -4,6 +4,8 @@ API REST para operacoes centrais de um banco digital, construida com `Java 17`, 
 
 O projeto foi entregue de forma incremental, com versionamento semantico por historia, foco em qualidade de codigo, testes automatizados, design de API, semantica HTTP, `HAL/HATEOAS` e resiliencia de concorrencia na transferencia entre contas.
 
+Arquiteturalmente, a solucao segue uma leitura pragmatica inspirada em `DDD`, separando borda HTTP, orquestracao de caso de uso, dominio, persistencia e componentes compartilhados.
+
 ## Visao Geral
 
 A API cobre:
@@ -206,6 +208,7 @@ Cada entrega relevante ficou registrada em `entregas/`:
 
 ### Arquitetura e Engenharia de Software
 
+- inspiracao pragmatica em `DDD`, com separacao clara entre camadas e responsabilidades
 - separacao clara entre `api`, `application`, `domain`, `infrastructure` e `shared`
 - services como orquestradores de caso de uso, mantendo controllers finos
 - converters para transformar `DTO -> dominio` antes da aplicacao das regras
@@ -216,6 +219,7 @@ Cada entrega relevante ficou registrada em `entregas/`:
 
 - `Spring Data JPA + Hibernate` como base de persistencia relacional
 - `Flyway` para versionamento de schema e carga inicial estavel
+- `PostgreSQL` como banco relacional por maturidade, confiabilidade transacional, suporte forte a locking e boa aderencia a cenarios de consistencia financeira
 - mapeamento relacional explicito entre conta, movimentacao e notificacao
 - repositorios preparados para consultas de leitura e gravacao com foco no caso de uso
 
@@ -227,6 +231,7 @@ Cada entrega relevante ficou registrada em `entregas/`:
 - timeout de lock configurado para evitar espera indefinida
 - tratamento semantico de contencao com `409 Conflict`
 - mensagem intuitiva ao cliente em caso de recurso temporariamente ocupado
+- uso de `Observer` no fluxo de notificacao para desacoplar a acao principal da transferencia e manter a arquitetura pronta para evolucoes como `SQS`, `SMS`, e-mail ou outros canais assincronos
 
 ### Design de API
 
@@ -258,6 +263,7 @@ Cada entrega relevante ficou registrada em `entregas/`:
 - `Jest + supertest + Sequelize`
 - seed controlado no inicio da suite
 - rollback total ao final da suite
+- massa de dados deterministica baseada em `fixtures` e `seeders`, permitindo reproduzir cenarios de sucesso, falha, consulta e concorrencia com previsibilidade
 - cobertura de sucesso e falha por endpoint
 - validacao de payload, status code, regras de negocio e estado final da base
 - testes especificos para concorrencia na transferencia
