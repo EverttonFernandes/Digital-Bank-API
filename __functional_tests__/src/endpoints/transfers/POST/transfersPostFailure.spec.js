@@ -4,6 +4,10 @@ const {
     createPostRequestWithRawBody,
     fixtures
 } = require("../../../functionalTestHelper");
+const {
+    holdAccountsWriteLock,
+    releaseAccountsWriteLock
+} = require("../../../db/account/holdAccountsWriteLock");
 
 describe("POST /transfers deve rejeitar cenarios invalidos e manter os saldos originais das contas", () => {
     it("deve retornar falha quando a conta de origem nao existir", async () => {
@@ -179,5 +183,46 @@ describe("POST /transfers deve rejeitar cenarios invalidos e manter os saldos or
         expect(Number(targetAccountAfterTransferResponse.body.balance)).toBe(
             Number(targetAccountBeforeTransferResponse.body.balance)
         );
+    });
+
+    it("deve retornar 409 quando as contas estiverem ocupadas por outra transferencia concorrente", async () => {
+        // GIVEN
+        const successfulTransfer = fixtures.transferFixtures.successfulTransfer;
+        const sourceAccountBeforeTransferResponse = await createGetRequest(`/accounts/${successfulTransfer.sourceAccountId}`);
+        const targetAccountBeforeTransferResponse = await createGetRequest(`/accounts/${successfulTransfer.targetAccountId}`);
+        const lockedAccountsTransaction = await holdAccountsWriteLock([
+            successfulTransfer.sourceAccountId,
+            successfulTransfer.targetAccountId
+        ]);
+
+        const delayedLockReleasePromise = new Promise((resolve) => {
+            setTimeout(async () => {
+                await releaseAccountsWriteLock(lockedAccountsTransaction);
+                resolve();
+            }, 4000);
+        });
+
+        try {
+            // WHEN
+            const response = await createPostRequest("/transfers", successfulTransfer);
+            const sourceAccountAfterTransferResponse = await createGetRequest(`/accounts/${successfulTransfer.sourceAccountId}`);
+            const targetAccountAfterTransferResponse = await createGetRequest(`/accounts/${successfulTransfer.targetAccountId}`);
+
+            // THEN
+            expect(response.status).toBe(409);
+            expect(response.body.key).toBe("ACCOUNT_RESOURCE_BUSY");
+            expect(response.body.value).toBe(
+                "Uma das contas envolvidas esta temporariamente em processamento. Tente novamente em instantes."
+            );
+            expect(Number(sourceAccountAfterTransferResponse.body.balance)).toBe(
+                Number(sourceAccountBeforeTransferResponse.body.balance)
+            );
+            expect(Number(targetAccountAfterTransferResponse.body.balance)).toBe(
+                Number(targetAccountBeforeTransferResponse.body.balance)
+            );
+        } finally {
+            await delayedLockReleasePromise;
+            await releaseAccountsWriteLock(lockedAccountsTransaction);
+        }
     });
 });

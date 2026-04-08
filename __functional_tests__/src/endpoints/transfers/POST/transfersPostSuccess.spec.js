@@ -4,6 +4,10 @@ const {
     fixtures
 } = require("../../../functionalTestHelper");
 const { findAccountByIdQuery } = require("../../../db/account/findAccountByIdQuery");
+const {
+    holdAccountsWriteLock,
+    releaseAccountsWriteLock
+} = require("../../../db/account/holdAccountsWriteLock");
 
 describe("POST /transfers deve transferir saldo entre contas validas e refletir o resultado no estado final", () => {
     it("deve transferir saldo com sucesso quando a conta de origem possuir saldo suficiente", async () => {
@@ -46,5 +50,45 @@ describe("POST /transfers deve transferir saldo entre contas validas e refletir 
         );
         expect(sourceAccountAfterTransferResponse.body._links).toBeDefined();
         expect(targetAccountAfterTransferResponse.body._links).toBeDefined();
+    });
+
+    it("deve concluir a transferencia com sucesso quando o lock concorrente for liberado antes do timeout", async () => {
+        // GIVEN
+        const smallSuccessfulTransfer = fixtures.transferFixtures.smallSuccessfulTransfer;
+        const sourceAccountBeforeTransfer = await findAccountByIdQuery(smallSuccessfulTransfer.sourceAccountId);
+        const targetAccountBeforeTransfer = await findAccountByIdQuery(smallSuccessfulTransfer.targetAccountId);
+        const lockedAccountsTransaction = await holdAccountsWriteLock([
+            smallSuccessfulTransfer.sourceAccountId,
+            smallSuccessfulTransfer.targetAccountId
+        ]);
+
+        const delayedLockReleasePromise = new Promise((resolve) => {
+            setTimeout(async () => {
+                await releaseAccountsWriteLock(lockedAccountsTransaction);
+                resolve();
+            }, 500);
+        });
+
+        try {
+            // WHEN
+            const response = await createPostRequest("/transfers", smallSuccessfulTransfer);
+            const sourceAccountAfterTransferResponse = await createGetRequest(`/accounts/${smallSuccessfulTransfer.sourceAccountId}`);
+            const targetAccountAfterTransferResponse = await createGetRequest(`/accounts/${smallSuccessfulTransfer.targetAccountId}`);
+
+            // THEN
+            expect(response.status).toBe(200);
+            expect(response.body.sourceAccountId).toBe(smallSuccessfulTransfer.sourceAccountId);
+            expect(response.body.targetAccountId).toBe(smallSuccessfulTransfer.targetAccountId);
+            expect(Number(response.body.transferredAmount)).toBe(Number(smallSuccessfulTransfer.amount));
+            expect(Number(sourceAccountAfterTransferResponse.body.balance)).toBe(
+                Number(sourceAccountBeforeTransfer.balance) - Number(smallSuccessfulTransfer.amount)
+            );
+            expect(Number(targetAccountAfterTransferResponse.body.balance)).toBe(
+                Number(targetAccountBeforeTransfer.balance) + Number(smallSuccessfulTransfer.amount)
+            );
+        } finally {
+            await delayedLockReleasePromise;
+            await releaseAccountsWriteLock(lockedAccountsTransaction);
+        }
     });
 });
