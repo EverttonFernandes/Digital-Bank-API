@@ -1,0 +1,23 @@
+STATUS DA HISTORIA: DONE
+
+HISTORIA ATUAL:
+- HISTORIA-021
+
+OBJETIVO:
+- mostrar cobertura unitária total ao rodar o fluxo padrão de testes
+
+HIPOTESE ATUAL:
+- configurar JaCoCo no Maven e resumir o CSV de cobertura no Makefile resolve a visibilidade sem complexidade extra
+
+PROXIMA ACAO:
+- historia concluida e pronta para fechamento semantico
+
+GATES OBRIGATORIOS:
+- make unit-test
+- make functional-test
+
+RESULTADO FINAL:
+- JaCoCo integrado ao Maven
+- make unit-test exibindo resumo consolidado de cobertura
+- relatorio HTML gerado em target/site/jacoco/index.html
+- README atualizado com instrucoes de uso

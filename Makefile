@@ -1,8 +1,5 @@
 .PHONY: up down logs clean-build unit-test functional-test
 
-MAVEN_DOCKER_IMAGE = maven:3.9.9-eclipse-temurin-17
-MAVEN_CONTAINER_EXECUTE = docker run --rm -v "$$(pwd)":/workspace:ro -w /workspace $(MAVEN_DOCKER_IMAGE) bash -lc
-
 up:
 	mvn -q -DskipTests package
 	docker compose up --build -d
@@ -17,7 +14,35 @@ clean-build:
 	rm -rf build target
 
 unit-test: clean-build
-	$(MAVEN_CONTAINER_EXECUTE) 'mvn test'
+	mvn test
+	@if [ -f "target/site/jacoco/jacoco.csv" ]; then \
+		awk -F, 'BEGIN { \
+			instructionMissed=0; instructionCovered=0; \
+			branchMissed=0; branchCovered=0; \
+			lineMissed=0; lineCovered=0; \
+		} \
+		NR > 1 { \
+			instructionMissed += $$4; instructionCovered += $$5; \
+			branchMissed += $$6; branchCovered += $$7; \
+			lineMissed += $$8; lineCovered += $$9; \
+		} \
+		END { \
+			instructionTotal = instructionMissed + instructionCovered; \
+			branchTotal = branchMissed + branchCovered; \
+			lineTotal = lineMissed + lineCovered; \
+			instructionCoverage = instructionTotal ? (instructionCovered * 100 / instructionTotal) : 0; \
+			branchCoverage = branchTotal ? (branchCovered * 100 / branchTotal) : 0; \
+			lineCoverage = lineTotal ? (lineCovered * 100 / lineTotal) : 0; \
+			printf "\nResumo de cobertura JaCoCo:\n"; \
+			printf "  Instrucoes: %.2f%% (%d/%d)\n", instructionCoverage, instructionCovered, instructionTotal; \
+			printf "  Branches: %.2f%% (%d/%d)\n", branchCoverage, branchCovered, branchTotal; \
+			printf "  Linhas: %.2f%% (%d/%d)\n", lineCoverage, lineCovered, lineTotal; \
+			printf "  Relatorio HTML: target/site/jacoco/index.html\n\n"; \
+		}' target/site/jacoco/jacoco.csv; \
+	else \
+		echo "Relatorio JaCoCo nao encontrado em target/site/jacoco/jacoco.csv"; \
+		exit 1; \
+	fi
 
 functional-test: clean-build
 	@if [ -d "__functional_tests__" ]; then \

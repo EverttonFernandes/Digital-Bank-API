@@ -107,6 +107,13 @@ Suite unitaria:
 make unit-test
 ```
 
+O comando gera:
+
+- execução completa da suíte unitária
+- relatório `JaCoCo`
+- resumo consolidado de cobertura no terminal
+- relatório HTML em `target/site/jacoco/index.html`
+
 Suite funcional:
 
 ```bash
@@ -119,6 +126,29 @@ O fluxo funcional:
 2. executa toda a suite `Jest`
 3. valida payload, status code, contrato de erro e estado final por API
 4. executa rollback total da massa de teste
+
+## Cobertura Unitaria
+
+O projeto usa `JaCoCo` no Maven para medir cobertura da suíte unitária.
+
+Ao executar:
+
+```bash
+make unit-test
+```
+
+o terminal passa a exibir um resumo como:
+
+```text
+Resumo de cobertura JaCoCo:
+  Instrucoes: 76.04%
+  Branches: 89.29%
+  Linhas: 73.81%
+  Relatorio HTML: target/site/jacoco/index.html
+```
+
+Esse resumo ajuda a demonstrar rapidamente a qualidade da suíte em apresentação técnica, enquanto o relatório HTML
+permite inspeção detalhada por pacote, classe, linha e branch.
 
 ## Endpoints Disponiveis
 
@@ -254,9 +284,11 @@ Cada entrega relevante ficou registrada em `entregas/`:
 
 - `JUnit 5`
 - `Mockito / BDDMockito`
+- `JaCoCo`
 - estrutura `GIVEN / WHEN / THEN`
 - foco em services, converters, specifications, handlers e repositorios
 - cobertura de cenarios positivos e de falha
+- relatório automatizado de cobertura com resumo exibido no `make unit-test`
 
 ### Testes Funcionais
 
