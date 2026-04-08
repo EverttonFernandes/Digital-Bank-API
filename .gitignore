@@ -18,7 +18,12 @@
 *.zip
 *.tar.gz
 *.rar
-target/
+target/*
+!target/site/
+target/site/*
+!target/site/jacoco/
+target/site/jacoco/*
+!target/site/jacoco/index.html
 build/
 .gradle/
 .idea/
