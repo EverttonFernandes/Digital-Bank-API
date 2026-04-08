@@ -127,6 +127,36 @@ O fluxo funcional:
 3. valida payload, status code, contrato de erro e estado final por API
 4. executa rollback total da massa de teste
 
+## CI/CD Com GitHub Actions
+
+O repositorio possui automacao de `CI/CD` em `.github/workflows`:
+
+- `ci.yml`
+  executa em `push` para `main` e em `pull_request`
+- `release.yml`
+  executa em tags semanticas `v*.*.*`
+
+### O que o CI valida
+
+- `checkout` do repositorio
+- `Java 17` com cache Maven
+- `Node 20` com cache npm da suite funcional
+- `PostgreSQL` como service do runner
+- `mvn test`
+- subida da API em background no runner
+- `npm test` em `__functional_tests__`
+
+### O que o CD entrega
+
+- empacotamento do `jar` da aplicacao
+- publicacao automatizada de artefatos da versao
+- exposicao do `jar` e do relatorio de cobertura como anexos da release por tag
+
+### Como acionar
+
+- abrir um `pull request` ou subir codigo na `main` para acionar o `CI`
+- criar e publicar uma tag semantica `v*.*.*` para acionar o `CD`
+
 ## Cobertura Unitaria
 
 O projeto usa `JaCoCo` no Maven para medir cobertura da suíte unitária.
@@ -141,9 +171,9 @@ o terminal passa a exibir um resumo como:
 
 ```text
 Resumo de cobertura JaCoCo:
-  Instrucoes: 76.04%
-  Branches: 89.29%
-  Linhas: 73.81%
+  Instrucoes: 98.67%
+  Branches: 96.43%
+  Linhas: 98.77%
   Relatorio HTML: target/site/jacoco/index.html
 ```
 
@@ -233,6 +263,8 @@ Cada entrega relevante ficou registrada em `entregas/`:
 - [HISTORIA-018 - Padronizacao de nomenclatura arquitetural](entregas/2026-04-07-018-padronizacao-de-nomenclatura-arquitetural.md)
 - [HISTORIA-019 - Experiencia de uso do Swagger e contrato OpenAPI](entregas/2026-04-08-019-experiencia-de-uso-do-swagger-e-contrato-openapi.md)
 - [HISTORIA-020 - Resiliencia de concorrencia na transferencia](entregas/2026-04-08-020-resiliencia-de-concorrencia-na-transferencia.md)
+- [HISTORIA-021 - Cobertura unitaria com JaCoCo](entregas/2026-04-08-021-cobertura-unitaria-com-jacoco.md)
+- [HISTORIA-022 - CI/CD com GitHub Actions](entregas/2026-04-08-022-cicd-com-github-actions.md)
 
 ## Decisoes Tecnicas Relevantes
 
@@ -299,6 +331,13 @@ Cada entrega relevante ficou registrada em `entregas/`:
 - cobertura de sucesso e falha por endpoint
 - validacao de payload, status code, regras de negocio e estado final da base
 - testes especificos para concorrencia na transferencia
+
+### CI/CD e Automacao
+
+- `GitHub Actions` como esteira versionada junto do codigo
+- `CI` executando gates remotos de build, suite unitaria e suite funcional
+- `CD` reagindo a tags semanticas e publicando artefatos da versao
+- pipeline desenhado para reproduzir o ambiente real com `PostgreSQL`, `Maven` e `Jest`
 
 ## Banco de Dados e Consulta Visual
 

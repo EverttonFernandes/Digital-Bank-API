@@ -63,6 +63,7 @@ Ao final do épico, o projeto deve permitir:
 - `HISTORIA-014` Criacao de conta bancaria via `POST /accounts` com persistencia real, TDD, BDD e HATEOAS
 - `HISTORIA-015` Refatoracao do mapeamento relacional JPA/Hibernate da camada de persistencia com `make functional-test`
   como gate obrigatorio
+- `HISTORIA-022` CI/CD com `GitHub Actions`, validacao remota da qualidade e entrega automatizada de artefatos por tag
 
 Essas historias nao alteram o fato de o desafio principal estar concluido. Elas existem para sofisticar a apresentacao
 tecnica da API e explicitar um caminho de evolucao arquitetural e funcional do dominio.

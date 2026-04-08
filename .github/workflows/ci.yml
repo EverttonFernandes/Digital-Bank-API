@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  validate:
+    name: Validate Build And Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: digital_bank
+          POSTGRES_USER: digital_bank_user
+          POSTGRES_PASSWORD: digital_bank_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U digital_bank_user -d digital_bank"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: __functional_tests__/package-lock.json
+
+      - name: Install functional test dependencies
+        working-directory: __functional_tests__
+        run: npm ci
+
+      - name: Run unit tests
+        run: mvn -B -ntp test
+
+      - name: Start application
+        env:
+          APPLICATION_PORT: 8080
+          DATABASE_HOST: localhost
+          DATABASE_PORT: 5432
+          DATABASE_NAME: digital_bank
+          DATABASE_USERNAME: digital_bank_user
+          DATABASE_PASSWORD: digital_bank_password
+        run: |
+          nohup mvn -B -ntp -DskipTests spring-boot:run > spring-boot.log 2>&1 &
+          echo $! > spring-boot.pid
+
+      - name: Run functional tests
+        working-directory: __functional_tests__
+        env:
+          APPLICATION_BASE_URL: http://localhost:8080
+          FUNCTIONAL_TEST_DATABASE_HOST: localhost
+          FUNCTIONAL_TEST_DATABASE_PORT: 5432
+          FUNCTIONAL_TEST_DATABASE_NAME: digital_bank
+          FUNCTIONAL_TEST_DATABASE_USERNAME: digital_bank_user
+          FUNCTIONAL_TEST_DATABASE_PASSWORD: digital_bank_password
+        run: npm test
+
+      - name: Stop application
+        if: always()
+        run: |
+          if [ -f spring-boot.pid ]; then
+            kill "$(cat spring-boot.pid)" || true
+          fi
+
+      - name: Upload CI artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-debug-artifacts
+          if-no-files-found: ignore
+          path: |
+            spring-boot.log
+            target/site/jacoco/index.html

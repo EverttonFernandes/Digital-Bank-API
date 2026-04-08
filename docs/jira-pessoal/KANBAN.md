@@ -66,6 +66,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-019` Transformar o Swagger/OpenAPI em uma experiência guiada de uso da API, com exemplos reais e respostas pedagógicas
 - `HISTORIA-020` Tornar a contenção concorrente da transferência resiliente, com `409 Conflict` e mensagem intuitiva
 - `HISTORIA-021` Expor cobertura unitária com JaCoCo no Maven, no Makefile e no README
+- `HISTORIA-022` Adicionar CI/CD com GitHub Actions para validar testes e publicar artefatos em tags semânticas
 
 ## Backlog de Evolucao Funcional
 

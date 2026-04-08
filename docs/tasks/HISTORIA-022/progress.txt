@@ -1,0 +1,24 @@
+STATUS DA HISTORIA: DONE
+
+HISTORIA ATUAL:
+- HISTORIA-022
+
+OBJETIVO:
+- adicionar CI/CD via GitHub Actions com pipeline remoto alinhado ao fluxo real do projeto
+
+HIPOTESE ATUAL:
+- separar a automacao em um workflow de CI e outro de release por tag entrega validacao continua sem distorcer o
+  fluxo local
+
+PROXIMA ACAO:
+- historia concluida e pronta para fechamento semantico
+
+GATES OBRIGATORIOS:
+- make unit-test
+- make functional-test
+
+RESULTADO FINAL:
+- workflow de CI em push e pull request
+- workflow de CD em tags semanticas
+- build Maven, PostgreSQL e suite funcional modelados no GitHub Actions
+- README atualizado com instrucoes do pipeline
