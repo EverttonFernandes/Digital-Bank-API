@@ -2,6 +2,8 @@ package com.cwi.digitalbankapi.infrastructure.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -16,6 +18,7 @@ public class AccountEntity {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "owner_name", nullable = false)
@@ -29,6 +32,20 @@ public class AccountEntity {
 
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime updatedAt;
+
+    public AccountEntity(
+        Long id,
+        String ownerName,
+        BigDecimal balance,
+        OffsetDateTime createdAt,
+        OffsetDateTime updatedAt
+    ) {
+        this.id = id;
+        this.ownerName = ownerName;
+        this.balance = balance;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 
     public Long getId() {
         return id;

@@ -1,0 +1,63 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-014
+ULTIMA ITERACAO_REGISTRADA: 2
+ULTIMA_FASE_CONHECIDA: FINAL_REVIEW_APPROVED
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- O menor corte seguro desta historia e introduzir `POST /accounts` preservando o contrato de conta ja existente e reaproveitando a representacao HATEOAS da `HISTORIA-013`.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- O endpoint `POST /accounts` foi implementado com `201 Created`, `Location` e response `HAL`.
+- Foi adicionada uma migration para tornar o identificador da conta gerado pelo banco.
+- A suite unitária passou com sucesso apos a introducao de request DTO, converter, specification e service de criacao.
+- A suite funcional passou com `23` testes, incluindo cenarios BDD de sucesso e falha para `POST /accounts`.
+- O OpenAPI passou a documentar `POST /accounts` com `CreateAccountRequest`, `201` e `400` coerentes com o contrato real.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: N_A
+- unit_tests: PASSED
+- func_tests: PASSED
+- coverage: N_A
+- sonar: N_A
+- security: PASSED
+- arch_review: PASSED
+- final_review: PASSED
+
+ULTIMA_ACAO_EXECUTADA:
+- Validar unitarios, funcionais, Swagger/OpenAPI e sincronizar a documentacao final da historia com o comportamento entregue.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Isolar os arquivos da `HISTORIA-014`, registrar a entrega cronologica e fechar a tag `v0.14.0`.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- docs/jira-pessoal/KANBAN.md
+- docs/jira-pessoal/historias/HISTORIA-014-CRIACAO-DE-CONTA-BANCARIA.md
+- docs/tasks/HISTORIA-014/IMPLEMENTATION.md
+- docs/tasks/HISTORIA-014/progress.txt
+- src/main/java/com/cwi/digitalbankapi/application/dto/CreateAccountRequest.java
+- src/main/java/com/cwi/digitalbankapi/application/converter/CreateAccountRequestConverter.java
+- src/main/java/com/cwi/digitalbankapi/application/service/CreateAccountService.java
+- src/main/java/com/cwi/digitalbankapi/domain/account/model/AccountCreationCommand.java
+- src/main/java/com/cwi/digitalbankapi/domain/account/specification/AccountCreationSpecification.java
+- src/main/java/com/cwi/digitalbankapi/domain/account/specification/AccountInitialBalanceMustNotBeNegativeSpecification.java
+- src/main/java/com/cwi/digitalbankapi/domain/account/specification/CompositeAccountCreationSpecification.java
+- src/main/java/com/cwi/digitalbankapi/domain/account/exception/AccountInitialBalanceMustNotBeNegativeException.java
+- src/main/java/com/cwi/digitalbankapi/api/controller/AccountController.java
+- src/main/java/com/cwi/digitalbankapi/api/assembler/AccountRepresentationModelAssembler.java
+- src/main/resources/db/migration/V4__make_account_identifier_generated_by_default.sql
+- src/test/java/com/cwi/digitalbankapi/application/converter/CreateAccountRequestConverterTest.java
+- src/test/java/com/cwi/digitalbankapi/application/service/CreateAccountServiceTest.java
+- src/test/java/com/cwi/digitalbankapi/domain/account/specification/AccountInitialBalanceMustNotBeNegativeSpecificationTest.java
+- __functional_tests__/src/endpoints/accounts/POST/accountsPostSuccess.spec.js
+- __functional_tests__/src/endpoints/accounts/POST/accountsPostFailure.spec.js
+- __functional_tests__/rollback.js
+- README.md
+
+RISCOS_ABERTOS:
+- Nenhum risco aberto de implementacao bloqueando a continuidade da historia.
+
+OBSERVACOES_DE_CONTEXTO:
+- Esta historia foi iniciada para fechar uma lacuna funcional do dominio.
+- A suite funcional do projeto sobe a massa apenas uma vez por execucao; por isso, os cenarios de listagem passaram a validar a presenca dos seeds sem assumir cardinalidade fixa apos cenarios que criam novas contas.

@@ -68,5 +68,19 @@
       "targetAccountId": 99,
       "amount": "10.00"
     }
+  },
+  "accountCreationFixtures": {
+    "validAccountWithZeroInitialBalance": {
+      "ownerName": "Marina Costa",
+      "initialBalance": "0.00"
+    },
+    "validAccountWithPositiveInitialBalance": {
+      "ownerName": "Pedro Alves",
+      "initialBalance": "350.00"
+    },
+    "invalidAccountWithNegativeInitialBalance": {
+      "ownerName": "Conta Invalida",
+      "initialBalance": "-1.00"
+    }
   }
 }

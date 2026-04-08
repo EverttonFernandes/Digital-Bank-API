@@ -17,10 +17,10 @@ describe("GET /accounts deve listar as contas pre-carregadas com nome do titular
         expect(response.status).toBe(200);
         expect(response.body._embedded).toBeDefined();
         expect(Array.isArray(response.body._embedded.accounts)).toBe(true);
-        expect(response.body._embedded.accounts).toHaveLength(Object.keys(fixtures.accountFixtures).length);
+        expect(response.body._embedded.accounts.length).toBeGreaterThanOrEqual(Object.keys(fixtures.accountFixtures).length);
         expect(response.body._links).toBeDefined();
         expect(response.body._links.self).toBeDefined();
-        expect(accountListInDatabase).toHaveLength(Object.keys(fixtures.accountFixtures).length);
+        expect(accountListInDatabase.length).toBeGreaterThanOrEqual(Object.keys(fixtures.accountFixtures).length);
 
         const responseAccountByIdentifier = new Map(
             response.body._embedded.accounts.map((account) => [Number(account.id), account])

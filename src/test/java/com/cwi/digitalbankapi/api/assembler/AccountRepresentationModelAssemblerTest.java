@@ -26,6 +26,7 @@ class AccountRepresentationModelAssemblerTest {
         Assertions.assertEquals("Ana Souza", accountRepresentationModel.getOwnerName());
         Assertions.assertEquals(new BigDecimal("1250.00"), accountRepresentationModel.getBalance());
         Assertions.assertEquals("/accounts/1", accountRepresentationModel.getRequiredLink("self").getHref());
+        Assertions.assertEquals("/accounts", accountRepresentationModel.getRequiredLink("accounts").getHref());
         Assertions.assertEquals("/accounts/1/movements", accountRepresentationModel.getRequiredLink("movements").getHref());
         Assertions.assertEquals("/accounts/1/notifications", accountRepresentationModel.getRequiredLink("notifications").getHref());
     }

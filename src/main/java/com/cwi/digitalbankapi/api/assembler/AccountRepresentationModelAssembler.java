@@ -21,6 +21,7 @@ public class AccountRepresentationModelAssembler implements RepresentationModelA
         );
 
         accountRepresentationModel.add(linkTo(methodOn(AccountController.class).findAccountById(accountResponse.id())).withSelfRel());
+        accountRepresentationModel.add(linkTo(methodOn(AccountController.class).listAllAccounts()).withRel("accounts"));
         accountRepresentationModel.add(linkTo(methodOn(AccountController.class).findAccountMovements(accountResponse.id())).withRel("movements"));
         accountRepresentationModel.add(linkTo(methodOn(AccountController.class).findAccountNotifications(accountResponse.id())).withRel("notifications"));
 

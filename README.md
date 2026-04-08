@@ -4,6 +4,7 @@ API REST simplificada para um banco digital, construída em `Java 17` com `Sprin
 
 O projeto cobre:
 
+- criacao de contas bancarias
 - consulta de contas
 - transferencia entre contas
 - consulta de movimentacoes financeiras
@@ -118,6 +119,9 @@ O fluxo funcional:
 - `GET /accounts`
   Objetivo: listar contas carregadas na base
 
+- `POST /accounts`
+  Objetivo: criar uma nova conta bancaria com `201 Created`, `Location` e body em `HAL`
+
 - `GET /accounts/{accountId}`
   Objetivo: consultar uma conta especifica
 
@@ -168,6 +172,9 @@ O projeto segue uma separacao pragmatica inspirada em DDD:
 
 - `Testes funcionais com seeders e fixtures`
   A suite funcional usa massa deterministica e validacao end-to-end via API, inclusive confirmando o estado final por `GET` quando aplicavel.
+
+- `Criacao de conta com semantica REST`
+  A abertura de conta usa `POST /accounts`, persiste o recurso, devolve `201 Created`, header `Location` e response `HAL` com links navegaveis.
 
 ## Estrategia de Testes
 

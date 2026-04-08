@@ -1,6 +1,5 @@
 const { sequelizeConnection } = require("./src/db/connection");
-const { fixtures } = require("./src/functionalTestHelper");
-const { rollbackAccount } = require("./src/seeders/account/account.seeder");
+const { cleanupAccount } = require("./src/seeders/account/account.seeder");
 const { cleanupAccountMovement } = require("./src/seeders/accountMovement/accountMovement.seeder");
 const { cleanupAccountNotification } = require("./src/seeders/accountNotification/accountNotification.seeder");
 
@@ -10,7 +9,7 @@ async function runRollbackers() {
     try {
         await cleanupAccountNotification(transaction);
         await cleanupAccountMovement(transaction);
-        await rollbackAccount(fixtures, transaction);
+        await cleanupAccount(transaction);
         await transaction.commit();
         await sequelizeConnection.close();
         console.log("Base funcional restaurada para o estado inicial.");

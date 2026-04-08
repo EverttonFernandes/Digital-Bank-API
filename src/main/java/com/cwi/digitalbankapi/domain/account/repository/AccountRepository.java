@@ -13,5 +13,7 @@ public interface AccountRepository {
 
     List<Account> findAccountsByIdentifiersWithPessimisticLock(Long sourceAccountIdentifier, Long targetAccountIdentifier);
 
+    Account saveAccount(Account account);
+
     List<Account> saveAccounts(List<Account> accountList);
 }

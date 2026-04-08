@@ -44,6 +44,19 @@ public class PostgreSqlAccountRepository implements AccountRepository {
     }
 
     @Override
+    public Account saveAccount(Account account) {
+        AccountEntity accountEntity = new AccountEntity(
+            account.getId(),
+            account.getOwnerName(),
+            account.getBalance(),
+            account.getCreatedAt(),
+            account.getUpdatedAt()
+        );
+
+        return toDomain(springDataAccountJpaRepository.save(accountEntity));
+    }
+
+    @Override
     public List<Account> saveAccounts(List<Account> accountList) {
         List<AccountEntity> lockedAccountEntityList = springDataAccountJpaRepository.findAllById(
             accountList.stream()
