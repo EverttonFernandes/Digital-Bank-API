@@ -1,9 +1,10 @@
 .PHONY: up down logs clean-build unit-test functional-test
 
-GRADLE_DOCKER_IMAGE = gradle:8.14.3-jdk17
-GRADLE_CONTAINER_EXECUTE = docker run --rm -e GRADLE_USER_HOME=/tmp/gradle-home -v "$$(pwd)":/workspace:ro $(GRADLE_DOCKER_IMAGE) bash -lc
+MAVEN_DOCKER_IMAGE = maven:3.9.9-eclipse-temurin-17
+MAVEN_CONTAINER_EXECUTE = docker run --rm -v "$$(pwd)":/workspace:ro -w /workspace $(MAVEN_DOCKER_IMAGE) bash -lc
 
 up:
+	mvn -q -DskipTests package
 	docker compose up --build -d
 
 down:
@@ -13,10 +14,10 @@ logs:
 	docker compose logs -f
 
 clean-build:
-	rm -rf build
+	rm -rf build target
 
 unit-test: clean-build
-	$(GRADLE_CONTAINER_EXECUTE) 'gradle --no-daemon -g /tmp/gradle-home -p /workspace -Dorg.gradle.project.buildDir=/tmp/gradle-build --project-cache-dir /tmp/gradle-project-cache test'
+	$(MAVEN_CONTAINER_EXECUTE) 'mvn test'
 
 functional-test: clean-build
 	@if [ -d "__functional_tests__" ]; then \
