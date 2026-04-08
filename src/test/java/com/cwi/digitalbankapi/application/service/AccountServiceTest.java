@@ -127,7 +127,7 @@ class AccountServiceTest {
         Account account = new Account(accountId, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.now(), OffsetDateTime.now());
         AccountMovement debitMovement = new AccountMovement(
             1L,
-            accountId,
+            account,
             "transfer-reference-001",
             AccountMovementType.DEBIT,
             new BigDecimal("200.00"),
@@ -152,7 +152,7 @@ class AccountServiceTest {
         Account account = new Account(accountId, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.now(), OffsetDateTime.now());
         AccountNotification accountNotification = new AccountNotification(
             1L,
-            accountId,
+            account,
             "transfer-reference-001",
             AccountNotificationStatus.REGISTERED,
             "Transferencia enviada com sucesso para a conta 2.",

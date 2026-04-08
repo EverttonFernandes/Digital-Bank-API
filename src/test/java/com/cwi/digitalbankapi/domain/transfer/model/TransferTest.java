@@ -36,9 +36,9 @@ class TransferTest {
             transfer.createAccountMovements("transfer-reference-001", OffsetDateTime.parse("2026-04-08T00:00:00Z"));
 
         Assertions.assertEquals(2, accountMovementList.size());
-        Assertions.assertEquals(AccountMovementType.DEBIT, accountMovementList.get(0).movementType());
-        Assertions.assertEquals(AccountMovementType.CREDIT, accountMovementList.get(1).movementType());
-        Assertions.assertEquals("transfer-reference-001", accountMovementList.get(0).transferReference());
+        Assertions.assertEquals(AccountMovementType.DEBIT, accountMovementList.get(0).getMovementType());
+        Assertions.assertEquals(AccountMovementType.CREDIT, accountMovementList.get(1).getMovementType());
+        Assertions.assertEquals("transfer-reference-001", accountMovementList.get(0).getTransferReference());
     }
 
     @Test

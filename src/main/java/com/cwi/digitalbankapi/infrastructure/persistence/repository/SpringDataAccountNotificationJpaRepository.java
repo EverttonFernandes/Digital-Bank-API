@@ -1,11 +1,11 @@
 package com.cwi.digitalbankapi.infrastructure.persistence.repository;
 
-import com.cwi.digitalbankapi.infrastructure.persistence.entity.AccountNotificationEntity;
+import com.cwi.digitalbankapi.domain.notification.model.AccountNotification;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface SpringDataAccountNotificationJpaRepository extends JpaRepository<AccountNotificationEntity, Long> {
+public interface SpringDataAccountNotificationJpaRepository extends JpaRepository<AccountNotification, Long> {
 
-    List<AccountNotificationEntity> findByAccountEntityIdOrderByCreatedAtDescIdDesc(Long accountId);
+    List<AccountNotification> findByAccountIdOrderByCreatedAtDescIdDesc(Long accountId);
 }

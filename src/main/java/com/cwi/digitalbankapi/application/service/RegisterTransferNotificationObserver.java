@@ -1,5 +1,8 @@
 package com.cwi.digitalbankapi.application.service;
 
+import com.cwi.digitalbankapi.domain.account.exception.AccountNotFoundException;
+import com.cwi.digitalbankapi.domain.account.model.Account;
+import com.cwi.digitalbankapi.domain.account.repository.AccountRepository;
 import com.cwi.digitalbankapi.domain.notification.gateway.TransferCompletedObserver;
 import com.cwi.digitalbankapi.domain.notification.model.AccountNotification;
 import com.cwi.digitalbankapi.domain.notification.model.AccountNotificationStatus;
@@ -12,18 +15,26 @@ import java.util.List;
 @Component
 public class RegisterTransferNotificationObserver implements TransferCompletedObserver {
 
+    private final AccountRepository accountRepository;
     private final AccountNotificationRepository accountNotificationRepository;
 
-    public RegisterTransferNotificationObserver(AccountNotificationRepository accountNotificationRepository) {
+    public RegisterTransferNotificationObserver(
+        AccountRepository accountRepository,
+        AccountNotificationRepository accountNotificationRepository
+    ) {
+        this.accountRepository = accountRepository;
         this.accountNotificationRepository = accountNotificationRepository;
     }
 
     @Override
     public void handle(TransferCompletedEvent transferCompletedEvent) {
+        Account sourceAccount = findExistingAccountById(transferCompletedEvent.sourceAccountId());
+        Account targetAccount = findExistingAccountById(transferCompletedEvent.targetAccountId());
+
         accountNotificationRepository.saveAccountNotifications(List.of(
             new AccountNotification(
                 null,
-                transferCompletedEvent.sourceAccountId(),
+                sourceAccount,
                 transferCompletedEvent.transferReference(),
                 AccountNotificationStatus.REGISTERED,
                 "Transferencia enviada com sucesso para a conta " + transferCompletedEvent.targetAccountId() + ".",
@@ -31,12 +42,17 @@ public class RegisterTransferNotificationObserver implements TransferCompletedOb
             ),
             new AccountNotification(
                 null,
-                transferCompletedEvent.targetAccountId(),
+                targetAccount,
                 transferCompletedEvent.transferReference(),
                 AccountNotificationStatus.REGISTERED,
                 "Transferencia recebida com sucesso da conta " + transferCompletedEvent.sourceAccountId() + ".",
                 transferCompletedEvent.completedAt()
             )
         ));
+    }
+
+    private Account findExistingAccountById(Long accountId) {
+        return accountRepository.findAccountById(accountId)
+            .orElseThrow(() -> new AccountNotFoundException(accountId));
     }
 }

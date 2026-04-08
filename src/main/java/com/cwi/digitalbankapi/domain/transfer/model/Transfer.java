@@ -23,7 +23,7 @@ public record Transfer(
         return List.of(
             new AccountMovement(
                 null,
-                sourceAccount.getId(),
+                sourceAccount,
                 transferReference,
                 AccountMovementType.DEBIT,
                 amount,
@@ -32,7 +32,7 @@ public record Transfer(
             ),
             new AccountMovement(
                 null,
-                targetAccount.getId(),
+                targetAccount,
                 transferReference,
                 AccountMovementType.CREDIT,
                 amount,

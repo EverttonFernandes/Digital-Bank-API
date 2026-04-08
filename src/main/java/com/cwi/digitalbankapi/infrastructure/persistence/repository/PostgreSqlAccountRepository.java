@@ -2,7 +2,6 @@ package com.cwi.digitalbankapi.infrastructure.persistence.repository;
 
 import com.cwi.digitalbankapi.domain.account.model.Account;
 import com.cwi.digitalbankapi.domain.account.repository.AccountRepository;
-import com.cwi.digitalbankapi.infrastructure.persistence.entity.AccountEntity;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
@@ -20,73 +19,45 @@ public class PostgreSqlAccountRepository implements AccountRepository {
 
     @Override
     public List<Account> findAllAccounts() {
-        return springDataAccountJpaRepository.findAll(Sort.by(Sort.Direction.ASC, "id"))
-            .stream()
-            .map(this::toDomain)
-            .toList();
+        return springDataAccountJpaRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @Override
     public Optional<Account> findAccountById(Long accountIdentifier) {
-        return springDataAccountJpaRepository.findById(accountIdentifier)
-            .map(this::toDomain);
+        return springDataAccountJpaRepository.findById(accountIdentifier);
     }
 
     @Override
     public List<Account> findAccountsByIdentifiersWithPessimisticLock(Long sourceAccountIdentifier, Long targetAccountIdentifier) {
         return springDataAccountJpaRepository.findAccountsByIdentifiersWithPessimisticLock(
-                sourceAccountIdentifier,
-                targetAccountIdentifier
-            )
-            .stream()
-            .map(this::toDomain)
-            .toList();
+            sourceAccountIdentifier,
+            targetAccountIdentifier
+        );
     }
 
     @Override
     public Account saveAccount(Account account) {
-        AccountEntity accountEntity = new AccountEntity(
-            account.getId(),
-            account.getOwnerName(),
-            account.getBalance(),
-            account.getCreatedAt(),
-            account.getUpdatedAt()
-        );
-
-        return toDomain(springDataAccountJpaRepository.save(accountEntity));
+        return springDataAccountJpaRepository.save(account);
     }
 
     @Override
     public List<Account> saveAccounts(List<Account> accountList) {
-        List<AccountEntity> lockedAccountEntityList = springDataAccountJpaRepository.findAllById(
+        List<Account> lockedAccountList = springDataAccountJpaRepository.findAllById(
             accountList.stream()
                 .map(Account::getId)
                 .toList()
         );
 
-        for (AccountEntity accountEntity : lockedAccountEntityList) {
+        for (Account persistedAccount : lockedAccountList) {
             Account account = accountList.stream()
-                .filter(currentAccount -> currentAccount.getId().equals(accountEntity.getId()))
+                .filter(currentAccount -> currentAccount.getId().equals(persistedAccount.getId()))
                 .findFirst()
                 .orElseThrow();
 
-            accountEntity.setBalance(account.getBalance());
-            accountEntity.setUpdatedAt(account.getUpdatedAt());
+            persistedAccount.setBalance(account.getBalance());
+            persistedAccount.setUpdatedAt(account.getUpdatedAt());
         }
 
-        return springDataAccountJpaRepository.saveAll(lockedAccountEntityList)
-            .stream()
-            .map(this::toDomain)
-            .toList();
-    }
-
-    private Account toDomain(AccountEntity accountEntity) {
-        return new Account(
-            accountEntity.getId(),
-            accountEntity.getOwnerName(),
-            accountEntity.getBalance(),
-            accountEntity.getCreatedAt(),
-            accountEntity.getUpdatedAt()
-        );
+        return springDataAccountJpaRepository.saveAll(lockedAccountList);
     }
 }

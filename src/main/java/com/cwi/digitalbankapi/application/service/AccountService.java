@@ -71,12 +71,12 @@ public class AccountService {
         return accountMovementRepository.findAccountMovementsByAccountId(accountId)
             .stream()
             .map(accountMovement -> new AccountMovementResponse(
-                accountMovement.accountId(),
-                accountMovement.transferReference(),
-                accountMovement.movementType().name(),
-                accountMovement.amount(),
-                accountMovement.description(),
-                accountMovement.createdAt()
+                accountMovement.getAccountId(),
+                accountMovement.getTransferReference(),
+                accountMovement.getMovementType().name(),
+                accountMovement.getAmount(),
+                accountMovement.getDescription(),
+                accountMovement.getCreatedAt()
             ))
             .toList();
     }
@@ -87,11 +87,11 @@ public class AccountService {
         return accountNotificationRepository.findAccountNotificationsByAccountId(accountId)
             .stream()
             .map(accountNotification -> new AccountNotificationResponse(
-                accountNotification.accountId(),
-                accountNotification.transferReference(),
-                accountNotification.notificationStatus().name(),
-                accountNotification.message(),
-                accountNotification.createdAt()
+                accountNotification.getAccountId(),
+                accountNotification.getTransferReference(),
+                accountNotification.getNotificationStatus().name(),
+                accountNotification.getMessage(),
+                accountNotification.getCreatedAt()
             ))
             .toList();
     }

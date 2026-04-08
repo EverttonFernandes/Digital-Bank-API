@@ -1,0 +1,56 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-017
+ULTIMA_ITERACAO_REGISTRADA: 4
+ULTIMA_FASE_CONHECIDA: FULL_MIGRATION_VALIDATED
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- A unificacao completa do dominio persistido pode ser concluida com seguranca se `AccountMovement` e `AccountNotification` seguirem o mesmo padrao de `Account`, mantendo os testes funcionais como hard gate.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- `Account` passou a ser persistido diretamente por JPA.
+- `AccountEntity` foi removida.
+- `AccountMovement` passou a ser persistido diretamente por JPA.
+- `AccountNotification` passou a ser persistido diretamente por JPA.
+- `AccountMovementEntity` e `AccountNotificationEntity` foram removidas.
+- `make unit-test` executou com sucesso.
+- `make functional-test` executou com sucesso com `23/23` testes passando.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: PENDING
+- unit_tests: PASS
+- func_tests: PASS
+- coverage: PENDING
+- sonar: PENDING
+- security: PENDING
+- arch_review: PENDING
+- final_review: PENDING
+
+ULTIMA_ACAO_EXECUTADA:
+- Concluir a migracao completa do dominio persistido, remover todas as entities redundantes remanescentes e revalidar a API com testes unitarios e funcionais.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Registrar a entrega cronologica da historia e fechar o versionamento semantico.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- docs/jira-pessoal/KANBAN.md
+- docs/jira-pessoal/historias/HISTORIA-017-UNIFICACAO-DE-DOMINIO-E-PERSISTENCIA-JPA.md
+- docs/tasks/HISTORIA-017/IMPLEMENTATION.md
+- docs/tasks/HISTORIA-017/progress.txt
+- src/main/java/com/cwi/digitalbankapi/domain/account/model/Account.java
+- src/main/java/com/cwi/digitalbankapi/domain/statement/model/AccountMovement.java
+- src/main/java/com/cwi/digitalbankapi/domain/notification/model/AccountNotification.java
+- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountRepository.java
+- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountMovementRepository.java
+- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/PostgreSqlAccountNotificationRepository.java
+- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountJpaRepository.java
+- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountMovementJpaRepository.java
+- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/SpringDataAccountNotificationJpaRepository.java
+
+RISCOS_ABERTOS:
+- Nenhum risco funcional aberto apos a validacao final da migracao completa.
+
+OBSERVACOES_DE_CONTEXTO:
+- `wishlist-api` sera a referencia principal de simplificacao para esta historia.
+- A duplicacao de entidades persistentes foi eliminada por completo neste escopo.
