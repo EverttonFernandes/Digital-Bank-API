@@ -61,7 +61,7 @@ class AccountNotificationRepositoryImplTest {
                 OffsetDateTime.parse("2026-04-08T00:00:00Z")
         );
 
-        BDDMockito.given(springDataAccountNotificationJpaRepository.findByAccountIdOrderByCreatedAtDescIdDesc(1L))
+        BDDMockito.given(springDataAccountNotificationJpaRepository.findByAccount_IdOrderByCreatedAtDescIdDesc(1L))
                 .willReturn(List.of(accountNotification));
 
         // WHEN

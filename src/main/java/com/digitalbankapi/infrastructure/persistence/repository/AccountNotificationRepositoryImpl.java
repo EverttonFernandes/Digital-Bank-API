@@ -22,6 +22,6 @@ public class AccountNotificationRepositoryImpl implements AccountNotificationRep
 
     @Override
     public List<AccountNotification> findAccountNotificationsByAccountId(Long accountId) {
-        return springDataAccountNotificationJpaRepository.findByAccountIdOrderByCreatedAtDescIdDesc(accountId);
+        return springDataAccountNotificationJpaRepository.findByAccount_IdOrderByCreatedAtDescIdDesc(accountId);
     }
 }

@@ -1,0 +1,23 @@
+STATUS DA HISTORIA: DONE
+
+HISTORIA ATUAL:
+- HISTORIA-019
+
+OBJETIVO:
+- transformar o Swagger em um guia de uso real da API, com foco em create account, transfer, movements e notifications
+
+HIPOTESE ATUAL:
+- enriquecer exemplos, descricoes e respostas do OpenAPI aumenta a usabilidade sem alterar comportamento funcional
+
+PROXIMA ACAO:
+- historia concluida e pronta para fechamento semantico
+
+GATES OBRIGATORIOS:
+- make unit-test
+- make functional-test
+- contrato OpenAPI coerente com os DTOs e HAL responses
+
+RESULTADO FINAL:
+- Swagger enriquecido com exemplos guiados de criacao de conta, transferencia, movimentos e notificacoes
+- OpenAPI validado em runtime com GET /v3/api-docs
+- aplicacao mantida funcional apos correcao dos repositórios JPA derivados

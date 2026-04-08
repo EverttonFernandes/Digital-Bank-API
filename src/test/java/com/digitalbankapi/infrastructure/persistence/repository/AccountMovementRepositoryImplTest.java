@@ -63,7 +63,7 @@ class AccountMovementRepositoryImplTest {
                 OffsetDateTime.parse("2026-04-08T00:00:00Z")
         );
 
-        BDDMockito.given(springDataAccountMovementJpaRepository.findByAccountIdOrderByCreatedAtDescIdDesc(1L))
+        BDDMockito.given(springDataAccountMovementJpaRepository.findByAccount_IdOrderByCreatedAtDescIdDesc(1L))
                 .willReturn(List.of(accountMovement));
 
         // WHEN

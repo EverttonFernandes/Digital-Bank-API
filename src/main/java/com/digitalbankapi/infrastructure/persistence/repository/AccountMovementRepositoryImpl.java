@@ -22,6 +22,6 @@ public class AccountMovementRepositoryImpl implements AccountMovementRepository 
 
     @Override
     public List<AccountMovement> findAccountMovementsByAccountId(Long accountId) {
-        return springDataAccountMovementJpaRepository.findByAccountIdOrderByCreatedAtDescIdDesc(accountId);
+        return springDataAccountMovementJpaRepository.findByAccount_IdOrderByCreatedAtDescIdDesc(accountId);
     }
 }

@@ -5,25 +5,25 @@ import org.springframework.hateoas.RepresentationModel;
 
 import java.math.BigDecimal;
 
-@Schema(name = "TransferRepresentationModel", description = "Representacao HAL da transferencia concluida com links para recursos relacionados.")
+@Schema(name = "TransferRepresentationModel", description = "Representacao HAL da transferencia concluida, ja pronta para guiar a consulta de contas, movimentos e notificacoes geradas.")
 public class TransferRepresentationModel extends RepresentationModel<TransferRepresentationModel> {
 
-    @Schema(description = "Identificador da conta de origem.", example = "1")
+    @Schema(description = "Identificador da conta que sofreu o debito.", example = "1")
     private final Long sourceAccountId;
 
-    @Schema(description = "Identificador da conta de destino.", example = "2")
+    @Schema(description = "Identificador da conta que recebeu o credito.", example = "2")
     private final Long targetAccountId;
 
-    @Schema(description = "Referencia unica da transferencia.", example = "4d2f91fb-daf5-4ea7-8db2-757ca1b89c30")
+    @Schema(description = "Referencia unica da transferencia, util para correlacionar movimentos e notificacoes.", example = "4d2f91fb-daf5-4ea7-8db2-757ca1b89c30")
     private final String transferReference;
 
-    @Schema(description = "Valor transferido.", example = "200.00")
+    @Schema(description = "Valor efetivamente transferido entre as contas.", example = "200.00")
     private final BigDecimal transferredAmount;
 
-    @Schema(description = "Saldo final da conta de origem apos a transferencia.", example = "1050.00")
+    @Schema(description = "Saldo final da conta de origem apos a conclusao da transferencia.", example = "1050.00")
     private final BigDecimal sourceAccountBalance;
 
-    @Schema(description = "Saldo final da conta de destino apos a transferencia.", example = "1180.50")
+    @Schema(description = "Saldo final da conta de destino apos a conclusao da transferencia.", example = "1180.50")
     private final BigDecimal targetAccountBalance;
 
     public TransferRepresentationModel(

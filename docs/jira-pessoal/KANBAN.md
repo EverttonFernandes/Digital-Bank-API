@@ -4,7 +4,8 @@
 
 Este arquivo funciona como o quadro principal de acompanhamento do projeto.
 
-Ele organiza, em ordem cronológica, as histórias necessárias para transformar a spec do desafio em entregas reais, controladas e rastreáveis.
+Ele organiza, em ordem cronológica, as histórias necessárias para transformar a spec do desafio em entregas reais,
+controladas e rastreáveis.
 
 O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
@@ -21,7 +22,8 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
 ## Épico Principal
 
-- `EPICO-001` Construção da API REST de banco digital com foco em consistência, concorrência, documentação e testabilidade
+- `EPICO-001` Construção da API REST de banco digital com foco em consistência, concorrência, documentação e
+  testabilidade
 
 ## Backlog Cronológico
 
@@ -42,7 +44,8 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-001` Subir ambiente isolado com Docker Compose, aplicação, Swagger e PostgreSQL em portas distintas
 - `HISTORIA-002` Estruturar projeto Spring Boot, camadas arquiteturais e configurações base
 - `HISTORIA-003` Criar modelo de contas com seed inicial e consultas de listagem/busca
-- `HISTORIA-004` Implementar transferência entre contas com consistência transacional, lock pessimista e setup inicial dos testes funcionais em Jest
+- `HISTORIA-004` Implementar transferência entre contas com consistência transacional, lock pessimista e setup inicial
+  dos testes funcionais em Jest
 - `HISTORIA-005` Gerar movimentações financeiras associadas à transferência e expor histórico por conta
 - `HISTORIA-006` Registrar notificações pós-transferência com observer explícito e consulta por conta
 - `HISTORIA-007` Padronizar tratamento de erros e mensagens key/value para regras de negócio e payload inválido
@@ -53,10 +56,14 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-012` Revisar entrega final, documentacao cronologica e fechamento semantico da versao
 - `HISTORIA-013` Refatorar contratos e respostas para elevar a API ao topo do modelo de maturidade de Richardson
 - `HISTORIA-014` Expor `POST /accounts` para criacao de conta bancaria com validacao, HATEOAS e persistencia real
-- `HISTORIA-015` Refatorar o mapeamento relacional JPA/Hibernate das entidades persistentes sem quebrar a suite funcional
-- `HISTORIA-016` Alinhar controllers, services, converters, domínio e persistência ao padrão estrutural observado no `umovme-team`
-- `HISTORIA-017` Unificar domínio e persistência JPA/Hibernate, removendo a duplicação remanescente entre modelos de domínio e entities
+- `HISTORIA-015` Refatorar o mapeamento relacional JPA/Hibernate das entidades persistentes sem quebrar a suite
+  funcional
+- `HISTORIA-016` Alinhar controllers, services, converters, domínio e persistência ao padrão estrutural observado no
+  `umovme-team`
+- `HISTORIA-017` Unificar domínio e persistência JPA/Hibernate, removendo a duplicação remanescente entre modelos de
+  domínio e entities
 - `HISTORIA-018` Padronizar a nomenclatura arquitetural das classes ao estilo do `wishlist-api`
+- `HISTORIA-019` Transformar o Swagger/OpenAPI em uma experiência guiada de uso da API, com exemplos reais e respostas pedagógicas
 
 ## Backlog de Evolucao Funcional
 

@@ -8,25 +8,25 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @Relation(itemRelation = "movement", collectionRelation = "movements")
-@Schema(name = "AccountMovementRepresentationModel", description = "Representacao HAL de uma movimentacao financeira.")
+@Schema(name = "AccountMovementRepresentationModel", description = "Representacao HAL de uma movimentacao financeira derivada de uma transferencia.")
 public class AccountMovementRepresentationModel extends RepresentationModel<AccountMovementRepresentationModel> {
 
-    @Schema(description = "Identificador da conta associada a movimentacao.", example = "1")
+    @Schema(description = "Conta a que esta movimentacao pertence.", example = "1")
     private final Long accountId;
 
-    @Schema(description = "Referencia da transferencia que originou a movimentacao.", example = "4d2f91fb-daf5-4ea7-8db2-757ca1b89c30")
+    @Schema(description = "Referencia da transferencia que originou esta linha do historico.", example = "4d2f91fb-daf5-4ea7-8db2-757ca1b89c30")
     private final String transferReference;
 
-    @Schema(description = "Tipo da movimentacao financeira.", example = "DEBIT")
+    @Schema(description = "Tipo da movimentacao. Exemplo: `DEBIT` para saida de saldo e `CREDIT` para entrada.", example = "DEBIT")
     private final String movementType;
 
-    @Schema(description = "Valor movimentado.", example = "200.00")
+    @Schema(description = "Valor monetario registrado na movimentacao.", example = "200.00")
     private final BigDecimal amount;
 
-    @Schema(description = "Descricao legivel da movimentacao.", example = "Debito gerado pela transferencia para a conta 2.")
+    @Schema(description = "Descricao legivel que explica por que esta movimentacao existe.", example = "Debito gerado pela transferencia para a conta 2.")
     private final String description;
 
-    @Schema(description = "Data e hora de criacao da movimentacao.", example = "2026-04-07T10:15:30Z")
+    @Schema(description = "Data e hora em que a movimentacao foi registrada.", example = "2026-04-07T10:15:30Z")
     private final OffsetDateTime createdAt;
 
     public AccountMovementRepresentationModel(
