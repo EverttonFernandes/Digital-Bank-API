@@ -176,6 +176,9 @@ O projeto segue uma separacao pragmatica inspirada em DDD:
 - `Criacao de conta com semantica REST`
   A abertura de conta usa `POST /accounts`, persiste o recurso, devolve `201 Created`, header `Location` e response `HAL` com links navegaveis.
 
+- `Mapeamento relacional explicito na persistencia`
+  A camada JPA/Hibernate explicita as relacoes entre conta, movimentacao e notificacao sem misturar persistencia com o dominio.
+
 ## Estrategia de Testes
 
 ### Testes Unitarios

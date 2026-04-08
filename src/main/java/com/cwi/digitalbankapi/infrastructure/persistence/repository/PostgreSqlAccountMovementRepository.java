@@ -11,9 +11,14 @@ import java.util.List;
 public class PostgreSqlAccountMovementRepository implements AccountMovementRepository {
 
     private final SpringDataAccountMovementJpaRepository springDataAccountMovementJpaRepository;
+    private final SpringDataAccountJpaRepository springDataAccountJpaRepository;
 
-    public PostgreSqlAccountMovementRepository(SpringDataAccountMovementJpaRepository springDataAccountMovementJpaRepository) {
+    public PostgreSqlAccountMovementRepository(
+        SpringDataAccountMovementJpaRepository springDataAccountMovementJpaRepository,
+        SpringDataAccountJpaRepository springDataAccountJpaRepository
+    ) {
         this.springDataAccountMovementJpaRepository = springDataAccountMovementJpaRepository;
+        this.springDataAccountJpaRepository = springDataAccountJpaRepository;
     }
 
     @Override
@@ -21,7 +26,7 @@ public class PostgreSqlAccountMovementRepository implements AccountMovementRepos
         springDataAccountMovementJpaRepository.saveAll(
             accountMovementList.stream()
                 .map(accountMovement -> new AccountMovementEntity(
-                    accountMovement.accountId(),
+                    springDataAccountJpaRepository.getReferenceById(accountMovement.accountId()),
                     accountMovement.transferReference(),
                     accountMovement.movementType(),
                     accountMovement.amount(),
@@ -34,7 +39,7 @@ public class PostgreSqlAccountMovementRepository implements AccountMovementRepos
 
     @Override
     public List<AccountMovement> findAccountMovementsByAccountId(Long accountId) {
-        return springDataAccountMovementJpaRepository.findByAccountIdOrderByCreatedAtDescIdDesc(accountId)
+        return springDataAccountMovementJpaRepository.findByAccountEntityIdOrderByCreatedAtDescIdDesc(accountId)
             .stream()
             .map(accountMovementEntity -> new AccountMovement(
                 accountMovementEntity.getId(),

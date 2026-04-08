@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface SpringDataAccountMovementJpaRepository extends JpaRepository<AccountMovementEntity, Long> {
 
-    List<AccountMovementEntity> findByAccountIdOrderByCreatedAtDescIdDesc(Long accountId);
+    List<AccountMovementEntity> findByAccountEntityIdOrderByCreatedAtDescIdDesc(Long accountId);
 }

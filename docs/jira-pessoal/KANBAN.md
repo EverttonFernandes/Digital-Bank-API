@@ -27,7 +27,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
 ### To Do
 
-- `HISTORIA-015` Refatorar o mapeamento relacional JPA/Hibernate das entidades persistentes sem quebrar a suite funcional
+- nenhuma historia pendente
 
 ### Doing
 
@@ -53,6 +53,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-012` Revisar entrega final, documentacao cronologica e fechamento semantico da versao
 - `HISTORIA-013` Refatorar contratos e respostas para elevar a API ao topo do modelo de maturidade de Richardson
 - `HISTORIA-014` Expor `POST /accounts` para criacao de conta bancaria com validacao, HATEOAS e persistencia real
+- `HISTORIA-015` Refatorar o mapeamento relacional JPA/Hibernate das entidades persistentes sem quebrar a suite funcional
 
 ## Backlog de Evolucao Funcional
 
@@ -60,7 +61,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
 ## Backlog de Evolucao Arquitetural
 
-- `HISTORIA-015` Explicitar relacoes JPA/Hibernate entre entidades persistentes e revisar repositorios para refletir melhor o modelo relacional
+- nenhuma evolucao arquitetural pendente no momento
 
 ## Critérios de Movimentação
 

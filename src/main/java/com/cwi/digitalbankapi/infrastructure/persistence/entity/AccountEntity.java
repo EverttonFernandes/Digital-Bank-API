@@ -2,12 +2,16 @@ package com.cwi.digitalbankapi.infrastructure.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.util.ArrayList;
 import java.math.BigDecimal;
+import java.util.List;
 import java.time.OffsetDateTime;
 
 @Entity
@@ -32,6 +36,12 @@ public class AccountEntity {
 
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime updatedAt;
+
+    @OneToMany(mappedBy = "accountEntity", fetch = FetchType.LAZY)
+    private List<AccountMovementEntity> accountMovementEntityList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "accountEntity", fetch = FetchType.LAZY)
+    private List<AccountNotificationEntity> accountNotificationEntityList = new ArrayList<>();
 
     public AccountEntity(
         Long id,
@@ -73,5 +83,13 @@ public class AccountEntity {
 
     public void setUpdatedAt(OffsetDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<AccountMovementEntity> getAccountMovementEntityList() {
+        return accountMovementEntityList;
+    }
+
+    public List<AccountNotificationEntity> getAccountNotificationEntityList() {
+        return accountNotificationEntityList;
     }
 }

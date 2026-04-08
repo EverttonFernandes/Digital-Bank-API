@@ -11,11 +11,14 @@ import java.util.List;
 public class PostgreSqlAccountNotificationRepository implements AccountNotificationRepository {
 
     private final SpringDataAccountNotificationJpaRepository springDataAccountNotificationJpaRepository;
+    private final SpringDataAccountJpaRepository springDataAccountJpaRepository;
 
     public PostgreSqlAccountNotificationRepository(
-        SpringDataAccountNotificationJpaRepository springDataAccountNotificationJpaRepository
+        SpringDataAccountNotificationJpaRepository springDataAccountNotificationJpaRepository,
+        SpringDataAccountJpaRepository springDataAccountJpaRepository
     ) {
         this.springDataAccountNotificationJpaRepository = springDataAccountNotificationJpaRepository;
+        this.springDataAccountJpaRepository = springDataAccountJpaRepository;
     }
 
     @Override
@@ -23,7 +26,7 @@ public class PostgreSqlAccountNotificationRepository implements AccountNotificat
         springDataAccountNotificationJpaRepository.saveAll(
             accountNotificationList.stream()
                 .map(accountNotification -> new AccountNotificationEntity(
-                    accountNotification.accountId(),
+                    springDataAccountJpaRepository.getReferenceById(accountNotification.accountId()),
                     accountNotification.transferReference(),
                     accountNotification.notificationStatus(),
                     accountNotification.message(),
@@ -35,7 +38,7 @@ public class PostgreSqlAccountNotificationRepository implements AccountNotificat
 
     @Override
     public List<AccountNotification> findAccountNotificationsByAccountId(Long accountId) {
-        return springDataAccountNotificationJpaRepository.findByAccountIdOrderByCreatedAtDescIdDesc(accountId)
+        return springDataAccountNotificationJpaRepository.findByAccountEntityIdOrderByCreatedAtDescIdDesc(accountId)
             .stream()
             .map(accountNotificationEntity -> new AccountNotification(
                 accountNotificationEntity.getId(),

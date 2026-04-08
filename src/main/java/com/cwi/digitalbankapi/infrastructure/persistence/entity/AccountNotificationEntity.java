@@ -5,9 +5,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import java.time.OffsetDateTime;
@@ -23,8 +26,9 @@ public class AccountNotificationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "account_id", nullable = false)
-    private Long accountId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "account_id", nullable = false)
+    private AccountEntity accountEntity;
 
     @Column(name = "transfer_reference", nullable = false)
     private String transferReference;
@@ -40,13 +44,13 @@ public class AccountNotificationEntity {
     private OffsetDateTime createdAt;
 
     public AccountNotificationEntity(
-        Long accountId,
+        AccountEntity accountEntity,
         String transferReference,
         AccountNotificationStatus notificationStatus,
         String message,
         OffsetDateTime createdAt
     ) {
-        this.accountId = accountId;
+        this.accountEntity = accountEntity;
         this.transferReference = transferReference;
         this.notificationStatus = notificationStatus;
         this.message = message;
@@ -58,7 +62,11 @@ public class AccountNotificationEntity {
     }
 
     public Long getAccountId() {
-        return accountId;
+        return accountEntity.getId();
+    }
+
+    public AccountEntity getAccountEntity() {
+        return accountEntity;
     }
 
     public String getTransferReference() {
