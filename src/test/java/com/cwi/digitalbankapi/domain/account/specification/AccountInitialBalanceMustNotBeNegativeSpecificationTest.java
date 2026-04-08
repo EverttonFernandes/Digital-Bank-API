@@ -1,12 +1,13 @@
 package com.cwi.digitalbankapi.domain.account.specification;
 
 import com.cwi.digitalbankapi.domain.account.exception.AccountInitialBalanceMustNotBeNegativeException;
-import com.cwi.digitalbankapi.domain.account.model.AccountCreationCommand;
+import com.cwi.digitalbankapi.domain.account.model.Account;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
 class AccountInitialBalanceMustNotBeNegativeSpecificationTest {
 
@@ -17,10 +18,10 @@ class AccountInitialBalanceMustNotBeNegativeSpecificationTest {
     @DisplayName("Deve aceitar criacao de conta quando o saldo inicial for zero")
     void shouldAcceptAccountCreationWhenInitialBalanceIsZero() {
         // GIVEN
-        AccountCreationCommand accountCreationCommand = new AccountCreationCommand("Maria Silva", BigDecimal.ZERO);
+        Account account = new Account(null, "Maria Silva", BigDecimal.ZERO, OffsetDateTime.now(), OffsetDateTime.now());
 
         // WHEN
-        accountInitialBalanceMustNotBeNegativeSpecification.ensureSatisfiedBy(accountCreationCommand);
+        accountInitialBalanceMustNotBeNegativeSpecification.ensureSatisfiedBy(account);
 
         // THEN
         Assertions.assertTrue(true);
@@ -30,12 +31,12 @@ class AccountInitialBalanceMustNotBeNegativeSpecificationTest {
     @DisplayName("Deve rejeitar criacao de conta quando o saldo inicial for negativo")
     void shouldRejectAccountCreationWhenInitialBalanceIsNegative() {
         // GIVEN
-        AccountCreationCommand accountCreationCommand = new AccountCreationCommand("Maria Silva", new BigDecimal("-1.00"));
+        Account account = new Account(null, "Maria Silva", new BigDecimal("-1.00"), OffsetDateTime.now(), OffsetDateTime.now());
 
         // WHEN
         AccountInitialBalanceMustNotBeNegativeException accountInitialBalanceMustNotBeNegativeException = Assertions.assertThrows(
             AccountInitialBalanceMustNotBeNegativeException.class,
-            () -> accountInitialBalanceMustNotBeNegativeSpecification.ensureSatisfiedBy(accountCreationCommand)
+            () -> accountInitialBalanceMustNotBeNegativeSpecification.ensureSatisfiedBy(account)
         );
 
         // THEN

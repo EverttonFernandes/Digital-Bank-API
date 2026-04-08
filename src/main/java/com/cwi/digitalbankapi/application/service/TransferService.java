@@ -7,12 +7,9 @@ import com.cwi.digitalbankapi.domain.account.exception.AccountNotFoundException;
 import com.cwi.digitalbankapi.domain.account.model.Account;
 import com.cwi.digitalbankapi.domain.account.repository.AccountRepository;
 import com.cwi.digitalbankapi.domain.notification.gateway.TransferCompletedEventPublisher;
-import com.cwi.digitalbankapi.domain.notification.model.TransferCompletedEvent;
 import com.cwi.digitalbankapi.domain.statement.model.AccountMovement;
-import com.cwi.digitalbankapi.domain.statement.model.AccountMovementType;
 import com.cwi.digitalbankapi.domain.statement.repository.AccountMovementRepository;
 import com.cwi.digitalbankapi.domain.transfer.model.Transfer;
-import com.cwi.digitalbankapi.domain.transfer.model.TransferCommand;
 import com.cwi.digitalbankapi.domain.transfer.specification.CompositeTransferSpecification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,64 +43,35 @@ public class TransferService {
 
     @Transactional
     public TransferResponse transfer(TransferRequest transferRequest) {
-        TransferCommand transferCommand = transferRequestConverter.convert(transferRequest);
-
         List<Account> lockedAccountList = accountRepository.findAccountsByIdentifiersWithPessimisticLock(
-            transferCommand.sourceAccountId(),
-            transferCommand.targetAccountId()
+            transferRequest.sourceAccountId(),
+            transferRequest.targetAccountId()
         );
 
         Account sourceAccount = lockedAccountList.stream()
-            .filter(account -> account.getId().equals(transferCommand.sourceAccountId()))
+            .filter(account -> account.getId().equals(transferRequest.sourceAccountId()))
             .findFirst()
-            .orElseThrow(() -> new AccountNotFoundException(transferCommand.sourceAccountId()));
+            .orElseThrow(() -> new AccountNotFoundException(transferRequest.sourceAccountId()));
 
         Account targetAccount = lockedAccountList.stream()
-            .filter(account -> account.getId().equals(transferCommand.targetAccountId()))
+            .filter(account -> account.getId().equals(transferRequest.targetAccountId()))
             .findFirst()
-            .orElseThrow(() -> new AccountNotFoundException(transferCommand.targetAccountId()));
+            .orElseThrow(() -> new AccountNotFoundException(transferRequest.targetAccountId()));
 
-        Transfer transfer = new Transfer(sourceAccount, targetAccount, transferCommand.amount());
+        Transfer transfer = transferRequestConverter.convert(transferRequest, sourceAccount, targetAccount);
 
         compositeTransferSpecification.ensureSatisfiedBy(transfer);
 
-        sourceAccount.debit(transfer.amount());
-        targetAccount.credit(transfer.amount());
+        transfer.apply();
 
         String transferReference = UUID.randomUUID().toString();
         OffsetDateTime movementCreatedAt = OffsetDateTime.now();
 
         accountRepository.saveAccounts(List.of(sourceAccount, targetAccount));
-        accountMovementRepository.saveAccountMovements(List.of(
-            new AccountMovement(
-                null,
-                sourceAccount.getId(),
-                transferReference,
-                AccountMovementType.DEBIT,
-                transfer.amount(),
-                "Debito gerado pela transferencia para a conta " + targetAccount.getId() + ".",
-                movementCreatedAt
-            ),
-            new AccountMovement(
-                null,
-                targetAccount.getId(),
-                transferReference,
-                AccountMovementType.CREDIT,
-                transfer.amount(),
-                "Credito recebido da transferencia da conta " + sourceAccount.getId() + ".",
-                movementCreatedAt
-            )
-        ));
+        List<AccountMovement> accountMovementList = transfer.createAccountMovements(transferReference, movementCreatedAt);
+        accountMovementRepository.saveAccountMovements(accountMovementList);
 
-        transferCompletedEventPublisher.publish(new TransferCompletedEvent(
-            sourceAccount.getId(),
-            sourceAccount.getOwnerName(),
-            targetAccount.getId(),
-            targetAccount.getOwnerName(),
-            transferReference,
-            transfer.amount(),
-            movementCreatedAt
-        ));
+        transferCompletedEventPublisher.publish(transfer.createTransferCompletedEvent(transferReference, movementCreatedAt));
 
         return new TransferResponse(
             sourceAccount.getId(),

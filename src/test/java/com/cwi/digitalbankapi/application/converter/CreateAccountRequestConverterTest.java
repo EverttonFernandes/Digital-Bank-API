@@ -1,7 +1,7 @@
 package com.cwi.digitalbankapi.application.converter;
 
 import com.cwi.digitalbankapi.application.dto.CreateAccountRequest;
-import com.cwi.digitalbankapi.domain.account.model.AccountCreationCommand;
+import com.cwi.digitalbankapi.domain.account.model.Account;
 import com.cwi.digitalbankapi.shared.exception.InvalidRequestDataException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -14,17 +14,18 @@ class CreateAccountRequestConverterTest {
     private final CreateAccountRequestConverter createAccountRequestConverter = new CreateAccountRequestConverter();
 
     @Test
-    @DisplayName("Deve converter requisicao valida de criacao de conta em comando de dominio")
-    void shouldConvertValidCreateAccountRequestIntoDomainCommand() {
+    @DisplayName("Deve converter requisicao valida de criacao de conta em agregado de dominio")
+    void shouldConvertValidCreateAccountRequestIntoDomainAccount() {
         // GIVEN
         CreateAccountRequest createAccountRequest = new CreateAccountRequest(" Maria Silva ", new BigDecimal("350.00"));
 
         // WHEN
-        AccountCreationCommand accountCreationCommand = createAccountRequestConverter.convert(createAccountRequest);
+        Account account = createAccountRequestConverter.convert(createAccountRequest);
 
         // THEN
-        Assertions.assertEquals("Maria Silva", accountCreationCommand.ownerName());
-        Assertions.assertEquals(new BigDecimal("350.00"), accountCreationCommand.initialBalance());
+        Assertions.assertNull(account.getId());
+        Assertions.assertEquals("Maria Silva", account.getOwnerName());
+        Assertions.assertEquals(new BigDecimal("350.00"), account.getBalance());
     }
 
     @Test

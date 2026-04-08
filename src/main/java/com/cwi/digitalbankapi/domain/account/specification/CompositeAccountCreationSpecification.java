@@ -1,6 +1,6 @@
 package com.cwi.digitalbankapi.domain.account.specification;
 
-import com.cwi.digitalbankapi.domain.account.model.AccountCreationCommand;
+import com.cwi.digitalbankapi.domain.account.model.Account;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,9 +14,9 @@ public class CompositeAccountCreationSpecification {
         this.accountCreationSpecificationList = accountCreationSpecificationList;
     }
 
-    public void ensureSatisfiedBy(AccountCreationCommand accountCreationCommand) {
+    public void ensureSatisfiedBy(Account account) {
         for (AccountCreationSpecification accountCreationSpecification : accountCreationSpecificationList) {
-            accountCreationSpecification.ensureSatisfiedBy(accountCreationCommand);
+            accountCreationSpecification.ensureSatisfiedBy(account);
         }
     }
 }

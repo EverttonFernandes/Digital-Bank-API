@@ -8,10 +8,7 @@ import com.cwi.digitalbankapi.api.representation.AccountNotificationRepresentati
 import com.cwi.digitalbankapi.api.representation.AccountCollectionRepresentationModel;
 import com.cwi.digitalbankapi.api.representation.AccountRepresentationModel;
 import com.cwi.digitalbankapi.application.dto.CreateAccountRequest;
-import com.cwi.digitalbankapi.application.service.AccountMovementQueryService;
-import com.cwi.digitalbankapi.application.service.AccountNotificationQueryService;
-import com.cwi.digitalbankapi.application.service.AccountQueryService;
-import com.cwi.digitalbankapi.application.service.CreateAccountService;
+import com.cwi.digitalbankapi.application.service.AccountService;
 import com.cwi.digitalbankapi.shared.response.ApiErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -40,27 +37,18 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Tag(name = "Accounts", description = "Operacoes de consulta de contas.")
 public class AccountController {
 
-    private final AccountQueryService accountQueryService;
-    private final CreateAccountService createAccountService;
-    private final AccountMovementQueryService accountMovementQueryService;
-    private final AccountNotificationQueryService accountNotificationQueryService;
+    private final AccountService accountService;
     private final AccountRepresentationModelAssembler accountRepresentationModelAssembler;
     private final com.cwi.digitalbankapi.api.assembler.AccountMovementRepresentationModelAssembler accountMovementRepresentationModelAssembler;
     private final com.cwi.digitalbankapi.api.assembler.AccountNotificationRepresentationModelAssembler accountNotificationRepresentationModelAssembler;
 
     public AccountController(
-        AccountQueryService accountQueryService,
-        CreateAccountService createAccountService,
-        AccountMovementQueryService accountMovementQueryService,
-        AccountNotificationQueryService accountNotificationQueryService,
+        AccountService accountService,
         AccountRepresentationModelAssembler accountRepresentationModelAssembler,
         com.cwi.digitalbankapi.api.assembler.AccountMovementRepresentationModelAssembler accountMovementRepresentationModelAssembler,
         com.cwi.digitalbankapi.api.assembler.AccountNotificationRepresentationModelAssembler accountNotificationRepresentationModelAssembler
     ) {
-        this.accountQueryService = accountQueryService;
-        this.createAccountService = createAccountService;
-        this.accountMovementQueryService = accountMovementQueryService;
-        this.accountNotificationQueryService = accountNotificationQueryService;
+        this.accountService = accountService;
         this.accountRepresentationModelAssembler = accountRepresentationModelAssembler;
         this.accountMovementRepresentationModelAssembler = accountMovementRepresentationModelAssembler;
         this.accountNotificationRepresentationModelAssembler = accountNotificationRepresentationModelAssembler;
@@ -82,7 +70,7 @@ public class AccountController {
     })
     public ResponseEntity<AccountRepresentationModel> createAccount(@Valid @RequestBody CreateAccountRequest createAccountRequest) {
         AccountRepresentationModel accountRepresentationModel = accountRepresentationModelAssembler.toModel(
-            createAccountService.createAccount(createAccountRequest)
+            accountService.createAccount(createAccountRequest)
         );
 
         return ResponseEntity.created(URI.create(accountRepresentationModel.getRequiredLink("self").getHref()))
@@ -97,7 +85,7 @@ public class AccountController {
         content = @Content(schema = @Schema(implementation = AccountCollectionRepresentationModel.class))
     )
     public CollectionModel<AccountRepresentationModel> listAllAccounts() {
-        List<AccountRepresentationModel> accountRepresentationModelList = accountQueryService.listAllAccounts()
+        List<AccountRepresentationModel> accountRepresentationModelList = accountService.listAllAccounts()
             .stream()
             .map(accountRepresentationModelAssembler::toModel)
             .toList();
@@ -120,7 +108,7 @@ public class AccountController {
         )
     })
     public AccountRepresentationModel findAccountById(@PathVariable Long accountIdentifier) {
-        return accountRepresentationModelAssembler.toModel(accountQueryService.findAccountById(accountIdentifier));
+        return accountRepresentationModelAssembler.toModel(accountService.findAccountById(accountIdentifier));
     }
 
     @GetMapping("/{accountId}/movements")
@@ -138,7 +126,7 @@ public class AccountController {
         )
     })
     public CollectionModel<AccountMovementRepresentationModel> findAccountMovements(@PathVariable Long accountId) {
-        List<AccountMovementRepresentationModel> accountMovementRepresentationModelList = accountMovementQueryService.findAccountMovementsByAccountId(accountId)
+        List<AccountMovementRepresentationModel> accountMovementRepresentationModelList = accountService.findAccountMovementsByAccountId(accountId)
             .stream()
             .map(accountMovementRepresentationModelAssembler::toModel)
             .toList();
@@ -166,7 +154,7 @@ public class AccountController {
     })
     public CollectionModel<AccountNotificationRepresentationModel> findAccountNotifications(@PathVariable Long accountId) {
         List<AccountNotificationRepresentationModel> accountNotificationRepresentationModelList =
-            accountNotificationQueryService.findAccountNotificationsByAccountId(accountId)
+            accountService.findAccountNotificationsByAccountId(accountId)
                 .stream()
                 .map(accountNotificationRepresentationModelAssembler::toModel)
                 .toList();

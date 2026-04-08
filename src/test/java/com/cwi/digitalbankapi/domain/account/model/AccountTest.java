@@ -10,6 +10,18 @@ import java.time.OffsetDateTime;
 class AccountTest {
 
     @Test
+    @DisplayName("Deve abrir conta com saldo inicial e datas preenchidas")
+    void shouldOpenAccountWithInitialBalanceAndFilledDates() {
+        Account account = Account.open("Maria Silva", new BigDecimal("350.00"));
+
+        Assertions.assertNull(account.getId());
+        Assertions.assertEquals("Maria Silva", account.getOwnerName());
+        Assertions.assertEquals(new BigDecimal("350.00"), account.getBalance());
+        Assertions.assertNotNull(account.getCreatedAt());
+        Assertions.assertNotNull(account.getUpdatedAt());
+    }
+
+    @Test
     @DisplayName("Deve debitar saldo da conta e atualizar data de modificacao")
     void shouldDebitAccountBalanceAndUpdateModificationDate() {
         // GIVEN

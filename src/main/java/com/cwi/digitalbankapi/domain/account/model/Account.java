@@ -25,6 +25,18 @@ public class Account {
         this.updatedAt = updatedAt;
     }
 
+    public static Account open(String ownerName, BigDecimal initialBalance) {
+        OffsetDateTime accountCreationDate = OffsetDateTime.now();
+
+        return new Account(
+            null,
+            ownerName,
+            initialBalance,
+            accountCreationDate,
+            accountCreationDate
+        );
+    }
+
     public void debit(BigDecimal amount) {
         this.balance = this.balance.subtract(amount);
         this.updatedAt = OffsetDateTime.now();

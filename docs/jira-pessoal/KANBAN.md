@@ -27,7 +27,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 
 ### To Do
 
-- nenhuma historia pendente
+- nenhuma história pendente no momento
 
 ### Doing
 
@@ -54,6 +54,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-013` Refatorar contratos e respostas para elevar a API ao topo do modelo de maturidade de Richardson
 - `HISTORIA-014` Expor `POST /accounts` para criacao de conta bancaria com validacao, HATEOAS e persistencia real
 - `HISTORIA-015` Refatorar o mapeamento relacional JPA/Hibernate das entidades persistentes sem quebrar a suite funcional
+- `HISTORIA-016` Alinhar controllers, services, converters, domínio e persistência ao padrão estrutural observado no `umovme-team`
 
 ## Backlog de Evolucao Funcional
 
@@ -62,6 +63,10 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 ## Backlog de Evolucao Arquitetural
 
 - nenhuma evolucao arquitetural pendente no momento
+
+## Backlog de Refatoracao Estrutural
+
+- nenhuma refatoracao estrutural pendente no momento
 
 ## Critérios de Movimentação
 

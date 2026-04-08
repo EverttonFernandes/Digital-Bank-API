@@ -1,8 +1,9 @@
 package com.cwi.digitalbankapi.application.converter;
 
 import com.cwi.digitalbankapi.application.dto.TransferRequest;
+import com.cwi.digitalbankapi.domain.account.model.Account;
 import com.cwi.digitalbankapi.domain.transfer.exception.TransferAmountMustBePositiveException;
-import com.cwi.digitalbankapi.domain.transfer.model.TransferCommand;
+import com.cwi.digitalbankapi.domain.transfer.model.Transfer;
 import com.cwi.digitalbankapi.shared.exception.InvalidRequestDataException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -10,23 +11,27 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
+import java.time.OffsetDateTime;
+
 class TransferRequestConverterTest {
 
     private final TransferRequestConverter transferRequestConverter = new TransferRequestConverter();
 
     @Test
-    @DisplayName("Deve converter requisicao de transferencia valida em comando de transferencia")
-    void shouldConvertValidTransferRequestIntoTransferCommand() {
+    @DisplayName("Deve converter requisicao de transferencia valida em agregado de transferencia")
+    void shouldConvertValidTransferRequestIntoTransfer() {
         // GIVEN
         TransferRequest transferRequest = new TransferRequest(1L, 2L, new BigDecimal("150.00"));
+        Account sourceAccount = new Account(1L, "Ana Souza", new BigDecimal("900.00"), OffsetDateTime.now(), OffsetDateTime.now());
+        Account targetAccount = new Account(2L, "Bruno Lima", new BigDecimal("800.00"), OffsetDateTime.now(), OffsetDateTime.now());
 
         // WHEN
-        TransferCommand transferCommand = transferRequestConverter.convert(transferRequest);
+        Transfer transfer = transferRequestConverter.convert(transferRequest, sourceAccount, targetAccount);
 
         // THEN
-        Assertions.assertEquals(1L, transferCommand.sourceAccountId());
-        Assertions.assertEquals(2L, transferCommand.targetAccountId());
-        Assertions.assertEquals(new BigDecimal("150.00"), transferCommand.amount());
+        Assertions.assertEquals(1L, transfer.sourceAccount().getId());
+        Assertions.assertEquals(2L, transfer.targetAccount().getId());
+        Assertions.assertEquals(new BigDecimal("150.00"), transfer.amount());
     }
 
     @Test
@@ -38,7 +43,7 @@ class TransferRequestConverterTest {
         // WHEN
         TransferAmountMustBePositiveException exception = Assertions.assertThrows(
             TransferAmountMustBePositiveException.class,
-            () -> transferRequestConverter.convert(transferRequest)
+            () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
         );
 
         // THEN
@@ -55,7 +60,7 @@ class TransferRequestConverterTest {
         // WHEN
         InvalidRequestDataException exception = Assertions.assertThrows(
             InvalidRequestDataException.class,
-            () -> transferRequestConverter.convert(transferRequest)
+            () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
         );
 
         // THEN
@@ -72,7 +77,7 @@ class TransferRequestConverterTest {
         // WHEN
         InvalidRequestDataException exception = Assertions.assertThrows(
             InvalidRequestDataException.class,
-            () -> transferRequestConverter.convert(transferRequest)
+            () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
         );
 
         // THEN
@@ -89,11 +94,15 @@ class TransferRequestConverterTest {
         // WHEN
         InvalidRequestDataException exception = Assertions.assertThrows(
             InvalidRequestDataException.class,
-            () -> transferRequestConverter.convert(transferRequest)
+            () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
         );
 
         // THEN
         Assertions.assertEquals("INVALID_REQUEST_DATA", exception.getKey());
         Assertions.assertEquals("O campo amount e obrigatorio.", exception.getValue());
+    }
+
+    private Account mockAccount(Long accountId) {
+        return new Account(accountId, "Conta " + accountId, BigDecimal.TEN, OffsetDateTime.now(), OffsetDateTime.now());
     }
 }

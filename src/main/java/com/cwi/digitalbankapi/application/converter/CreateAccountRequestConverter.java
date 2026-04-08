@@ -1,14 +1,14 @@
 package com.cwi.digitalbankapi.application.converter;
 
 import com.cwi.digitalbankapi.application.dto.CreateAccountRequest;
-import com.cwi.digitalbankapi.domain.account.model.AccountCreationCommand;
+import com.cwi.digitalbankapi.domain.account.model.Account;
 import com.cwi.digitalbankapi.shared.exception.InvalidRequestDataException;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CreateAccountRequestConverter {
 
-    public AccountCreationCommand convert(CreateAccountRequest createAccountRequest) {
+    public Account convert(CreateAccountRequest createAccountRequest) {
         if (createAccountRequest.ownerName() == null || createAccountRequest.ownerName().isBlank()) {
             throw new InvalidRequestDataException("O campo ownerName e obrigatorio.");
         }
@@ -17,9 +17,6 @@ public class CreateAccountRequestConverter {
             throw new InvalidRequestDataException("O campo initialBalance e obrigatorio.");
         }
 
-        return new AccountCreationCommand(
-            createAccountRequest.ownerName().trim(),
-            createAccountRequest.initialBalance()
-        );
+        return Account.open(createAccountRequest.ownerName().trim(), createAccountRequest.initialBalance());
     }
 }
