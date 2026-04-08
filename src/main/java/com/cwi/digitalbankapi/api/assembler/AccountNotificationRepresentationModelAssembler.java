@@ -15,11 +15,11 @@ public class AccountNotificationRepresentationModelAssembler implements Represen
     @Override
     public AccountNotificationRepresentationModel toModel(AccountNotificationDTO accountNotificationResponse) {
         AccountNotificationRepresentationModel accountNotificationRepresentationModel = new AccountNotificationRepresentationModel(
-            accountNotificationResponse.accountId(),
-            accountNotificationResponse.transferReference(),
-            accountNotificationResponse.notificationStatus(),
-            accountNotificationResponse.message(),
-            accountNotificationResponse.createdAt()
+                accountNotificationResponse.accountId(),
+                accountNotificationResponse.transferReference(),
+                accountNotificationResponse.notificationStatus(),
+                accountNotificationResponse.message(),
+                accountNotificationResponse.createdAt()
         );
 
         accountNotificationRepresentationModel.add(linkTo(methodOn(AccountApi.class).findAccountById(accountNotificationResponse.accountId())).withRel("account"));

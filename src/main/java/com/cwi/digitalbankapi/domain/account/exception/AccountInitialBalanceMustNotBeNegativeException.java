@@ -7,9 +7,9 @@ public class AccountInitialBalanceMustNotBeNegativeException extends BusinessExc
 
     public AccountInitialBalanceMustNotBeNegativeException() {
         super(
-            "ACCOUNT_INITIAL_BALANCE_MUST_NOT_BE_NEGATIVE",
-            "O saldo inicial da conta nao pode ser negativo.",
-            HttpStatus.BAD_REQUEST
+                "ACCOUNT_INITIAL_BALANCE_MUST_NOT_BE_NEGATIVE",
+                "O saldo inicial da conta nao pode ser negativo.",
+                HttpStatus.BAD_REQUEST
         );
     }
 }

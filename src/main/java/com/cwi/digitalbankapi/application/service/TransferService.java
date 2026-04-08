@@ -28,11 +28,11 @@ public class TransferService {
     private final CompositeTransferSpecification compositeTransferSpecification;
 
     public TransferService(
-        AccountRepository accountRepository,
-        AccountMovementRepository accountMovementRepository,
-        TransferCompletedEventPublisher transferCompletedEventPublisher,
-        TransferDTOConverter transferRequestConverter,
-        CompositeTransferSpecification compositeTransferSpecification
+            AccountRepository accountRepository,
+            AccountMovementRepository accountMovementRepository,
+            TransferCompletedEventPublisher transferCompletedEventPublisher,
+            TransferDTOConverter transferRequestConverter,
+            CompositeTransferSpecification compositeTransferSpecification
     ) {
         this.accountRepository = accountRepository;
         this.accountMovementRepository = accountMovementRepository;
@@ -44,19 +44,19 @@ public class TransferService {
     @Transactional
     public TransferResponseDTO transfer(TransferDTO transferRequest) {
         List<Account> lockedAccountList = accountRepository.findAccountsByIdentifiersWithPessimisticLock(
-            transferRequest.sourceAccountId(),
-            transferRequest.targetAccountId()
+                transferRequest.sourceAccountId(),
+                transferRequest.targetAccountId()
         );
 
         Account sourceAccount = lockedAccountList.stream()
-            .filter(account -> account.getId().equals(transferRequest.sourceAccountId()))
-            .findFirst()
-            .orElseThrow(() -> new AccountNotFoundException(transferRequest.sourceAccountId()));
+                .filter(account -> account.getId().equals(transferRequest.sourceAccountId()))
+                .findFirst()
+                .orElseThrow(() -> new AccountNotFoundException(transferRequest.sourceAccountId()));
 
         Account targetAccount = lockedAccountList.stream()
-            .filter(account -> account.getId().equals(transferRequest.targetAccountId()))
-            .findFirst()
-            .orElseThrow(() -> new AccountNotFoundException(transferRequest.targetAccountId()));
+                .filter(account -> account.getId().equals(transferRequest.targetAccountId()))
+                .findFirst()
+                .orElseThrow(() -> new AccountNotFoundException(transferRequest.targetAccountId()));
 
         Transfer transfer = transferRequestConverter.convert(transferRequest, sourceAccount, targetAccount);
 
@@ -74,12 +74,12 @@ public class TransferService {
         transferCompletedEventPublisher.publish(transfer.createTransferCompletedEvent(transferReference, movementCreatedAt));
 
         return new TransferResponseDTO(
-            sourceAccount.getId(),
-            targetAccount.getId(),
-            transferReference,
-            transfer.amount(),
-            sourceAccount.getBalance(),
-            targetAccount.getBalance()
+                sourceAccount.getId(),
+                targetAccount.getId(),
+                transferReference,
+                transfer.amount(),
+                sourceAccount.getBalance(),
+                targetAccount.getBalance()
         );
     }
 }

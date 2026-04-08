@@ -43,10 +43,10 @@ public class AccountApi {
     private final com.cwi.digitalbankapi.api.assembler.AccountNotificationRepresentationModelAssembler accountNotificationRepresentationModelAssembler;
 
     public AccountApi(
-        AccountService accountService,
-        AccountRepresentationModelAssembler accountRepresentationModelAssembler,
-        com.cwi.digitalbankapi.api.assembler.AccountMovementRepresentationModelAssembler accountMovementRepresentationModelAssembler,
-        com.cwi.digitalbankapi.api.assembler.AccountNotificationRepresentationModelAssembler accountNotificationRepresentationModelAssembler
+            AccountService accountService,
+            AccountRepresentationModelAssembler accountRepresentationModelAssembler,
+            com.cwi.digitalbankapi.api.assembler.AccountMovementRepresentationModelAssembler accountMovementRepresentationModelAssembler,
+            com.cwi.digitalbankapi.api.assembler.AccountNotificationRepresentationModelAssembler accountNotificationRepresentationModelAssembler
     ) {
         this.accountService = accountService;
         this.accountRepresentationModelAssembler = accountRepresentationModelAssembler;
@@ -57,38 +57,38 @@ public class AccountApi {
     @PostMapping
     @Operation(summary = "Criar nova conta bancaria", description = "Cria uma nova conta bancaria, persiste o recurso e retorna a representacao HAL da conta criada.")
     @ApiResponses({
-        @ApiResponse(
-            responseCode = "201",
-            description = "Conta criada com sucesso.",
-            content = @Content(schema = @Schema(implementation = AccountRepresentationModel.class))
-        ),
-        @ApiResponse(
-            responseCode = "400",
-            description = "Erro de validacao de entrada ou regra de negocio.",
-            content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))
-        )
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "Conta criada com sucesso.",
+                    content = @Content(schema = @Schema(implementation = AccountRepresentationModel.class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Erro de validacao de entrada ou regra de negocio.",
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))
+            )
     })
     public ResponseEntity<AccountRepresentationModel> createAccount(@Valid @RequestBody AccountCreateDTO createAccountRequest) {
         AccountRepresentationModel accountRepresentationModel = accountRepresentationModelAssembler.toModel(
-            accountService.createAccount(createAccountRequest)
+                accountService.createAccount(createAccountRequest)
         );
 
         return ResponseEntity.created(URI.create(accountRepresentationModel.getRequiredLink("self").getHref()))
-            .body(accountRepresentationModel);
+                .body(accountRepresentationModel);
     }
 
     @GetMapping
     @Operation(summary = "Listar contas", description = "Retorna as contas pre-carregadas com nome do titular e saldo atual.")
     @ApiResponse(
-        responseCode = "200",
-        description = "Lista de contas retornada com sucesso.",
-        content = @Content(schema = @Schema(implementation = AccountCollectionRepresentationModel.class))
+            responseCode = "200",
+            description = "Lista de contas retornada com sucesso.",
+            content = @Content(schema = @Schema(implementation = AccountCollectionRepresentationModel.class))
     )
     public CollectionModel<AccountRepresentationModel> listAllAccounts() {
         List<AccountRepresentationModel> accountRepresentationModelList = accountService.listAllAccounts()
-            .stream()
-            .map(accountRepresentationModelAssembler::toModel)
-            .toList();
+                .stream()
+                .map(accountRepresentationModelAssembler::toModel)
+                .toList();
 
         return CollectionModel.of(accountRepresentationModelList, linkTo(methodOn(AccountApi.class).listAllAccounts()).withSelfRel());
     }
@@ -96,16 +96,16 @@ public class AccountApi {
     @GetMapping("/{accountIdentifier}")
     @Operation(summary = "Buscar conta por identificador", description = "Retorna os dados de uma conta especifica.")
     @ApiResponses({
-        @ApiResponse(
-            responseCode = "200",
-            description = "Conta retornada com sucesso.",
-            content = @Content(schema = @Schema(implementation = AccountRepresentationModel.class))
-        ),
-        @ApiResponse(
-            responseCode = "404",
-            description = "Conta nao encontrada.",
-            content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))
-        )
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Conta retornada com sucesso.",
+                    content = @Content(schema = @Schema(implementation = AccountRepresentationModel.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Conta nao encontrada.",
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))
+            )
     })
     public AccountRepresentationModel findAccountById(@PathVariable Long accountIdentifier) {
         return accountRepresentationModelAssembler.toModel(accountService.findAccountById(accountIdentifier));
@@ -114,55 +114,55 @@ public class AccountApi {
     @GetMapping("/{accountId}/movements")
     @Operation(summary = "Listar movimentacoes da conta", description = "Retorna o historico financeiro gerado pelas transferencias da conta em formato HAL.")
     @ApiResponses({
-        @ApiResponse(
-            responseCode = "200",
-            description = "Movimentacoes retornadas com sucesso.",
-            content = @Content(schema = @Schema(implementation = AccountMovementCollectionRepresentationModel.class))
-        ),
-        @ApiResponse(
-            responseCode = "404",
-            description = "Conta nao encontrada.",
-            content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))
-        )
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Movimentacoes retornadas com sucesso.",
+                    content = @Content(schema = @Schema(implementation = AccountMovementCollectionRepresentationModel.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Conta nao encontrada.",
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))
+            )
     })
     public CollectionModel<AccountMovementRepresentationModel> findAccountMovements(@PathVariable Long accountId) {
         List<AccountMovementRepresentationModel> accountMovementRepresentationModelList = accountService.findAccountMovementsByAccountId(accountId)
-            .stream()
-            .map(accountMovementRepresentationModelAssembler::toModel)
-            .toList();
+                .stream()
+                .map(accountMovementRepresentationModelAssembler::toModel)
+                .toList();
 
         return CollectionModel.of(
-            accountMovementRepresentationModelList,
-            linkTo(methodOn(AccountApi.class).findAccountMovements(accountId)).withSelfRel(),
-            linkTo(methodOn(AccountApi.class).findAccountById(accountId)).withRel("account")
+                accountMovementRepresentationModelList,
+                linkTo(methodOn(AccountApi.class).findAccountMovements(accountId)).withSelfRel(),
+                linkTo(methodOn(AccountApi.class).findAccountById(accountId)).withRel("account")
         );
     }
 
     @GetMapping("/{accountId}/notifications")
     @Operation(summary = "Listar notificacoes da conta", description = "Retorna as notificacoes geradas para a conta apos transferencias concluidas em formato HAL.")
     @ApiResponses({
-        @ApiResponse(
-            responseCode = "200",
-            description = "Notificacoes retornadas com sucesso.",
-            content = @Content(schema = @Schema(implementation = AccountNotificationCollectionRepresentationModel.class))
-        ),
-        @ApiResponse(
-            responseCode = "404",
-            description = "Conta nao encontrada.",
-            content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))
-        )
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Notificacoes retornadas com sucesso.",
+                    content = @Content(schema = @Schema(implementation = AccountNotificationCollectionRepresentationModel.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Conta nao encontrada.",
+                    content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))
+            )
     })
     public CollectionModel<AccountNotificationRepresentationModel> findAccountNotifications(@PathVariable Long accountId) {
         List<AccountNotificationRepresentationModel> accountNotificationRepresentationModelList =
-            accountService.findAccountNotificationsByAccountId(accountId)
-                .stream()
-                .map(accountNotificationRepresentationModelAssembler::toModel)
-                .toList();
+                accountService.findAccountNotificationsByAccountId(accountId)
+                        .stream()
+                        .map(accountNotificationRepresentationModelAssembler::toModel)
+                        .toList();
 
         return CollectionModel.of(
-            accountNotificationRepresentationModelList,
-            linkTo(methodOn(AccountApi.class).findAccountNotifications(accountId)).withSelfRel(),
-            linkTo(methodOn(AccountApi.class).findAccountById(accountId)).withRel("account")
+                accountNotificationRepresentationModelList,
+                linkTo(methodOn(AccountApi.class).findAccountNotifications(accountId)).withSelfRel(),
+                linkTo(methodOn(AccountApi.class).findAccountById(accountId)).withRel("account")
         );
     }
 }

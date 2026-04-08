@@ -7,9 +7,9 @@ public class AccountNotFoundException extends BusinessException {
 
     public AccountNotFoundException(Long accountIdentifier) {
         super(
-            "ACCOUNT_NOT_FOUND",
-            "Conta nao encontrada para o identificador " + accountIdentifier + ".",
-            HttpStatus.NOT_FOUND
+                "ACCOUNT_NOT_FOUND",
+                "Conta nao encontrada para o identificador " + accountIdentifier + ".",
+                HttpStatus.NOT_FOUND
         );
     }
 }

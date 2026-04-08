@@ -29,14 +29,14 @@ class TransferServiceTest {
     private final AccountMovementRepository accountMovementRepository = mock(AccountMovementRepository.class);
     private final TransferCompletedEventPublisher transferCompletedEventPublisher = mock(TransferCompletedEventPublisher.class);
     private final TransferService transferService = new TransferService(
-        accountRepository,
-        accountMovementRepository,
-        transferCompletedEventPublisher,
-        new TransferDTOConverter(),
-        new CompositeTransferSpecification(List.of(
-            new TransferAccountsMustBeDifferentSpecification(),
-            new TransferSourceAccountMustHaveSufficientBalanceSpecification()
-        ))
+            accountRepository,
+            accountMovementRepository,
+            transferCompletedEventPublisher,
+            new TransferDTOConverter(),
+            new CompositeTransferSpecification(List.of(
+                    new TransferAccountsMustBeDifferentSpecification(),
+                    new TransferSourceAccountMustHaveSufficientBalanceSpecification()
+            ))
     );
 
     @Test
@@ -48,7 +48,7 @@ class TransferServiceTest {
         TransferDTO transferRequest = new TransferDTO(1L, 2L, new BigDecimal("200.00"));
 
         BDDMockito.given(accountRepository.findAccountsByIdentifiersWithPessimisticLock(1L, 2L))
-            .willReturn(List.of(sourceAccount, targetAccount));
+                .willReturn(List.of(sourceAccount, targetAccount));
         BDDMockito.given(accountRepository.saveAccounts(List.of(sourceAccount, targetAccount))).willReturn(List.of(sourceAccount, targetAccount));
 
         // WHEN
@@ -71,14 +71,14 @@ class TransferServiceTest {
         TransferDTO transferRequest = new TransferDTO(99L, 2L, new BigDecimal("10.00"));
 
         BDDMockito.given(accountRepository.findAccountsByIdentifiersWithPessimisticLock(99L, 2L))
-            .willReturn(List.of(
-                new Account(2L, "Bruno Lima", new BigDecimal("980.50"), OffsetDateTime.now(), OffsetDateTime.now())
-            ));
+                .willReturn(List.of(
+                        new Account(2L, "Bruno Lima", new BigDecimal("980.50"), OffsetDateTime.now(), OffsetDateTime.now())
+                ));
 
         // WHEN
         AccountNotFoundException accountNotFoundException = Assertions.assertThrows(
-            AccountNotFoundException.class,
-            () -> transferService.transfer(transferRequest)
+                AccountNotFoundException.class,
+                () -> transferService.transfer(transferRequest)
         );
 
         // THEN

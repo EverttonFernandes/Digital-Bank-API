@@ -17,12 +17,12 @@ class TransferRepresentationModelAssemblerTest {
     void shouldBuildTransferHateoasRepresentationWithRelatedNavigationLinks() {
         // GIVEN
         TransferResponseDTO transferResponse = new TransferResponseDTO(
-            1L,
-            2L,
-            "reference-123",
-            new BigDecimal("200.00"),
-            new BigDecimal("1050.00"),
-            new BigDecimal("1180.50")
+                1L,
+                2L,
+                "reference-123",
+                new BigDecimal("200.00"),
+                new BigDecimal("1050.00"),
+                new BigDecimal("1180.50")
         );
 
         // WHEN

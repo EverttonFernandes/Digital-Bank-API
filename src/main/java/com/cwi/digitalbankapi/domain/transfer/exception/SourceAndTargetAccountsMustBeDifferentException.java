@@ -7,9 +7,9 @@ public class SourceAndTargetAccountsMustBeDifferentException extends BusinessExc
 
     public SourceAndTargetAccountsMustBeDifferentException() {
         super(
-            "SOURCE_AND_TARGET_ACCOUNTS_MUST_BE_DIFFERENT",
-            "Conta de origem e conta de destino devem ser diferentes.",
-            HttpStatus.BAD_REQUEST
+                "SOURCE_AND_TARGET_ACCOUNTS_MUST_BE_DIFFERENT",
+                "Conta de origem e conta de destino devem ser diferentes.",
+                HttpStatus.BAD_REQUEST
         );
     }
 }

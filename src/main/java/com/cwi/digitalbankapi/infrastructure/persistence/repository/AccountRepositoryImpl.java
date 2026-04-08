@@ -30,8 +30,8 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Override
     public List<Account> findAccountsByIdentifiersWithPessimisticLock(Long sourceAccountIdentifier, Long targetAccountIdentifier) {
         return springDataAccountJpaRepository.findAccountsByIdentifiersWithPessimisticLock(
-            sourceAccountIdentifier,
-            targetAccountIdentifier
+                sourceAccountIdentifier,
+                targetAccountIdentifier
         );
     }
 
@@ -43,16 +43,16 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Override
     public List<Account> saveAccounts(List<Account> accountList) {
         List<Account> lockedAccountList = springDataAccountJpaRepository.findAllById(
-            accountList.stream()
-                .map(Account::getId)
-                .toList()
+                accountList.stream()
+                        .map(Account::getId)
+                        .toList()
         );
 
         for (Account persistedAccount : lockedAccountList) {
             Account account = accountList.stream()
-                .filter(currentAccount -> currentAccount.getId().equals(persistedAccount.getId()))
-                .findFirst()
-                .orElseThrow();
+                    .filter(currentAccount -> currentAccount.getId().equals(persistedAccount.getId()))
+                    .findFirst()
+                    .orElseThrow();
 
             persistedAccount.setBalance(account.getBalance());
             persistedAccount.setUpdatedAt(account.getUpdatedAt());

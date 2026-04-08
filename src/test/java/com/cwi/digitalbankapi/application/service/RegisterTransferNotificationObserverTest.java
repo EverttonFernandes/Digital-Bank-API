@@ -23,25 +23,25 @@ class RegisterTransferNotificationObserverTest {
     private final AccountRepository accountRepository = mock(AccountRepository.class);
     private final AccountNotificationRepository accountNotificationRepository = mock(AccountNotificationRepository.class);
     private final RegisterTransferNotificationObserver registerTransferNotificationObserver =
-        new RegisterTransferNotificationObserver(accountRepository, accountNotificationRepository);
+            new RegisterTransferNotificationObserver(accountRepository, accountNotificationRepository);
 
     @Test
     @DisplayName("Deve registrar notificacoes para origem e destino quando a transferencia for concluida")
     void shouldRegisterNotificationsForSourceAndTargetWhenTransferIsCompleted() {
         // GIVEN
         TransferCompletedEvent transferCompletedEvent = new TransferCompletedEvent(
-            1L,
-            "Ana Souza",
-            2L,
-            "Bruno Lima",
-            "transfer-reference-001",
-            new BigDecimal("200.00"),
-            OffsetDateTime.now()
+                1L,
+                "Ana Souza",
+                2L,
+                "Bruno Lima",
+                "transfer-reference-001",
+                new BigDecimal("200.00"),
+                OffsetDateTime.now()
         );
         BDDMockito.given(accountRepository.findAccountById(1L))
-            .willReturn(Optional.of(new Account(1L, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.now(), OffsetDateTime.now())));
+                .willReturn(Optional.of(new Account(1L, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.now(), OffsetDateTime.now())));
         BDDMockito.given(accountRepository.findAccountById(2L))
-            .willReturn(Optional.of(new Account(2L, "Bruno Lima", new BigDecimal("980.50"), OffsetDateTime.now(), OffsetDateTime.now())));
+                .willReturn(Optional.of(new Account(2L, "Bruno Lima", new BigDecimal("980.50"), OffsetDateTime.now(), OffsetDateTime.now())));
         ArgumentCaptor<List<AccountNotification>> accountNotificationListCaptor = ArgumentCaptor.forClass(List.class);
 
         // WHEN
@@ -49,17 +49,17 @@ class RegisterTransferNotificationObserverTest {
 
         // THEN
         BDDMockito.then(accountNotificationRepository).should()
-            .saveAccountNotifications(accountNotificationListCaptor.capture());
+                .saveAccountNotifications(accountNotificationListCaptor.capture());
         Assertions.assertEquals(2, accountNotificationListCaptor.getValue().size());
         Assertions.assertEquals(1L, accountNotificationListCaptor.getValue().get(0).getAccountId());
         Assertions.assertEquals(2L, accountNotificationListCaptor.getValue().get(1).getAccountId());
         Assertions.assertEquals(
-            "transfer-reference-001",
-            accountNotificationListCaptor.getValue().get(0).getTransferReference()
+                "transfer-reference-001",
+                accountNotificationListCaptor.getValue().get(0).getTransferReference()
         );
         Assertions.assertEquals(
-            "transfer-reference-001",
-            accountNotificationListCaptor.getValue().get(1).getTransferReference()
+                "transfer-reference-001",
+                accountNotificationListCaptor.getValue().get(1).getTransferReference()
         );
     }
 }

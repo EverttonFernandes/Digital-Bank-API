@@ -36,8 +36,8 @@ class AccountCreateDTOConverterTest {
 
         // WHEN
         InvalidRequestDataException invalidRequestDataException = Assertions.assertThrows(
-            InvalidRequestDataException.class,
-            () -> createAccountRequestConverter.convert(createAccountRequest)
+                InvalidRequestDataException.class,
+                () -> createAccountRequestConverter.convert(createAccountRequest)
         );
 
         // THEN
@@ -53,8 +53,8 @@ class AccountCreateDTOConverterTest {
 
         // WHEN
         InvalidRequestDataException invalidRequestDataException = Assertions.assertThrows(
-            InvalidRequestDataException.class,
-            () -> createAccountRequestConverter.convert(createAccountRequest)
+                InvalidRequestDataException.class,
+                () -> createAccountRequestConverter.convert(createAccountRequest)
         );
 
         // THEN
@@ -70,8 +70,8 @@ class AccountCreateDTOConverterTest {
 
         // WHEN
         InvalidRequestDataException invalidRequestDataException = Assertions.assertThrows(
-            InvalidRequestDataException.class,
-            () -> createAccountRequestConverter.convert(createAccountRequest)
+                InvalidRequestDataException.class,
+                () -> createAccountRequestConverter.convert(createAccountRequest)
         );
 
         // THEN

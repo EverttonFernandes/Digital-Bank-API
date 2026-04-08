@@ -28,12 +28,12 @@ public class AccountService {
     private final AccountDTOConverter accountResponseConverter;
 
     public AccountService(
-        AccountRepository accountRepository,
-        AccountMovementRepository accountMovementRepository,
-        AccountNotificationRepository accountNotificationRepository,
-        AccountCreateDTOConverter createAccountRequestConverter,
-        CompositeAccountCreationSpecification compositeAccountCreationSpecification,
-        AccountDTOConverter accountResponseConverter
+            AccountRepository accountRepository,
+            AccountMovementRepository accountMovementRepository,
+            AccountNotificationRepository accountNotificationRepository,
+            AccountCreateDTOConverter createAccountRequestConverter,
+            CompositeAccountCreationSpecification compositeAccountCreationSpecification,
+            AccountDTOConverter accountResponseConverter
     ) {
         this.accountRepository = accountRepository;
         this.accountMovementRepository = accountMovementRepository;
@@ -54,50 +54,50 @@ public class AccountService {
 
     public List<AccountDTO> listAllAccounts() {
         return accountRepository.findAllAccounts()
-            .stream()
-            .map(accountResponseConverter::convert)
-            .toList();
+                .stream()
+                .map(accountResponseConverter::convert)
+                .toList();
     }
 
     public AccountDTO findAccountById(Long accountIdentifier) {
         return accountRepository.findAccountById(accountIdentifier)
-            .map(accountResponseConverter::convert)
-            .orElseThrow(() -> new AccountNotFoundException(accountIdentifier));
+                .map(accountResponseConverter::convert)
+                .orElseThrow(() -> new AccountNotFoundException(accountIdentifier));
     }
 
     public List<AccountMovementDTO> findAccountMovementsByAccountId(Long accountId) {
         findExistingAccountById(accountId);
 
         return accountMovementRepository.findAccountMovementsByAccountId(accountId)
-            .stream()
-            .map(accountMovement -> new AccountMovementDTO(
-                accountMovement.getAccountId(),
-                accountMovement.getTransferReference(),
-                accountMovement.getMovementType().name(),
-                accountMovement.getAmount(),
-                accountMovement.getDescription(),
-                accountMovement.getCreatedAt()
-            ))
-            .toList();
+                .stream()
+                .map(accountMovement -> new AccountMovementDTO(
+                        accountMovement.getAccountId(),
+                        accountMovement.getTransferReference(),
+                        accountMovement.getMovementType().name(),
+                        accountMovement.getAmount(),
+                        accountMovement.getDescription(),
+                        accountMovement.getCreatedAt()
+                ))
+                .toList();
     }
 
     public List<AccountNotificationDTO> findAccountNotificationsByAccountId(Long accountId) {
         findExistingAccountById(accountId);
 
         return accountNotificationRepository.findAccountNotificationsByAccountId(accountId)
-            .stream()
-            .map(accountNotification -> new AccountNotificationDTO(
-                accountNotification.getAccountId(),
-                accountNotification.getTransferReference(),
-                accountNotification.getNotificationStatus().name(),
-                accountNotification.getMessage(),
-                accountNotification.getCreatedAt()
-            ))
-            .toList();
+                .stream()
+                .map(accountNotification -> new AccountNotificationDTO(
+                        accountNotification.getAccountId(),
+                        accountNotification.getTransferReference(),
+                        accountNotification.getNotificationStatus().name(),
+                        accountNotification.getMessage(),
+                        accountNotification.getCreatedAt()
+                ))
+                .toList();
     }
 
     private Account findExistingAccountById(Long accountId) {
         return accountRepository.findAccountById(accountId)
-            .orElseThrow(() -> new AccountNotFoundException(accountId));
+                .orElseThrow(() -> new AccountNotFoundException(accountId));
     }
 }

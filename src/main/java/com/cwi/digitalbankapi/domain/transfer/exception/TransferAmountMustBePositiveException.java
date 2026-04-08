@@ -7,9 +7,9 @@ public class TransferAmountMustBePositiveException extends BusinessException {
 
     public TransferAmountMustBePositiveException() {
         super(
-            "TRANSFER_AMOUNT_MUST_BE_POSITIVE",
-            "O valor da transferencia deve ser maior que zero.",
-            HttpStatus.BAD_REQUEST
+                "TRANSFER_AMOUNT_MUST_BE_POSITIVE",
+                "O valor da transferencia deve ser maior que zero.",
+                HttpStatus.BAD_REQUEST
         );
     }
 }

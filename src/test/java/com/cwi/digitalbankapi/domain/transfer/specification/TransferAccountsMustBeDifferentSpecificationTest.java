@@ -13,7 +13,7 @@ import java.time.OffsetDateTime;
 class TransferAccountsMustBeDifferentSpecificationTest {
 
     private final TransferAccountsMustBeDifferentSpecification transferAccountsMustBeDifferentSpecification =
-        new TransferAccountsMustBeDifferentSpecification();
+            new TransferAccountsMustBeDifferentSpecification();
 
     @Test
     @DisplayName("Deve permitir transferencia quando conta de origem e conta de destino forem diferentes")
@@ -39,8 +39,8 @@ class TransferAccountsMustBeDifferentSpecificationTest {
 
         // WHEN
         SourceAndTargetAccountsMustBeDifferentException exception = Assertions.assertThrows(
-            SourceAndTargetAccountsMustBeDifferentException.class,
-            () -> transferAccountsMustBeDifferentSpecification.ensureSatisfiedBy(transfer)
+                SourceAndTargetAccountsMustBeDifferentException.class,
+                () -> transferAccountsMustBeDifferentSpecification.ensureSatisfiedBy(transfer)
         );
 
         // THEN

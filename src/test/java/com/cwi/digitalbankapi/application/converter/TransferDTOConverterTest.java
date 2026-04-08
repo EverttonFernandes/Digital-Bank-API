@@ -42,8 +42,8 @@ class TransferDTOConverterTest {
 
         // WHEN
         TransferAmountMustBePositiveException exception = Assertions.assertThrows(
-            TransferAmountMustBePositiveException.class,
-            () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
+                TransferAmountMustBePositiveException.class,
+                () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
         );
 
         // THEN
@@ -59,8 +59,8 @@ class TransferDTOConverterTest {
 
         // WHEN
         InvalidRequestDataException exception = Assertions.assertThrows(
-            InvalidRequestDataException.class,
-            () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
+                InvalidRequestDataException.class,
+                () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
         );
 
         // THEN
@@ -76,8 +76,8 @@ class TransferDTOConverterTest {
 
         // WHEN
         InvalidRequestDataException exception = Assertions.assertThrows(
-            InvalidRequestDataException.class,
-            () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
+                InvalidRequestDataException.class,
+                () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
         );
 
         // THEN
@@ -93,8 +93,8 @@ class TransferDTOConverterTest {
 
         // WHEN
         InvalidRequestDataException exception = Assertions.assertThrows(
-            InvalidRequestDataException.class,
-            () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
+                InvalidRequestDataException.class,
+                () -> transferRequestConverter.convert(transferRequest, mockAccount(1L), mockAccount(2L))
         );
 
         // THEN

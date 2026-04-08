@@ -19,8 +19,8 @@ public class RegisterTransferNotificationObserver implements TransferCompletedOb
     private final AccountNotificationRepository accountNotificationRepository;
 
     public RegisterTransferNotificationObserver(
-        AccountRepository accountRepository,
-        AccountNotificationRepository accountNotificationRepository
+            AccountRepository accountRepository,
+            AccountNotificationRepository accountNotificationRepository
     ) {
         this.accountRepository = accountRepository;
         this.accountNotificationRepository = accountNotificationRepository;
@@ -32,27 +32,27 @@ public class RegisterTransferNotificationObserver implements TransferCompletedOb
         Account targetAccount = findExistingAccountById(transferCompletedEvent.targetAccountId());
 
         accountNotificationRepository.saveAccountNotifications(List.of(
-            new AccountNotification(
-                null,
-                sourceAccount,
-                transferCompletedEvent.transferReference(),
-                AccountNotificationStatus.REGISTERED,
-                "Transferencia enviada com sucesso para a conta " + transferCompletedEvent.targetAccountId() + ".",
-                transferCompletedEvent.completedAt()
-            ),
-            new AccountNotification(
-                null,
-                targetAccount,
-                transferCompletedEvent.transferReference(),
-                AccountNotificationStatus.REGISTERED,
-                "Transferencia recebida com sucesso da conta " + transferCompletedEvent.sourceAccountId() + ".",
-                transferCompletedEvent.completedAt()
-            )
+                new AccountNotification(
+                        null,
+                        sourceAccount,
+                        transferCompletedEvent.transferReference(),
+                        AccountNotificationStatus.REGISTERED,
+                        "Transferencia enviada com sucesso para a conta " + transferCompletedEvent.targetAccountId() + ".",
+                        transferCompletedEvent.completedAt()
+                ),
+                new AccountNotification(
+                        null,
+                        targetAccount,
+                        transferCompletedEvent.transferReference(),
+                        AccountNotificationStatus.REGISTERED,
+                        "Transferencia recebida com sucesso da conta " + transferCompletedEvent.sourceAccountId() + ".",
+                        transferCompletedEvent.completedAt()
+                )
         ));
     }
 
     private Account findExistingAccountById(Long accountId) {
         return accountRepository.findAccountById(accountId)
-            .orElseThrow(() -> new AccountNotFoundException(accountId));
+                .orElseThrow(() -> new AccountNotFoundException(accountId));
     }
 }

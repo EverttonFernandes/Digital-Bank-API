@@ -7,9 +7,9 @@ public class InsufficientAccountBalanceException extends BusinessException {
 
     public InsufficientAccountBalanceException() {
         super(
-            "INSUFFICIENT_ACCOUNT_BALANCE",
-            "A conta de origem nao possui saldo suficiente para a transferencia.",
-            HttpStatus.BAD_REQUEST
+                "INSUFFICIENT_ACCOUNT_BALANCE",
+                "A conta de origem nao possui saldo suficiente para a transferencia.",
+                HttpStatus.BAD_REQUEST
         );
     }
 }

@@ -33,7 +33,7 @@ class TransferTest {
         Transfer transfer = new Transfer(sourceAccount, targetAccount, new BigDecimal("150.00"));
 
         List<com.cwi.digitalbankapi.domain.statement.model.AccountMovement> accountMovementList =
-            transfer.createAccountMovements("transfer-reference-001", OffsetDateTime.parse("2026-04-08T00:00:00Z"));
+                transfer.createAccountMovements("transfer-reference-001", OffsetDateTime.parse("2026-04-08T00:00:00Z"));
 
         Assertions.assertEquals(2, accountMovementList.size());
         Assertions.assertEquals(AccountMovementType.DEBIT, accountMovementList.get(0).getMovementType());
@@ -49,8 +49,8 @@ class TransferTest {
         Transfer transfer = new Transfer(sourceAccount, targetAccount, new BigDecimal("150.00"));
 
         var transferCompletedEvent = transfer.createTransferCompletedEvent(
-            "transfer-reference-001",
-            OffsetDateTime.parse("2026-04-08T00:00:00Z")
+                "transfer-reference-001",
+                OffsetDateTime.parse("2026-04-08T00:00:00Z")
         );
 
         Assertions.assertEquals(1L, transferCompletedEvent.sourceAccountId());

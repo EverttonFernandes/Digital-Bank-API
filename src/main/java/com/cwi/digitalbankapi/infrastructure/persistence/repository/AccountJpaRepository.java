@@ -12,13 +12,13 @@ public interface AccountJpaRepository extends JpaRepository<Account, Long> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("""
-        SELECT account
-        FROM Account account
-        WHERE account.id IN (:sourceAccountIdentifier, :targetAccountIdentifier)
-        ORDER BY account.id ASC
-        """)
+            SELECT account
+            FROM Account account
+            WHERE account.id IN (:sourceAccountIdentifier, :targetAccountIdentifier)
+            ORDER BY account.id ASC
+            """)
     List<Account> findAccountsByIdentifiersWithPessimisticLock(
-        Long sourceAccountIdentifier,
-        Long targetAccountIdentifier
+            Long sourceAccountIdentifier,
+            Long targetAccountIdentifier
     );
 }

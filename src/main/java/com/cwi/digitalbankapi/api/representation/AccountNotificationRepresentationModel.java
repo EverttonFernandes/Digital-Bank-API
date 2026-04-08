@@ -26,11 +26,11 @@ public class AccountNotificationRepresentationModel extends RepresentationModel<
     private final OffsetDateTime createdAt;
 
     public AccountNotificationRepresentationModel(
-        Long accountId,
-        String transferReference,
-        String notificationStatus,
-        String message,
-        OffsetDateTime createdAt
+            Long accountId,
+            String transferReference,
+            String notificationStatus,
+            String message,
+            OffsetDateTime createdAt
     ) {
         this.accountId = accountId;
         this.transferReference = transferReference;

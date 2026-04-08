@@ -34,11 +34,11 @@ public class Account {
     private OffsetDateTime updatedAt;
 
     public Account(
-        Long id,
-        String ownerName,
-        BigDecimal balance,
-        OffsetDateTime createdAt,
-        OffsetDateTime updatedAt
+            Long id,
+            String ownerName,
+            BigDecimal balance,
+            OffsetDateTime createdAt,
+            OffsetDateTime updatedAt
     ) {
         this.id = id;
         this.ownerName = ownerName;
@@ -51,11 +51,11 @@ public class Account {
         OffsetDateTime accountCreationDate = OffsetDateTime.now();
 
         return new Account(
-            null,
-            ownerName,
-            initialBalance,
-            accountCreationDate,
-            accountCreationDate
+                null,
+                ownerName,
+                initialBalance,
+                accountCreationDate,
+                accountCreationDate
         );
     }
 

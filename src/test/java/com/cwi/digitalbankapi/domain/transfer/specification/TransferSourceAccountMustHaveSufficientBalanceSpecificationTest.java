@@ -13,7 +13,7 @@ import java.time.OffsetDateTime;
 class TransferSourceAccountMustHaveSufficientBalanceSpecificationTest {
 
     private final TransferSourceAccountMustHaveSufficientBalanceSpecification transferSourceAccountMustHaveSufficientBalanceSpecification =
-        new TransferSourceAccountMustHaveSufficientBalanceSpecification();
+            new TransferSourceAccountMustHaveSufficientBalanceSpecification();
 
     @Test
     @DisplayName("Deve permitir transferencia quando a conta de origem possuir saldo suficiente")
@@ -40,8 +40,8 @@ class TransferSourceAccountMustHaveSufficientBalanceSpecificationTest {
 
         // WHEN
         InsufficientAccountBalanceException exception = Assertions.assertThrows(
-            InsufficientAccountBalanceException.class,
-            () -> transferSourceAccountMustHaveSufficientBalanceSpecification.ensureSatisfiedBy(transfer)
+                InsufficientAccountBalanceException.class,
+                () -> transferSourceAccountMustHaveSufficientBalanceSpecification.ensureSatisfiedBy(transfer)
         );
 
         // THEN

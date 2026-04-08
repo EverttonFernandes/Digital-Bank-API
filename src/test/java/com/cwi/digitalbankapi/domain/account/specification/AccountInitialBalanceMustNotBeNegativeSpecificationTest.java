@@ -12,7 +12,7 @@ import java.time.OffsetDateTime;
 class AccountInitialBalanceMustNotBeNegativeSpecificationTest {
 
     private final AccountInitialBalanceMustNotBeNegativeSpecification accountInitialBalanceMustNotBeNegativeSpecification =
-        new AccountInitialBalanceMustNotBeNegativeSpecification();
+            new AccountInitialBalanceMustNotBeNegativeSpecification();
 
     @Test
     @DisplayName("Deve aceitar criacao de conta quando o saldo inicial for zero")
@@ -35,18 +35,18 @@ class AccountInitialBalanceMustNotBeNegativeSpecificationTest {
 
         // WHEN
         AccountInitialBalanceMustNotBeNegativeException accountInitialBalanceMustNotBeNegativeException = Assertions.assertThrows(
-            AccountInitialBalanceMustNotBeNegativeException.class,
-            () -> accountInitialBalanceMustNotBeNegativeSpecification.ensureSatisfiedBy(account)
+                AccountInitialBalanceMustNotBeNegativeException.class,
+                () -> accountInitialBalanceMustNotBeNegativeSpecification.ensureSatisfiedBy(account)
         );
 
         // THEN
         Assertions.assertEquals(
-            "ACCOUNT_INITIAL_BALANCE_MUST_NOT_BE_NEGATIVE",
-            accountInitialBalanceMustNotBeNegativeException.getKey()
+                "ACCOUNT_INITIAL_BALANCE_MUST_NOT_BE_NEGATIVE",
+                accountInitialBalanceMustNotBeNegativeException.getKey()
         );
         Assertions.assertEquals(
-            "O saldo inicial da conta nao pode ser negativo.",
-            accountInitialBalanceMustNotBeNegativeException.getValue()
+                "O saldo inicial da conta nao pode ser negativo.",
+                accountInitialBalanceMustNotBeNegativeException.getValue()
         );
     }
 }

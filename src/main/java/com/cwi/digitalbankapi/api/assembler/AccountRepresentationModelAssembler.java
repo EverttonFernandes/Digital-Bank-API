@@ -15,9 +15,9 @@ public class AccountRepresentationModelAssembler implements RepresentationModelA
     @Override
     public AccountRepresentationModel toModel(AccountDTO accountResponse) {
         AccountRepresentationModel accountRepresentationModel = new AccountRepresentationModel(
-            accountResponse.id(),
-            accountResponse.ownerName(),
-            accountResponse.balance()
+                accountResponse.id(),
+                accountResponse.ownerName(),
+                accountResponse.balance()
         );
 
         accountRepresentationModel.add(linkTo(methodOn(AccountApi.class).findAccountById(accountResponse.id())).withSelfRel());

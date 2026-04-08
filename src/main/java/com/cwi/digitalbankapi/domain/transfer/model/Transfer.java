@@ -10,9 +10,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 public record Transfer(
-    Account sourceAccount,
-    Account targetAccount,
-    BigDecimal amount
+        Account sourceAccount,
+        Account targetAccount,
+        BigDecimal amount
 ) {
     public void apply() {
         sourceAccount.debit(amount);
@@ -21,36 +21,36 @@ public record Transfer(
 
     public List<AccountMovement> createAccountMovements(String transferReference, OffsetDateTime movementCreatedAt) {
         return List.of(
-            new AccountMovement(
-                null,
-                sourceAccount,
-                transferReference,
-                AccountMovementType.DEBIT,
-                amount,
-                "Debito gerado pela transferencia para a conta " + targetAccount.getId() + ".",
-                movementCreatedAt
-            ),
-            new AccountMovement(
-                null,
-                targetAccount,
-                transferReference,
-                AccountMovementType.CREDIT,
-                amount,
-                "Credito recebido da transferencia da conta " + sourceAccount.getId() + ".",
-                movementCreatedAt
-            )
+                new AccountMovement(
+                        null,
+                        sourceAccount,
+                        transferReference,
+                        AccountMovementType.DEBIT,
+                        amount,
+                        "Debito gerado pela transferencia para a conta " + targetAccount.getId() + ".",
+                        movementCreatedAt
+                ),
+                new AccountMovement(
+                        null,
+                        targetAccount,
+                        transferReference,
+                        AccountMovementType.CREDIT,
+                        amount,
+                        "Credito recebido da transferencia da conta " + sourceAccount.getId() + ".",
+                        movementCreatedAt
+                )
         );
     }
 
     public TransferCompletedEvent createTransferCompletedEvent(String transferReference, OffsetDateTime movementCreatedAt) {
         return new TransferCompletedEvent(
-            sourceAccount.getId(),
-            sourceAccount.getOwnerName(),
-            targetAccount.getId(),
-            targetAccount.getOwnerName(),
-            transferReference,
-            amount,
-            movementCreatedAt
+                sourceAccount.getId(),
+                sourceAccount.getOwnerName(),
+                targetAccount.getId(),
+                targetAccount.getOwnerName(),
+                transferReference,
+                amount,
+                movementCreatedAt
         );
     }
 }

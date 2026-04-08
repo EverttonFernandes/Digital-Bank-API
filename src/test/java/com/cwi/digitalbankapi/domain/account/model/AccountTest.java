@@ -28,11 +28,11 @@ class AccountTest {
         OffsetDateTime accountCreationDate = OffsetDateTime.parse("2026-04-07T00:00:00Z");
         OffsetDateTime accountUpdateDate = OffsetDateTime.parse("2026-04-07T00:00:00Z");
         Account account = new Account(
-            1L,
-            "Ana Souza",
-            new BigDecimal("1250.00"),
-            accountCreationDate,
-            accountUpdateDate
+                1L,
+                "Ana Souza",
+                new BigDecimal("1250.00"),
+                accountCreationDate,
+                accountUpdateDate
         );
 
         // WHEN
@@ -50,11 +50,11 @@ class AccountTest {
         OffsetDateTime accountCreationDate = OffsetDateTime.parse("2026-04-07T00:00:00Z");
         OffsetDateTime accountUpdateDate = OffsetDateTime.parse("2026-04-07T00:00:00Z");
         Account account = new Account(
-            2L,
-            "Bruno Lima",
-            new BigDecimal("980.50"),
-            accountCreationDate,
-            accountUpdateDate
+                2L,
+                "Bruno Lima",
+                new BigDecimal("980.50"),
+                accountCreationDate,
+                accountUpdateDate
         );
 
         // WHEN

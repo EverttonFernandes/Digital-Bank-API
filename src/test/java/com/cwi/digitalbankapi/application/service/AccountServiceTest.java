@@ -37,14 +37,14 @@ class AccountServiceTest {
     private final AccountMovementRepository accountMovementRepository = mock(AccountMovementRepository.class);
     private final AccountNotificationRepository accountNotificationRepository = mock(AccountNotificationRepository.class);
     private final AccountService accountService = new AccountService(
-        accountRepository,
-        accountMovementRepository,
-        accountNotificationRepository,
-        new AccountCreateDTOConverter(),
-        new CompositeAccountCreationSpecification(List.of(
-            new AccountInitialBalanceMustNotBeNegativeSpecification()
-        )),
-        new AccountDTOConverter()
+            accountRepository,
+            accountMovementRepository,
+            accountNotificationRepository,
+            new AccountCreateDTOConverter(),
+            new CompositeAccountCreationSpecification(List.of(
+                    new AccountInitialBalanceMustNotBeNegativeSpecification()
+            )),
+            new AccountDTOConverter()
     );
 
     @Test
@@ -52,11 +52,11 @@ class AccountServiceTest {
     void shouldCreateBankAccountWhenProvidedDataIsValid() {
         AccountCreateDTO createAccountRequest = new AccountCreateDTO("Maria Silva", new BigDecimal("350.00"));
         Account createdAccount = new Account(
-            4L,
-            "Maria Silva",
-            new BigDecimal("350.00"),
-            OffsetDateTime.parse("2026-04-07T00:00:00Z"),
-            OffsetDateTime.parse("2026-04-07T00:00:00Z")
+                4L,
+                "Maria Silva",
+                new BigDecimal("350.00"),
+                OffsetDateTime.parse("2026-04-07T00:00:00Z"),
+                OffsetDateTime.parse("2026-04-07T00:00:00Z")
         );
 
         BDDMockito.given(accountRepository.saveAccount(any(Account.class))).willReturn(createdAccount);
@@ -75,8 +75,8 @@ class AccountServiceTest {
         AccountCreateDTO createAccountRequest = new AccountCreateDTO("Maria Silva", new BigDecimal("-1.00"));
 
         AccountInitialBalanceMustNotBeNegativeException exception = Assertions.assertThrows(
-            AccountInitialBalanceMustNotBeNegativeException.class,
-            () -> accountService.createAccount(createAccountRequest)
+                AccountInitialBalanceMustNotBeNegativeException.class,
+                () -> accountService.createAccount(createAccountRequest)
         );
 
         Assertions.assertEquals("ACCOUNT_INITIAL_BALANCE_MUST_NOT_BE_NEGATIVE", exception.getKey());
@@ -87,8 +87,8 @@ class AccountServiceTest {
     @DisplayName("Deve listar contas cadastradas com nome do titular e saldo")
     void shouldListRegisteredAccountsWithOwnerNameAndBalance() {
         List<Account> registeredAccounts = List.of(
-            new Account(1L, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.parse("2026-04-07T00:00:00Z"), OffsetDateTime.parse("2026-04-07T00:00:00Z")),
-            new Account(2L, "Bruno Lima", new BigDecimal("980.50"), OffsetDateTime.parse("2026-04-07T00:00:00Z"), OffsetDateTime.parse("2026-04-07T00:00:00Z"))
+                new Account(1L, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.parse("2026-04-07T00:00:00Z"), OffsetDateTime.parse("2026-04-07T00:00:00Z")),
+                new Account(2L, "Bruno Lima", new BigDecimal("980.50"), OffsetDateTime.parse("2026-04-07T00:00:00Z"), OffsetDateTime.parse("2026-04-07T00:00:00Z"))
         );
 
         BDDMockito.given(accountRepository.findAllAccounts()).willReturn(registeredAccounts);
@@ -104,11 +104,11 @@ class AccountServiceTest {
     @DisplayName("Deve buscar conta existente pelo identificador")
     void shouldFindExistingAccountByIdentifier() {
         Account existingAccount = new Account(
-            1L,
-            "Ana Souza",
-            new BigDecimal("1250.00"),
-            OffsetDateTime.parse("2026-04-07T00:00:00Z"),
-            OffsetDateTime.parse("2026-04-07T00:00:00Z")
+                1L,
+                "Ana Souza",
+                new BigDecimal("1250.00"),
+                OffsetDateTime.parse("2026-04-07T00:00:00Z"),
+                OffsetDateTime.parse("2026-04-07T00:00:00Z")
         );
 
         BDDMockito.given(accountRepository.findAccountById(1L)).willReturn(Optional.of(existingAccount));
@@ -126,13 +126,13 @@ class AccountServiceTest {
         Long accountId = 1L;
         Account account = new Account(accountId, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.now(), OffsetDateTime.now());
         AccountMovement debitMovement = new AccountMovement(
-            1L,
-            account,
-            "transfer-reference-001",
-            AccountMovementType.DEBIT,
-            new BigDecimal("200.00"),
-            "Debito gerado pela transferencia para a conta 2.",
-            OffsetDateTime.now()
+                1L,
+                account,
+                "transfer-reference-001",
+                AccountMovementType.DEBIT,
+                new BigDecimal("200.00"),
+                "Debito gerado pela transferencia para a conta 2.",
+                OffsetDateTime.now()
         );
 
         BDDMockito.given(accountRepository.findAccountById(accountId)).willReturn(Optional.of(account));
@@ -151,17 +151,17 @@ class AccountServiceTest {
         Long accountId = 1L;
         Account account = new Account(accountId, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.now(), OffsetDateTime.now());
         AccountNotification accountNotification = new AccountNotification(
-            1L,
-            account,
-            "transfer-reference-001",
-            AccountNotificationStatus.REGISTERED,
-            "Transferencia enviada com sucesso para a conta 2.",
-            OffsetDateTime.now()
+                1L,
+                account,
+                "transfer-reference-001",
+                AccountNotificationStatus.REGISTERED,
+                "Transferencia enviada com sucesso para a conta 2.",
+                OffsetDateTime.now()
         );
 
         BDDMockito.given(accountRepository.findAccountById(accountId)).willReturn(Optional.of(account));
         BDDMockito.given(accountNotificationRepository.findAccountNotificationsByAccountId(accountId))
-            .willReturn(List.of(accountNotification));
+                .willReturn(List.of(accountNotification));
 
         List<AccountNotificationDTO> accountNotificationResponseList = accountService.findAccountNotificationsByAccountId(accountId);
 
@@ -176,8 +176,8 @@ class AccountServiceTest {
         BDDMockito.given(accountRepository.findAccountById(99L)).willReturn(Optional.empty());
 
         AccountNotFoundException accountNotFoundException = Assertions.assertThrows(
-            AccountNotFoundException.class,
-            () -> accountService.findAccountById(99L)
+                AccountNotFoundException.class,
+                () -> accountService.findAccountById(99L)
         );
 
         Assertions.assertEquals("ACCOUNT_NOT_FOUND", accountNotFoundException.getKey());

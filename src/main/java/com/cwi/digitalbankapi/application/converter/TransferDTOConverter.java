@@ -28,9 +28,9 @@ public class TransferDTOConverter {
         }
 
         return new Transfer(
-            sourceAccount,
-            targetAccount,
-            transferRequest.amount()
+                sourceAccount,
+                targetAccount,
+                transferRequest.amount()
         );
     }
 }

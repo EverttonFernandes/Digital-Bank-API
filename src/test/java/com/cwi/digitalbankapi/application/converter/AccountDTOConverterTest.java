@@ -18,11 +18,11 @@ class AccountDTOConverterTest {
     void shouldConvertDomainAccountIntoAccountDTO() {
         // GIVEN
         Account account = new Account(
-            1L,
-            "Ana Souza",
-            new BigDecimal("1250.00"),
-            OffsetDateTime.parse("2026-04-07T00:00:00Z"),
-            OffsetDateTime.parse("2026-04-07T00:00:00Z")
+                1L,
+                "Ana Souza",
+                new BigDecimal("1250.00"),
+                OffsetDateTime.parse("2026-04-07T00:00:00Z"),
+                OffsetDateTime.parse("2026-04-07T00:00:00Z")
         );
 
         // WHEN

@@ -11,23 +11,23 @@ import java.time.OffsetDateTime;
 class AccountNotificationRepresentationModelAssemblerTest {
 
     private final AccountNotificationRepresentationModelAssembler accountNotificationRepresentationModelAssembler =
-        new AccountNotificationRepresentationModelAssembler();
+            new AccountNotificationRepresentationModelAssembler();
 
     @Test
     @DisplayName("Deve montar representacao HATEOAS da notificacao com links da conta e da colecao")
     void shouldBuildAccountNotificationHateoasRepresentationWithAccountAndCollectionLinks() {
         // GIVEN
         AccountNotificationDTO accountNotificationResponse = new AccountNotificationDTO(
-            1L,
-            "reference-123",
-            "REGISTERED",
-            "Transferencia enviada com sucesso para a conta 2.",
-            OffsetDateTime.parse("2026-04-07T10:15:30Z")
+                1L,
+                "reference-123",
+                "REGISTERED",
+                "Transferencia enviada com sucesso para a conta 2.",
+                OffsetDateTime.parse("2026-04-07T10:15:30Z")
         );
 
         // WHEN
         AccountNotificationRepresentationModel accountNotificationRepresentationModel =
-            accountNotificationRepresentationModelAssembler.toModel(accountNotificationResponse);
+                accountNotificationRepresentationModelAssembler.toModel(accountNotificationResponse);
 
         // THEN
         Assertions.assertEquals(1L, accountNotificationRepresentationModel.getAccountId());

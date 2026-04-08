@@ -23,7 +23,7 @@ public class SpringTransferCompletedEventPublisher implements TransferCompletedE
 
     private void notifyObservers(TransferCompletedEvent transferCompletedEvent) {
         transferCompletedObserverList.forEach(
-            transferCompletedObserver -> transferCompletedObserver.handle(transferCompletedEvent)
+                transferCompletedObserver -> transferCompletedObserver.handle(transferCompletedEvent)
         );
     }
 }

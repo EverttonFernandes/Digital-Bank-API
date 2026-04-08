@@ -44,12 +44,12 @@ public class AccountNotification {
     private OffsetDateTime createdAt;
 
     public AccountNotification(
-        Long id,
-        Account account,
-        String transferReference,
-        AccountNotificationStatus notificationStatus,
-        String message,
-        OffsetDateTime createdAt
+            Long id,
+            Account account,
+            String transferReference,
+            AccountNotificationStatus notificationStatus,
+            String message,
+            OffsetDateTime createdAt
     ) {
         this.id = id;
         this.account = account;

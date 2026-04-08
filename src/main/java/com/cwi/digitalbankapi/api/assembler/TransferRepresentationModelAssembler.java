@@ -16,12 +16,12 @@ public class TransferRepresentationModelAssembler implements RepresentationModel
     @Override
     public TransferRepresentationModel toModel(TransferResponseDTO transferResponse) {
         TransferRepresentationModel transferRepresentationModel = new TransferRepresentationModel(
-            transferResponse.sourceAccountId(),
-            transferResponse.targetAccountId(),
-            transferResponse.transferReference(),
-            transferResponse.transferredAmount(),
-            transferResponse.sourceAccountBalance(),
-            transferResponse.targetAccountBalance()
+                transferResponse.sourceAccountId(),
+                transferResponse.targetAccountId(),
+                transferResponse.transferReference(),
+                transferResponse.transferredAmount(),
+                transferResponse.sourceAccountBalance(),
+                transferResponse.targetAccountBalance()
         );
 
         transferRepresentationModel.add(linkTo(TransferApi.class).withRel("transfers"));

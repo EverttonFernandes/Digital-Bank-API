@@ -15,12 +15,12 @@ public class AccountMovementRepresentationModelAssembler implements Representati
     @Override
     public AccountMovementRepresentationModel toModel(AccountMovementDTO accountMovementResponse) {
         AccountMovementRepresentationModel accountMovementRepresentationModel = new AccountMovementRepresentationModel(
-            accountMovementResponse.accountId(),
-            accountMovementResponse.transferReference(),
-            accountMovementResponse.movementType(),
-            accountMovementResponse.amount(),
-            accountMovementResponse.description(),
-            accountMovementResponse.createdAt()
+                accountMovementResponse.accountId(),
+                accountMovementResponse.transferReference(),
+                accountMovementResponse.movementType(),
+                accountMovementResponse.amount(),
+                accountMovementResponse.description(),
+                accountMovementResponse.createdAt()
         );
 
         accountMovementRepresentationModel.add(linkTo(methodOn(AccountApi.class).findAccountById(accountMovementResponse.accountId())).withRel("account"));

@@ -48,13 +48,13 @@ public class AccountMovement {
     private OffsetDateTime createdAt;
 
     public AccountMovement(
-        Long id,
-        Account account,
-        String transferReference,
-        AccountMovementType movementType,
-        BigDecimal amount,
-        String description,
-        OffsetDateTime createdAt
+            Long id,
+            Account account,
+            String transferReference,
+            AccountMovementType movementType,
+            BigDecimal amount,
+            String description,
+            OffsetDateTime createdAt
     ) {
         this.id = id;
         this.account = account;

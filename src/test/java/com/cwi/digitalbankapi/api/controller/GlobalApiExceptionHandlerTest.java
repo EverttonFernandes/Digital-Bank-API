@@ -30,13 +30,13 @@ class GlobalApiExceptionHandlerTest {
 
         // WHEN
         ApiErrorResponse apiErrorResponse = globalApiExceptionHandler
-            .handleBusinessException(transferAmountMustBePositiveException)
-            .getBody();
+                .handleBusinessException(transferAmountMustBePositiveException)
+                .getBody();
 
         // THEN
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, globalApiExceptionHandler
-            .handleBusinessException(transferAmountMustBePositiveException)
-            .getStatusCode());
+                .handleBusinessException(transferAmountMustBePositiveException)
+                .getStatusCode());
         Assertions.assertEquals("TRANSFER_AMOUNT_MUST_BE_POSITIVE", apiErrorResponse.key());
         Assertions.assertEquals("O valor da transferencia deve ser maior que zero.", apiErrorResponse.value());
     }
@@ -47,39 +47,39 @@ class GlobalApiExceptionHandlerTest {
         // GIVEN
         BeanPropertyBindingResult beanPropertyBindingResult = new BeanPropertyBindingResult(new Object(), "transferRequest");
         beanPropertyBindingResult.addError(new FieldError(
-            "transferRequest",
-            "sourceAccountId",
-            "O campo sourceAccountId e obrigatorio."
+                "transferRequest",
+                "sourceAccountId",
+                "O campo sourceAccountId e obrigatorio."
         ));
         Method transferMethod = TransferApi.class.getDeclaredMethod(
-            "transfer",
-            com.cwi.digitalbankapi.application.dto.TransferDTO.class
+                "transfer",
+                com.cwi.digitalbankapi.application.dto.TransferDTO.class
         );
         MethodParameter methodParameter = new MethodParameter(transferMethod, 0);
         MethodArgumentNotValidException methodArgumentNotValidException = new MethodArgumentNotValidException(
-            methodParameter,
-            beanPropertyBindingResult
+                methodParameter,
+                beanPropertyBindingResult
         );
 
         // WHEN
         ApiErrorResponse apiErrorResponse = (ApiErrorResponse) globalApiExceptionHandler
-            .handleMethodArgumentNotValid(
-                methodArgumentNotValidException,
-                HttpHeaders.EMPTY,
-                HttpStatus.BAD_REQUEST,
-                new ServletWebRequest(new MockHttpServletRequest())
-            )
-            .getBody();
+                .handleMethodArgumentNotValid(
+                        methodArgumentNotValidException,
+                        HttpHeaders.EMPTY,
+                        HttpStatus.BAD_REQUEST,
+                        new ServletWebRequest(new MockHttpServletRequest())
+                )
+                .getBody();
 
         // THEN
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, globalApiExceptionHandler
-            .handleMethodArgumentNotValid(
-                methodArgumentNotValidException,
-                HttpHeaders.EMPTY,
-                HttpStatus.BAD_REQUEST,
-                new ServletWebRequest(new MockHttpServletRequest())
-            )
-            .getStatusCode());
+                .handleMethodArgumentNotValid(
+                        methodArgumentNotValidException,
+                        HttpHeaders.EMPTY,
+                        HttpStatus.BAD_REQUEST,
+                        new ServletWebRequest(new MockHttpServletRequest())
+                )
+                .getStatusCode());
         Assertions.assertEquals("INVALID_REQUEST_DATA", apiErrorResponse.key());
         Assertions.assertEquals("O campo sourceAccountId e obrigatorio.", apiErrorResponse.value());
     }
@@ -89,28 +89,28 @@ class GlobalApiExceptionHandlerTest {
     void shouldReturnStandardizedKeyAndValueWhenRequestBodyIsInvalid() {
         // GIVEN
         HttpMessageNotReadableException httpMessageNotReadableException = new HttpMessageNotReadableException(
-            "Corpo invalido"
+                "Corpo invalido"
         );
 
         // WHEN
         ApiErrorResponse apiErrorResponse = (ApiErrorResponse) globalApiExceptionHandler
-            .handleHttpMessageNotReadable(
-                httpMessageNotReadableException,
-                HttpHeaders.EMPTY,
-                HttpStatus.BAD_REQUEST,
-                new ServletWebRequest(new MockHttpServletRequest())
-            )
-            .getBody();
+                .handleHttpMessageNotReadable(
+                        httpMessageNotReadableException,
+                        HttpHeaders.EMPTY,
+                        HttpStatus.BAD_REQUEST,
+                        new ServletWebRequest(new MockHttpServletRequest())
+                )
+                .getBody();
 
         // THEN
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, globalApiExceptionHandler
-            .handleHttpMessageNotReadable(
-                httpMessageNotReadableException,
-                HttpHeaders.EMPTY,
-                HttpStatus.BAD_REQUEST,
-                new ServletWebRequest(new MockHttpServletRequest())
-            )
-            .getStatusCode());
+                .handleHttpMessageNotReadable(
+                        httpMessageNotReadableException,
+                        HttpHeaders.EMPTY,
+                        HttpStatus.BAD_REQUEST,
+                        new ServletWebRequest(new MockHttpServletRequest())
+                )
+                .getStatusCode());
         Assertions.assertEquals("INVALID_REQUEST_DATA", apiErrorResponse.key());
         Assertions.assertEquals("O corpo da requisicao esta invalido.", apiErrorResponse.value());
     }
@@ -120,22 +120,22 @@ class GlobalApiExceptionHandlerTest {
     void shouldReturnStandardizedKeyAndValueWhenParameterHasInvalidFormat() {
         // GIVEN
         MethodArgumentTypeMismatchException methodArgumentTypeMismatchException = new MethodArgumentTypeMismatchException(
-            "abc",
-            Long.class,
-            "accountId",
-            null,
-            new NumberFormatException("For input string: abc")
+                "abc",
+                Long.class,
+                "accountId",
+                null,
+                new NumberFormatException("For input string: abc")
         );
 
         // WHEN
         ApiErrorResponse apiErrorResponse = globalApiExceptionHandler
-            .handleMethodArgumentTypeMismatchException(methodArgumentTypeMismatchException)
-            .getBody();
+                .handleMethodArgumentTypeMismatchException(methodArgumentTypeMismatchException)
+                .getBody();
 
         // THEN
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, globalApiExceptionHandler
-            .handleMethodArgumentTypeMismatchException(methodArgumentTypeMismatchException)
-            .getStatusCode());
+                .handleMethodArgumentTypeMismatchException(methodArgumentTypeMismatchException)
+                .getStatusCode());
         Assertions.assertEquals("INVALID_REQUEST_DATA", apiErrorResponse.key());
         Assertions.assertEquals("O parametro informado possui formato invalido.", apiErrorResponse.value());
     }

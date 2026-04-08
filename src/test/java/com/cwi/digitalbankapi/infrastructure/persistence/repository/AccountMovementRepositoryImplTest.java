@@ -19,7 +19,7 @@ class AccountMovementRepositoryImplTest {
 
     private final AccountMovementJpaRepository springDataAccountMovementJpaRepository = mock(AccountMovementJpaRepository.class);
     private final AccountMovementRepositoryImpl postgreSqlAccountMovementRepository = new AccountMovementRepositoryImpl(
-        springDataAccountMovementJpaRepository
+            springDataAccountMovementJpaRepository
     );
 
     @Test
@@ -28,13 +28,13 @@ class AccountMovementRepositoryImplTest {
         // GIVEN
         Account accountReference = new Account(1L, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.now(), OffsetDateTime.now());
         AccountMovement accountMovement = new AccountMovement(
-            null,
-            accountReference,
-            "transfer-reference-001",
-            AccountMovementType.DEBIT,
-            new BigDecimal("200.00"),
-            "Debito de teste.",
-            OffsetDateTime.parse("2026-04-08T00:00:00Z")
+                null,
+                accountReference,
+                "transfer-reference-001",
+                AccountMovementType.DEBIT,
+                new BigDecimal("200.00"),
+                "Debito de teste.",
+                OffsetDateTime.parse("2026-04-08T00:00:00Z")
         );
 
         // WHEN
@@ -54,17 +54,17 @@ class AccountMovementRepositoryImplTest {
         // GIVEN
         Account accountReference = new Account(1L, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.now(), OffsetDateTime.now());
         AccountMovement accountMovement = new AccountMovement(
-            10L,
-            accountReference,
-            "transfer-reference-001",
-            AccountMovementType.DEBIT,
-            new BigDecimal("200.00"),
-            "Debito de teste.",
-            OffsetDateTime.parse("2026-04-08T00:00:00Z")
+                10L,
+                accountReference,
+                "transfer-reference-001",
+                AccountMovementType.DEBIT,
+                new BigDecimal("200.00"),
+                "Debito de teste.",
+                OffsetDateTime.parse("2026-04-08T00:00:00Z")
         );
 
         BDDMockito.given(springDataAccountMovementJpaRepository.findByAccountIdOrderByCreatedAtDescIdDesc(1L))
-            .willReturn(List.of(accountMovement));
+                .willReturn(List.of(accountMovement));
 
         // WHEN
         List<AccountMovement> accountMovementList = postgreSqlAccountMovementRepository.findAccountMovementsByAccountId(1L);

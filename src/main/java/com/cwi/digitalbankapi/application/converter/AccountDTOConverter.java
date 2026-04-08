@@ -9,9 +9,9 @@ public class AccountDTOConverter {
 
     public AccountDTO convert(Account account) {
         return new AccountDTO(
-            account.getId(),
-            account.getOwnerName(),
-            account.getBalance()
+                account.getId(),
+                account.getOwnerName(),
+                account.getBalance()
         );
     }
 }

@@ -30,12 +30,12 @@ public class AccountMovementRepresentationModel extends RepresentationModel<Acco
     private final OffsetDateTime createdAt;
 
     public AccountMovementRepresentationModel(
-        Long accountId,
-        String transferReference,
-        String movementType,
-        BigDecimal amount,
-        String description,
-        OffsetDateTime createdAt
+            Long accountId,
+            String transferReference,
+            String movementType,
+            BigDecimal amount,
+            String description,
+            OffsetDateTime createdAt
     ) {
         this.accountId = accountId;
         this.transferReference = transferReference;

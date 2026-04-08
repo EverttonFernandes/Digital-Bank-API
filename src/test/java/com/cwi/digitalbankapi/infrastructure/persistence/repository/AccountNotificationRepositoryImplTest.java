@@ -19,7 +19,7 @@ class AccountNotificationRepositoryImplTest {
 
     private final AccountNotificationJpaRepository springDataAccountNotificationJpaRepository = mock(AccountNotificationJpaRepository.class);
     private final AccountNotificationRepositoryImpl postgreSqlAccountNotificationRepository = new AccountNotificationRepositoryImpl(
-        springDataAccountNotificationJpaRepository
+            springDataAccountNotificationJpaRepository
     );
 
     @Test
@@ -28,12 +28,12 @@ class AccountNotificationRepositoryImplTest {
         // GIVEN
         Account accountReference = new Account(1L, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.now(), OffsetDateTime.now());
         AccountNotification accountNotification = new AccountNotification(
-            null,
-            accountReference,
-            "transfer-reference-001",
-            AccountNotificationStatus.REGISTERED,
-            "Notificacao de teste.",
-            OffsetDateTime.parse("2026-04-08T00:00:00Z")
+                null,
+                accountReference,
+                "transfer-reference-001",
+                AccountNotificationStatus.REGISTERED,
+                "Notificacao de teste.",
+                OffsetDateTime.parse("2026-04-08T00:00:00Z")
         );
 
         // WHEN
@@ -53,16 +53,16 @@ class AccountNotificationRepositoryImplTest {
         // GIVEN
         Account accountReference = new Account(1L, "Ana Souza", new BigDecimal("1250.00"), OffsetDateTime.now(), OffsetDateTime.now());
         AccountNotification accountNotification = new AccountNotification(
-            10L,
-            accountReference,
-            "transfer-reference-001",
-            AccountNotificationStatus.REGISTERED,
-            "Notificacao de teste.",
-            OffsetDateTime.parse("2026-04-08T00:00:00Z")
+                10L,
+                accountReference,
+                "transfer-reference-001",
+                AccountNotificationStatus.REGISTERED,
+                "Notificacao de teste.",
+                OffsetDateTime.parse("2026-04-08T00:00:00Z")
         );
 
         BDDMockito.given(springDataAccountNotificationJpaRepository.findByAccountIdOrderByCreatedAtDescIdDesc(1L))
-            .willReturn(List.of(accountNotification));
+                .willReturn(List.of(accountNotification));
 
         // WHEN
         List<AccountNotification> accountNotificationList = postgreSqlAccountNotificationRepository.findAccountNotificationsByAccountId(1L);

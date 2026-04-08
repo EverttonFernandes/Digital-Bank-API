@@ -8,11 +8,11 @@ import java.math.BigDecimal;
 
 @Schema(name = "AccountCreateDTO", description = "Payload de entrada para criacao de uma nova conta bancaria.")
 public record AccountCreateDTO(
-    @NotBlank(message = "O campo ownerName e obrigatorio.")
-    @Schema(description = "Nome do titular da nova conta.", example = "Maria Silva")
-    String ownerName,
-    @NotNull(message = "O campo initialBalance e obrigatorio.")
-    @Schema(description = "Saldo inicial da nova conta.", example = "350.00")
-    BigDecimal initialBalance
+        @NotBlank(message = "O campo ownerName e obrigatorio.")
+        @Schema(description = "Nome do titular da nova conta.", example = "Maria Silva")
+        String ownerName,
+        @NotNull(message = "O campo initialBalance e obrigatorio.")
+        @Schema(description = "Saldo inicial da nova conta.", example = "350.00")
+        BigDecimal initialBalance
 ) {
 }

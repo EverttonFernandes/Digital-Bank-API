@@ -27,12 +27,12 @@ public class TransferRepresentationModel extends RepresentationModel<TransferRep
     private final BigDecimal targetAccountBalance;
 
     public TransferRepresentationModel(
-        Long sourceAccountId,
-        Long targetAccountId,
-        String transferReference,
-        BigDecimal transferredAmount,
-        BigDecimal sourceAccountBalance,
-        BigDecimal targetAccountBalance
+            Long sourceAccountId,
+            Long targetAccountId,
+            String transferReference,
+            BigDecimal transferredAmount,
+            BigDecimal sourceAccountBalance,
+            BigDecimal targetAccountBalance
     ) {
         this.sourceAccountId = sourceAccountId;
         this.targetAccountId = targetAccountId;
