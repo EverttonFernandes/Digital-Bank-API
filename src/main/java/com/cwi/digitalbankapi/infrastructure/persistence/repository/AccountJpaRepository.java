@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface SpringDataAccountJpaRepository extends JpaRepository<Account, Long> {
+public interface AccountJpaRepository extends JpaRepository<Account, Long> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("""

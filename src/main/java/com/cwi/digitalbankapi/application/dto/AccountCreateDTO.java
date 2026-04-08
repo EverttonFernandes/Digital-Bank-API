@@ -6,8 +6,8 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-@Schema(name = "CreateAccountRequest", description = "Payload de entrada para criacao de uma nova conta bancaria.")
-public record CreateAccountRequest(
+@Schema(name = "AccountCreateDTO", description = "Payload de entrada para criacao de uma nova conta bancaria.")
+public record AccountCreateDTO(
     @NotBlank(message = "O campo ownerName e obrigatorio.")
     @Schema(description = "Nome do titular da nova conta.", example = "Maria Silva")
     String ownerName,

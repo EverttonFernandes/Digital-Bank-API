@@ -1,11 +1,11 @@
 package com.cwi.digitalbankapi.application.service;
 
-import com.cwi.digitalbankapi.application.converter.AccountResponseConverter;
-import com.cwi.digitalbankapi.application.converter.CreateAccountRequestConverter;
-import com.cwi.digitalbankapi.application.dto.AccountMovementResponse;
-import com.cwi.digitalbankapi.application.dto.AccountNotificationResponse;
-import com.cwi.digitalbankapi.application.dto.AccountResponse;
-import com.cwi.digitalbankapi.application.dto.CreateAccountRequest;
+import com.cwi.digitalbankapi.application.converter.AccountDTOConverter;
+import com.cwi.digitalbankapi.application.converter.AccountCreateDTOConverter;
+import com.cwi.digitalbankapi.application.dto.AccountMovementDTO;
+import com.cwi.digitalbankapi.application.dto.AccountNotificationDTO;
+import com.cwi.digitalbankapi.application.dto.AccountDTO;
+import com.cwi.digitalbankapi.application.dto.AccountCreateDTO;
 import com.cwi.digitalbankapi.domain.account.exception.AccountNotFoundException;
 import com.cwi.digitalbankapi.domain.account.model.Account;
 import com.cwi.digitalbankapi.domain.account.repository.AccountRepository;
@@ -23,17 +23,17 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final AccountMovementRepository accountMovementRepository;
     private final AccountNotificationRepository accountNotificationRepository;
-    private final CreateAccountRequestConverter createAccountRequestConverter;
+    private final AccountCreateDTOConverter createAccountRequestConverter;
     private final CompositeAccountCreationSpecification compositeAccountCreationSpecification;
-    private final AccountResponseConverter accountResponseConverter;
+    private final AccountDTOConverter accountResponseConverter;
 
     public AccountService(
         AccountRepository accountRepository,
         AccountMovementRepository accountMovementRepository,
         AccountNotificationRepository accountNotificationRepository,
-        CreateAccountRequestConverter createAccountRequestConverter,
+        AccountCreateDTOConverter createAccountRequestConverter,
         CompositeAccountCreationSpecification compositeAccountCreationSpecification,
-        AccountResponseConverter accountResponseConverter
+        AccountDTOConverter accountResponseConverter
     ) {
         this.accountRepository = accountRepository;
         this.accountMovementRepository = accountMovementRepository;
@@ -44,7 +44,7 @@ public class AccountService {
     }
 
     @Transactional
-    public AccountResponse createAccount(CreateAccountRequest createAccountRequest) {
+    public AccountDTO createAccount(AccountCreateDTO createAccountRequest) {
         Account accountToBeCreated = createAccountRequestConverter.convert(createAccountRequest);
 
         compositeAccountCreationSpecification.ensureSatisfiedBy(accountToBeCreated);
@@ -52,25 +52,25 @@ public class AccountService {
         return accountResponseConverter.convert(accountRepository.saveAccount(accountToBeCreated));
     }
 
-    public List<AccountResponse> listAllAccounts() {
+    public List<AccountDTO> listAllAccounts() {
         return accountRepository.findAllAccounts()
             .stream()
             .map(accountResponseConverter::convert)
             .toList();
     }
 
-    public AccountResponse findAccountById(Long accountIdentifier) {
+    public AccountDTO findAccountById(Long accountIdentifier) {
         return accountRepository.findAccountById(accountIdentifier)
             .map(accountResponseConverter::convert)
             .orElseThrow(() -> new AccountNotFoundException(accountIdentifier));
     }
 
-    public List<AccountMovementResponse> findAccountMovementsByAccountId(Long accountId) {
+    public List<AccountMovementDTO> findAccountMovementsByAccountId(Long accountId) {
         findExistingAccountById(accountId);
 
         return accountMovementRepository.findAccountMovementsByAccountId(accountId)
             .stream()
-            .map(accountMovement -> new AccountMovementResponse(
+            .map(accountMovement -> new AccountMovementDTO(
                 accountMovement.getAccountId(),
                 accountMovement.getTransferReference(),
                 accountMovement.getMovementType().name(),
@@ -81,12 +81,12 @@ public class AccountService {
             .toList();
     }
 
-    public List<AccountNotificationResponse> findAccountNotificationsByAccountId(Long accountId) {
+    public List<AccountNotificationDTO> findAccountNotificationsByAccountId(Long accountId) {
         findExistingAccountById(accountId);
 
         return accountNotificationRepository.findAccountNotificationsByAccountId(accountId)
             .stream()
-            .map(accountNotification -> new AccountNotificationResponse(
+            .map(accountNotification -> new AccountNotificationDTO(
                 accountNotification.getAccountId(),
                 accountNotification.getTransferReference(),
                 accountNotification.getNotificationStatus().name(),

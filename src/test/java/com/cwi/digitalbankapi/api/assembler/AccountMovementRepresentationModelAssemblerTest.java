@@ -1,7 +1,7 @@
 package com.cwi.digitalbankapi.api.assembler;
 
 import com.cwi.digitalbankapi.api.representation.AccountMovementRepresentationModel;
-import com.cwi.digitalbankapi.application.dto.AccountMovementResponse;
+import com.cwi.digitalbankapi.application.dto.AccountMovementDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ class AccountMovementRepresentationModelAssemblerTest {
     @DisplayName("Deve montar representacao HATEOAS da movimentacao com links da conta e da colecao")
     void shouldBuildAccountMovementHateoasRepresentationWithAccountAndCollectionLinks() {
         // GIVEN
-        AccountMovementResponse accountMovementResponse = new AccountMovementResponse(
+        AccountMovementDTO accountMovementResponse = new AccountMovementDTO(
             1L,
             "reference-123",
             "DEBIT",

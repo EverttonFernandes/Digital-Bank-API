@@ -7,11 +7,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class PostgreSqlAccountNotificationRepository implements AccountNotificationRepository {
+public class AccountNotificationRepositoryImpl implements AccountNotificationRepository {
 
-    private final SpringDataAccountNotificationJpaRepository springDataAccountNotificationJpaRepository;
+    private final AccountNotificationJpaRepository springDataAccountNotificationJpaRepository;
 
-    public PostgreSqlAccountNotificationRepository(SpringDataAccountNotificationJpaRepository springDataAccountNotificationJpaRepository) {
+    public AccountNotificationRepositoryImpl(AccountNotificationJpaRepository springDataAccountNotificationJpaRepository) {
         this.springDataAccountNotificationJpaRepository = springDataAccountNotificationJpaRepository;
     }
 

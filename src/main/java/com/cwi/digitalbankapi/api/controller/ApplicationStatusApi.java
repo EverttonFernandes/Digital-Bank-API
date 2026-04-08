@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/status")
 @Tag(name = "Application Status", description = "Operacao simples de status da aplicacao.")
-public class ApplicationStatusController {
+public class ApplicationStatusApi {
 
     private final ApplicationStatusService applicationStatusService;
 
-    public ApplicationStatusController(ApplicationStatusService applicationStatusService) {
+    public ApplicationStatusApi(ApplicationStatusService applicationStatusService) {
         this.applicationStatusService = applicationStatusService;
     }
 

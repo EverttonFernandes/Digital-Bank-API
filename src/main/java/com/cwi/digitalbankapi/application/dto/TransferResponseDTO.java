@@ -4,8 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigDecimal;
 
-@Schema(name = "TransferResponse", description = "Resposta retornada apos transferencia concluida com sucesso.")
-public record TransferResponse(
+@Schema(name = "TransferResponseDTO", description = "Resposta retornada apos transferencia concluida com sucesso.")
+public record TransferResponseDTO(
     @Schema(description = "Identificador da conta de origem.", example = "1")
     Long sourceAccountId,
     @Schema(description = "Identificador da conta de destino.", example = "2")

@@ -1,6 +1,6 @@
 package com.cwi.digitalbankapi.application.converter;
 
-import com.cwi.digitalbankapi.application.dto.TransferRequest;
+import com.cwi.digitalbankapi.application.dto.TransferDTO;
 import com.cwi.digitalbankapi.domain.account.model.Account;
 import com.cwi.digitalbankapi.domain.transfer.exception.TransferAmountMustBePositiveException;
 import com.cwi.digitalbankapi.domain.transfer.model.Transfer;
@@ -13,15 +13,15 @@ import java.math.BigDecimal;
 
 import java.time.OffsetDateTime;
 
-class TransferRequestConverterTest {
+class TransferDTOConverterTest {
 
-    private final TransferRequestConverter transferRequestConverter = new TransferRequestConverter();
+    private final TransferDTOConverter transferRequestConverter = new TransferDTOConverter();
 
     @Test
     @DisplayName("Deve converter requisicao de transferencia valida em agregado de transferencia")
-    void shouldConvertValidTransferRequestIntoTransfer() {
+    void shouldConvertValidTransferDTOIntoTransfer() {
         // GIVEN
-        TransferRequest transferRequest = new TransferRequest(1L, 2L, new BigDecimal("150.00"));
+        TransferDTO transferRequest = new TransferDTO(1L, 2L, new BigDecimal("150.00"));
         Account sourceAccount = new Account(1L, "Ana Souza", new BigDecimal("900.00"), OffsetDateTime.now(), OffsetDateTime.now());
         Account targetAccount = new Account(2L, "Bruno Lima", new BigDecimal("800.00"), OffsetDateTime.now(), OffsetDateTime.now());
 
@@ -36,9 +36,9 @@ class TransferRequestConverterTest {
 
     @Test
     @DisplayName("Deve rejeitar requisicao de transferencia quando o valor for menor ou igual a zero")
-    void shouldRejectTransferRequestWhenAmountIsLessThanOrEqualToZero() {
+    void shouldRejectTransferDTOWhenAmountIsLessThanOrEqualToZero() {
         // GIVEN
-        TransferRequest transferRequest = new TransferRequest(1L, 2L, BigDecimal.ZERO);
+        TransferDTO transferRequest = new TransferDTO(1L, 2L, BigDecimal.ZERO);
 
         // WHEN
         TransferAmountMustBePositiveException exception = Assertions.assertThrows(
@@ -53,9 +53,9 @@ class TransferRequestConverterTest {
 
     @Test
     @DisplayName("Deve rejeitar requisicao de transferencia quando a conta de origem nao for informada")
-    void shouldRejectTransferRequestWhenSourceAccountIdIsNotProvided() {
+    void shouldRejectTransferDTOWhenSourceAccountIdIsNotProvided() {
         // GIVEN
-        TransferRequest transferRequest = new TransferRequest(null, 2L, new BigDecimal("150.00"));
+        TransferDTO transferRequest = new TransferDTO(null, 2L, new BigDecimal("150.00"));
 
         // WHEN
         InvalidRequestDataException exception = Assertions.assertThrows(
@@ -70,9 +70,9 @@ class TransferRequestConverterTest {
 
     @Test
     @DisplayName("Deve rejeitar requisicao de transferencia quando a conta de destino nao for informada")
-    void shouldRejectTransferRequestWhenTargetAccountIdIsNotProvided() {
+    void shouldRejectTransferDTOWhenTargetAccountIdIsNotProvided() {
         // GIVEN
-        TransferRequest transferRequest = new TransferRequest(1L, null, new BigDecimal("150.00"));
+        TransferDTO transferRequest = new TransferDTO(1L, null, new BigDecimal("150.00"));
 
         // WHEN
         InvalidRequestDataException exception = Assertions.assertThrows(
@@ -87,9 +87,9 @@ class TransferRequestConverterTest {
 
     @Test
     @DisplayName("Deve rejeitar requisicao de transferencia quando o valor nao for informado")
-    void shouldRejectTransferRequestWhenAmountIsNotProvided() {
+    void shouldRejectTransferDTOWhenAmountIsNotProvided() {
         // GIVEN
-        TransferRequest transferRequest = new TransferRequest(1L, 2L, null);
+        TransferDTO transferRequest = new TransferDTO(1L, 2L, null);
 
         // WHEN
         InvalidRequestDataException exception = Assertions.assertThrows(

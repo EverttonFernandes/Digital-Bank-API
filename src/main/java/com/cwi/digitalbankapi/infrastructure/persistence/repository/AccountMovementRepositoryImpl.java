@@ -7,11 +7,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class PostgreSqlAccountMovementRepository implements AccountMovementRepository {
+public class AccountMovementRepositoryImpl implements AccountMovementRepository {
 
-    private final SpringDataAccountMovementJpaRepository springDataAccountMovementJpaRepository;
+    private final AccountMovementJpaRepository springDataAccountMovementJpaRepository;
 
-    public PostgreSqlAccountMovementRepository(SpringDataAccountMovementJpaRepository springDataAccountMovementJpaRepository) {
+    public AccountMovementRepositoryImpl(AccountMovementJpaRepository springDataAccountMovementJpaRepository) {
         this.springDataAccountMovementJpaRepository = springDataAccountMovementJpaRepository;
     }
 

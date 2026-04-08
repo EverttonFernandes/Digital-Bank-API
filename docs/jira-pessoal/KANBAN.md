@@ -56,6 +56,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
 - `HISTORIA-015` Refatorar o mapeamento relacional JPA/Hibernate das entidades persistentes sem quebrar a suite funcional
 - `HISTORIA-016` Alinhar controllers, services, converters, domínio e persistência ao padrão estrutural observado no `umovme-team`
 - `HISTORIA-017` Unificar domínio e persistência JPA/Hibernate, removendo a duplicação remanescente entre modelos de domínio e entities
+- `HISTORIA-018` Padronizar a nomenclatura arquitetural das classes ao estilo do `wishlist-api`
 
 ## Backlog de Evolucao Funcional
 

@@ -1,7 +1,7 @@
 package com.cwi.digitalbankapi.api.assembler;
 
 import com.cwi.digitalbankapi.api.representation.TransferRepresentationModel;
-import com.cwi.digitalbankapi.application.dto.TransferResponse;
+import com.cwi.digitalbankapi.application.dto.TransferResponseDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ class TransferRepresentationModelAssemblerTest {
     @DisplayName("Deve montar representacao HATEOAS da transferencia com links de navegacao relacionados")
     void shouldBuildTransferHateoasRepresentationWithRelatedNavigationLinks() {
         // GIVEN
-        TransferResponse transferResponse = new TransferResponse(
+        TransferResponseDTO transferResponse = new TransferResponseDTO(
             1L,
             2L,
             "reference-123",

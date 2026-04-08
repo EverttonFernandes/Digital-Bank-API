@@ -7,7 +7,7 @@ import com.cwi.digitalbankapi.api.representation.AccountNotificationCollectionRe
 import com.cwi.digitalbankapi.api.representation.AccountNotificationRepresentationModel;
 import com.cwi.digitalbankapi.api.representation.AccountCollectionRepresentationModel;
 import com.cwi.digitalbankapi.api.representation.AccountRepresentationModel;
-import com.cwi.digitalbankapi.application.dto.CreateAccountRequest;
+import com.cwi.digitalbankapi.application.dto.AccountCreateDTO;
 import com.cwi.digitalbankapi.application.service.AccountService;
 import com.cwi.digitalbankapi.shared.response.ApiErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,14 +35,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequestMapping("/accounts")
 @Tag(name = "Accounts", description = "Operacoes de consulta de contas.")
-public class AccountController {
+public class AccountApi {
 
     private final AccountService accountService;
     private final AccountRepresentationModelAssembler accountRepresentationModelAssembler;
     private final com.cwi.digitalbankapi.api.assembler.AccountMovementRepresentationModelAssembler accountMovementRepresentationModelAssembler;
     private final com.cwi.digitalbankapi.api.assembler.AccountNotificationRepresentationModelAssembler accountNotificationRepresentationModelAssembler;
 
-    public AccountController(
+    public AccountApi(
         AccountService accountService,
         AccountRepresentationModelAssembler accountRepresentationModelAssembler,
         com.cwi.digitalbankapi.api.assembler.AccountMovementRepresentationModelAssembler accountMovementRepresentationModelAssembler,
@@ -68,7 +68,7 @@ public class AccountController {
             content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))
         )
     })
-    public ResponseEntity<AccountRepresentationModel> createAccount(@Valid @RequestBody CreateAccountRequest createAccountRequest) {
+    public ResponseEntity<AccountRepresentationModel> createAccount(@Valid @RequestBody AccountCreateDTO createAccountRequest) {
         AccountRepresentationModel accountRepresentationModel = accountRepresentationModelAssembler.toModel(
             accountService.createAccount(createAccountRequest)
         );
@@ -90,7 +90,7 @@ public class AccountController {
             .map(accountRepresentationModelAssembler::toModel)
             .toList();
 
-        return CollectionModel.of(accountRepresentationModelList, linkTo(methodOn(AccountController.class).listAllAccounts()).withSelfRel());
+        return CollectionModel.of(accountRepresentationModelList, linkTo(methodOn(AccountApi.class).listAllAccounts()).withSelfRel());
     }
 
     @GetMapping("/{accountIdentifier}")
@@ -133,8 +133,8 @@ public class AccountController {
 
         return CollectionModel.of(
             accountMovementRepresentationModelList,
-            linkTo(methodOn(AccountController.class).findAccountMovements(accountId)).withSelfRel(),
-            linkTo(methodOn(AccountController.class).findAccountById(accountId)).withRel("account")
+            linkTo(methodOn(AccountApi.class).findAccountMovements(accountId)).withSelfRel(),
+            linkTo(methodOn(AccountApi.class).findAccountById(accountId)).withRel("account")
         );
     }
 
@@ -161,8 +161,8 @@ public class AccountController {
 
         return CollectionModel.of(
             accountNotificationRepresentationModelList,
-            linkTo(methodOn(AccountController.class).findAccountNotifications(accountId)).withSelfRel(),
-            linkTo(methodOn(AccountController.class).findAccountById(accountId)).withRel("account")
+            linkTo(methodOn(AccountApi.class).findAccountNotifications(accountId)).withSelfRel(),
+            linkTo(methodOn(AccountApi.class).findAccountById(accountId)).withRel("account")
         );
     }
 }

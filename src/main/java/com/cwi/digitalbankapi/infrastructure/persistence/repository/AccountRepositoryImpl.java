@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class PostgreSqlAccountRepository implements AccountRepository {
+public class AccountRepositoryImpl implements AccountRepository {
 
-    private final SpringDataAccountJpaRepository springDataAccountJpaRepository;
+    private final AccountJpaRepository springDataAccountJpaRepository;
 
-    public PostgreSqlAccountRepository(SpringDataAccountJpaRepository springDataAccountJpaRepository) {
+    public AccountRepositoryImpl(AccountJpaRepository springDataAccountJpaRepository) {
         this.springDataAccountJpaRepository = springDataAccountJpaRepository;
     }
 

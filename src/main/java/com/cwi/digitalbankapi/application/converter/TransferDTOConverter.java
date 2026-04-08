@@ -1,6 +1,6 @@
 package com.cwi.digitalbankapi.application.converter;
 
-import com.cwi.digitalbankapi.application.dto.TransferRequest;
+import com.cwi.digitalbankapi.application.dto.TransferDTO;
 import com.cwi.digitalbankapi.domain.account.model.Account;
 import com.cwi.digitalbankapi.domain.transfer.exception.TransferAmountMustBePositiveException;
 import com.cwi.digitalbankapi.domain.transfer.model.Transfer;
@@ -8,9 +8,9 @@ import com.cwi.digitalbankapi.shared.exception.InvalidRequestDataException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TransferRequestConverter {
+public class TransferDTOConverter {
 
-    public Transfer convert(TransferRequest transferRequest, Account sourceAccount, Account targetAccount) {
+    public Transfer convert(TransferDTO transferRequest, Account sourceAccount, Account targetAccount) {
         if (transferRequest.sourceAccountId() == null) {
             throw new InvalidRequestDataException("O campo sourceAccountId e obrigatorio.");
         }

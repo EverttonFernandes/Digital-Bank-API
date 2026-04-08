@@ -2,7 +2,7 @@ package com.cwi.digitalbankapi.api.controller;
 
 import com.cwi.digitalbankapi.api.assembler.TransferRepresentationModelAssembler;
 import com.cwi.digitalbankapi.api.representation.TransferRepresentationModel;
-import com.cwi.digitalbankapi.application.dto.TransferRequest;
+import com.cwi.digitalbankapi.application.dto.TransferDTO;
 import com.cwi.digitalbankapi.application.service.TransferService;
 import com.cwi.digitalbankapi.shared.response.ApiErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/transfers")
 @Tag(name = "Transfers", description = "Operacao principal de transferencia entre contas.")
-public class TransferController {
+public class TransferApi {
 
     private final TransferService transferService;
     private final TransferRepresentationModelAssembler transferRepresentationModelAssembler;
 
-    public TransferController(TransferService transferService, TransferRepresentationModelAssembler transferRepresentationModelAssembler) {
+    public TransferApi(TransferService transferService, TransferRepresentationModelAssembler transferRepresentationModelAssembler) {
         this.transferService = transferService;
         this.transferRepresentationModelAssembler = transferRepresentationModelAssembler;
     }
@@ -49,7 +49,7 @@ public class TransferController {
             content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))
         )
     })
-    public TransferRepresentationModel transfer(@Valid @RequestBody TransferRequest transferRequest) {
+    public TransferRepresentationModel transfer(@Valid @RequestBody TransferDTO transferRequest) {
         return transferRepresentationModelAssembler.toModel(transferService.transfer(transferRequest));
     }
 }

@@ -1,7 +1,7 @@
 package com.cwi.digitalbankapi.api.assembler;
 
 import com.cwi.digitalbankapi.api.representation.AccountRepresentationModel;
-import com.cwi.digitalbankapi.application.dto.AccountResponse;
+import com.cwi.digitalbankapi.application.dto.AccountDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ class AccountRepresentationModelAssemblerTest {
     @DisplayName("Deve montar representacao HATEOAS da conta com links principais")
     void shouldBuildAccountHateoasRepresentationWithMainLinks() {
         // GIVEN
-        AccountResponse accountResponse = new AccountResponse(1L, "Ana Souza", new BigDecimal("1250.00"));
+        AccountDTO accountResponse = new AccountDTO(1L, "Ana Souza", new BigDecimal("1250.00"));
 
         // WHEN
         AccountRepresentationModel accountRepresentationModel = accountRepresentationModelAssembler.toModel(accountResponse);

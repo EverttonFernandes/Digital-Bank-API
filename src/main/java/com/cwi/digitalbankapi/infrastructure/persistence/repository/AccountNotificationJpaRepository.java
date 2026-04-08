@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface SpringDataAccountNotificationJpaRepository extends JpaRepository<AccountNotification, Long> {
+public interface AccountNotificationJpaRepository extends JpaRepository<AccountNotification, Long> {
 
     List<AccountNotification> findByAccountIdOrderByCreatedAtDescIdDesc(Long accountId);
 }

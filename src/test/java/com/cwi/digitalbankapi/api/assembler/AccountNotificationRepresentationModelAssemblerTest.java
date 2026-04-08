@@ -1,7 +1,7 @@
 package com.cwi.digitalbankapi.api.assembler;
 
 import com.cwi.digitalbankapi.api.representation.AccountNotificationRepresentationModel;
-import com.cwi.digitalbankapi.application.dto.AccountNotificationResponse;
+import com.cwi.digitalbankapi.application.dto.AccountNotificationDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ class AccountNotificationRepresentationModelAssemblerTest {
     @DisplayName("Deve montar representacao HATEOAS da notificacao com links da conta e da colecao")
     void shouldBuildAccountNotificationHateoasRepresentationWithAccountAndCollectionLinks() {
         // GIVEN
-        AccountNotificationResponse accountNotificationResponse = new AccountNotificationResponse(
+        AccountNotificationDTO accountNotificationResponse = new AccountNotificationDTO(
             1L,
             "reference-123",
             "REGISTERED",

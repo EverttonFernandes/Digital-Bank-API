@@ -15,10 +15,10 @@ import java.util.List;
 
 import static org.mockito.Mockito.mock;
 
-class PostgreSqlAccountMovementRepositoryTest {
+class AccountMovementRepositoryImplTest {
 
-    private final SpringDataAccountMovementJpaRepository springDataAccountMovementJpaRepository = mock(SpringDataAccountMovementJpaRepository.class);
-    private final PostgreSqlAccountMovementRepository postgreSqlAccountMovementRepository = new PostgreSqlAccountMovementRepository(
+    private final AccountMovementJpaRepository springDataAccountMovementJpaRepository = mock(AccountMovementJpaRepository.class);
+    private final AccountMovementRepositoryImpl postgreSqlAccountMovementRepository = new AccountMovementRepositoryImpl(
         springDataAccountMovementJpaRepository
     );
 

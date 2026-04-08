@@ -4,8 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.OffsetDateTime;
 
-@Schema(name = "AccountNotificationResponse", description = "Resposta com uma notificacao registrada para a conta.")
-public record AccountNotificationResponse(
+@Schema(name = "AccountNotificationDTO", description = "Resposta com uma notificacao registrada para a conta.")
+public record AccountNotificationDTO(
     @Schema(description = "Identificador da conta associada a notificacao.", example = "1")
     Long accountId,
     @Schema(description = "Referencia da transferencia relacionada.", example = "4d2f91fb-daf5-4ea7-8db2-757ca1b89c30")

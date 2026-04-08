@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface SpringDataAccountMovementJpaRepository extends JpaRepository<AccountMovement, Long> {
+public interface AccountMovementJpaRepository extends JpaRepository<AccountMovement, Long> {
 
     List<AccountMovement> findByAccountIdOrderByCreatedAtDescIdDesc(Long accountId);
 }

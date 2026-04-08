@@ -1,0 +1,48 @@
+STATUS DA HISTORIA: DONE
+CHAVE DA HISTORIA: HISTORIA-018
+ULTIMA_ITERACAO_REGISTRADA: 3
+ULTIMA_FASE_CONHECIDA: FULL_RENAMING_VALIDATED
+CONTINUITY_STATUS: READY_FOR_NEXT_STORY
+COMPLETION_PROMISE: COMPLETE
+
+ULTIMA_HIPOTESE_DE_TRABALHO:
+- A historia deve ser executada por familias de nomenclatura para evitar inconsistencia residual entre arquivos, imports e testes.
+
+ULTIMO_RESULTADO_OBSERVADO:
+- APIs, DTOs, DTOConverters, JpaRepositories e RepositoryImpls foram renomeados de ponta a ponta.
+- `make unit-test` executou com sucesso.
+- `make functional-test` executou com sucesso com `23/23` testes passando.
+
+ULTIMOS_GATES_OBSERVADOS:
+- lint: PENDING
+- unit_tests: PASS
+- func_tests: PASS
+- coverage: PENDING
+- sonar: PENDING
+- security: PENDING
+- arch_review: PENDING
+- final_review: PENDING
+
+ULTIMA_ACAO_EXECUTADA:
+- Concluir a renomeacao arquitetural completa e revalidar a aplicacao por testes unitarios e funcionais.
+
+PROXIMA_ACAO_RECOMENDADA:
+- Registrar a entrega cronologica da historia e fechar o versionamento semantico.
+
+ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
+- docs/jira-pessoal/historias/HISTORIA-018-PADRONIZACAO-DE-NOMENCLATURA-ARQUITETURAL.md
+- docs/jira-pessoal/KANBAN.md
+- docs/tasks/HISTORIA-018/IMPLEMENTATION.md
+- docs/tasks/HISTORIA-018/progress.txt
+- src/main/java/com/cwi/digitalbankapi/api/controller/AccountApi.java
+- src/main/java/com/cwi/digitalbankapi/api/controller/TransferApi.java
+- src/main/java/com/cwi/digitalbankapi/application/dto/AccountCreateDTO.java
+- src/main/java/com/cwi/digitalbankapi/application/dto/TransferDTO.java
+- src/main/java/com/cwi/digitalbankapi/application/converter/AccountCreateDTOConverter.java
+- src/main/java/com/cwi/digitalbankapi/infrastructure/persistence/repository/AccountRepositoryImpl.java
+
+RISCOS_ABERTOS:
+- Nenhum risco funcional aberto apos a validacao final.
+
+OBSERVACOES_DE_CONTEXTO:
+- a referencia principal de nomenclatura sera o `wishlist-api`

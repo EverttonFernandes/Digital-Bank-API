@@ -1,6 +1,6 @@
 package com.cwi.digitalbankapi.application.converter;
 
-import com.cwi.digitalbankapi.application.dto.AccountResponse;
+import com.cwi.digitalbankapi.application.dto.AccountDTO;
 import com.cwi.digitalbankapi.domain.account.model.Account;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
-class AccountResponseConverterTest {
+class AccountDTOConverterTest {
 
-    private final AccountResponseConverter accountResponseConverter = new AccountResponseConverter();
+    private final AccountDTOConverter accountResponseConverter = new AccountDTOConverter();
 
     @Test
     @DisplayName("Deve converter conta de dominio em resposta de conta")
-    void shouldConvertDomainAccountIntoAccountResponse() {
+    void shouldConvertDomainAccountIntoAccountDTO() {
         // GIVEN
         Account account = new Account(
             1L,
@@ -26,7 +26,7 @@ class AccountResponseConverterTest {
         );
 
         // WHEN
-        AccountResponse accountResponse = accountResponseConverter.convert(account);
+        AccountDTO accountResponse = accountResponseConverter.convert(account);
 
         // THEN
         Assertions.assertEquals(1L, accountResponse.id());

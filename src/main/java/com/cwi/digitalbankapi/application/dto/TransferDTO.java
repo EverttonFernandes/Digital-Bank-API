@@ -5,8 +5,8 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-@Schema(name = "TransferRequest", description = "Payload de entrada para transferencia entre contas.")
-public record TransferRequest(
+@Schema(name = "TransferDTO", description = "Payload de entrada para transferencia entre contas.")
+public record TransferDTO(
     @NotNull(message = "O campo sourceAccountId e obrigatorio.")
     @Schema(description = "Identificador da conta de origem.", example = "1")
     Long sourceAccountId,

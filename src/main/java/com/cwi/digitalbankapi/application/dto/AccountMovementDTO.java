@@ -5,8 +5,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
-@Schema(name = "AccountMovementResponse", description = "Resposta com uma movimentacao financeira da conta.")
-public record AccountMovementResponse(
+@Schema(name = "AccountMovementDTO", description = "Resposta com uma movimentacao financeira da conta.")
+public record AccountMovementDTO(
     @Schema(description = "Identificador da conta associada a movimentacao.", example = "1")
     Long accountId,
     @Schema(description = "Referencia da transferencia que originou a movimentacao.", example = "4d2f91fb-daf5-4ea7-8db2-757ca1b89c30")

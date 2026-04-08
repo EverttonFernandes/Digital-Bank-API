@@ -1,11 +1,11 @@
 package com.cwi.digitalbankapi.application.service;
 
-import com.cwi.digitalbankapi.application.converter.AccountResponseConverter;
-import com.cwi.digitalbankapi.application.converter.CreateAccountRequestConverter;
-import com.cwi.digitalbankapi.application.dto.AccountMovementResponse;
-import com.cwi.digitalbankapi.application.dto.AccountNotificationResponse;
-import com.cwi.digitalbankapi.application.dto.AccountResponse;
-import com.cwi.digitalbankapi.application.dto.CreateAccountRequest;
+import com.cwi.digitalbankapi.application.converter.AccountDTOConverter;
+import com.cwi.digitalbankapi.application.converter.AccountCreateDTOConverter;
+import com.cwi.digitalbankapi.application.dto.AccountMovementDTO;
+import com.cwi.digitalbankapi.application.dto.AccountNotificationDTO;
+import com.cwi.digitalbankapi.application.dto.AccountDTO;
+import com.cwi.digitalbankapi.application.dto.AccountCreateDTO;
 import com.cwi.digitalbankapi.domain.account.exception.AccountInitialBalanceMustNotBeNegativeException;
 import com.cwi.digitalbankapi.domain.account.exception.AccountNotFoundException;
 import com.cwi.digitalbankapi.domain.account.model.Account;
@@ -40,17 +40,17 @@ class AccountServiceTest {
         accountRepository,
         accountMovementRepository,
         accountNotificationRepository,
-        new CreateAccountRequestConverter(),
+        new AccountCreateDTOConverter(),
         new CompositeAccountCreationSpecification(List.of(
             new AccountInitialBalanceMustNotBeNegativeSpecification()
         )),
-        new AccountResponseConverter()
+        new AccountDTOConverter()
     );
 
     @Test
     @DisplayName("Deve criar conta bancaria quando os dados informados forem validos")
     void shouldCreateBankAccountWhenProvidedDataIsValid() {
-        CreateAccountRequest createAccountRequest = new CreateAccountRequest("Maria Silva", new BigDecimal("350.00"));
+        AccountCreateDTO createAccountRequest = new AccountCreateDTO("Maria Silva", new BigDecimal("350.00"));
         Account createdAccount = new Account(
             4L,
             "Maria Silva",
@@ -61,7 +61,7 @@ class AccountServiceTest {
 
         BDDMockito.given(accountRepository.saveAccount(any(Account.class))).willReturn(createdAccount);
 
-        AccountResponse accountResponse = accountService.createAccount(createAccountRequest);
+        AccountDTO accountResponse = accountService.createAccount(createAccountRequest);
 
         Assertions.assertEquals(4L, accountResponse.id());
         Assertions.assertEquals("Maria Silva", accountResponse.ownerName());
@@ -72,7 +72,7 @@ class AccountServiceTest {
     @Test
     @DisplayName("Deve rejeitar criacao de conta bancaria quando o saldo inicial for negativo")
     void shouldRejectBankAccountCreationWhenInitialBalanceIsNegative() {
-        CreateAccountRequest createAccountRequest = new CreateAccountRequest("Maria Silva", new BigDecimal("-1.00"));
+        AccountCreateDTO createAccountRequest = new AccountCreateDTO("Maria Silva", new BigDecimal("-1.00"));
 
         AccountInitialBalanceMustNotBeNegativeException exception = Assertions.assertThrows(
             AccountInitialBalanceMustNotBeNegativeException.class,
@@ -93,7 +93,7 @@ class AccountServiceTest {
 
         BDDMockito.given(accountRepository.findAllAccounts()).willReturn(registeredAccounts);
 
-        List<AccountResponse> accountResponseList = accountService.listAllAccounts();
+        List<AccountDTO> accountResponseList = accountService.listAllAccounts();
 
         Assertions.assertEquals(2, accountResponseList.size());
         Assertions.assertEquals("Ana Souza", accountResponseList.get(0).ownerName());
@@ -113,7 +113,7 @@ class AccountServiceTest {
 
         BDDMockito.given(accountRepository.findAccountById(1L)).willReturn(Optional.of(existingAccount));
 
-        AccountResponse accountResponse = accountService.findAccountById(1L);
+        AccountDTO accountResponse = accountService.findAccountById(1L);
 
         Assertions.assertEquals(1L, accountResponse.id());
         Assertions.assertEquals("Ana Souza", accountResponse.ownerName());
@@ -138,7 +138,7 @@ class AccountServiceTest {
         BDDMockito.given(accountRepository.findAccountById(accountId)).willReturn(Optional.of(account));
         BDDMockito.given(accountMovementRepository.findAccountMovementsByAccountId(accountId)).willReturn(List.of(debitMovement));
 
-        List<AccountMovementResponse> accountMovementResponseList = accountService.findAccountMovementsByAccountId(accountId);
+        List<AccountMovementDTO> accountMovementResponseList = accountService.findAccountMovementsByAccountId(accountId);
 
         Assertions.assertEquals(1, accountMovementResponseList.size());
         Assertions.assertEquals("DEBIT", accountMovementResponseList.get(0).movementType());
@@ -163,7 +163,7 @@ class AccountServiceTest {
         BDDMockito.given(accountNotificationRepository.findAccountNotificationsByAccountId(accountId))
             .willReturn(List.of(accountNotification));
 
-        List<AccountNotificationResponse> accountNotificationResponseList = accountService.findAccountNotificationsByAccountId(accountId);
+        List<AccountNotificationDTO> accountNotificationResponseList = accountService.findAccountNotificationsByAccountId(accountId);
 
         Assertions.assertEquals(1, accountNotificationResponseList.size());
         Assertions.assertEquals("REGISTERED", accountNotificationResponseList.get(0).notificationStatus());

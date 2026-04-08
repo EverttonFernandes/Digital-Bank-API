@@ -1,8 +1,8 @@
 package com.cwi.digitalbankapi.application.service;
 
-import com.cwi.digitalbankapi.application.converter.TransferRequestConverter;
-import com.cwi.digitalbankapi.application.dto.TransferRequest;
-import com.cwi.digitalbankapi.application.dto.TransferResponse;
+import com.cwi.digitalbankapi.application.converter.TransferDTOConverter;
+import com.cwi.digitalbankapi.application.dto.TransferDTO;
+import com.cwi.digitalbankapi.application.dto.TransferResponseDTO;
 import com.cwi.digitalbankapi.domain.account.exception.AccountNotFoundException;
 import com.cwi.digitalbankapi.domain.account.model.Account;
 import com.cwi.digitalbankapi.domain.account.repository.AccountRepository;
@@ -24,14 +24,14 @@ public class TransferService {
     private final AccountRepository accountRepository;
     private final AccountMovementRepository accountMovementRepository;
     private final TransferCompletedEventPublisher transferCompletedEventPublisher;
-    private final TransferRequestConverter transferRequestConverter;
+    private final TransferDTOConverter transferRequestConverter;
     private final CompositeTransferSpecification compositeTransferSpecification;
 
     public TransferService(
         AccountRepository accountRepository,
         AccountMovementRepository accountMovementRepository,
         TransferCompletedEventPublisher transferCompletedEventPublisher,
-        TransferRequestConverter transferRequestConverter,
+        TransferDTOConverter transferRequestConverter,
         CompositeTransferSpecification compositeTransferSpecification
     ) {
         this.accountRepository = accountRepository;
@@ -42,7 +42,7 @@ public class TransferService {
     }
 
     @Transactional
-    public TransferResponse transfer(TransferRequest transferRequest) {
+    public TransferResponseDTO transfer(TransferDTO transferRequest) {
         List<Account> lockedAccountList = accountRepository.findAccountsByIdentifiersWithPessimisticLock(
             transferRequest.sourceAccountId(),
             transferRequest.targetAccountId()
@@ -73,7 +73,7 @@ public class TransferService {
 
         transferCompletedEventPublisher.publish(transfer.createTransferCompletedEvent(transferReference, movementCreatedAt));
 
-        return new TransferResponse(
+        return new TransferResponseDTO(
             sourceAccount.getId(),
             targetAccount.getId(),
             transferReference,

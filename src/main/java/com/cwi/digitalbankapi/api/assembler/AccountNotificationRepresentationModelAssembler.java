@@ -1,8 +1,8 @@
 package com.cwi.digitalbankapi.api.assembler;
 
-import com.cwi.digitalbankapi.api.controller.AccountController;
+import com.cwi.digitalbankapi.api.controller.AccountApi;
 import com.cwi.digitalbankapi.api.representation.AccountNotificationRepresentationModel;
-import com.cwi.digitalbankapi.application.dto.AccountNotificationResponse;
+import com.cwi.digitalbankapi.application.dto.AccountNotificationDTO;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +10,10 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
-public class AccountNotificationRepresentationModelAssembler implements RepresentationModelAssembler<AccountNotificationResponse, AccountNotificationRepresentationModel> {
+public class AccountNotificationRepresentationModelAssembler implements RepresentationModelAssembler<AccountNotificationDTO, AccountNotificationRepresentationModel> {
 
     @Override
-    public AccountNotificationRepresentationModel toModel(AccountNotificationResponse accountNotificationResponse) {
+    public AccountNotificationRepresentationModel toModel(AccountNotificationDTO accountNotificationResponse) {
         AccountNotificationRepresentationModel accountNotificationRepresentationModel = new AccountNotificationRepresentationModel(
             accountNotificationResponse.accountId(),
             accountNotificationResponse.transferReference(),
@@ -22,8 +22,8 @@ public class AccountNotificationRepresentationModelAssembler implements Represen
             accountNotificationResponse.createdAt()
         );
 
-        accountNotificationRepresentationModel.add(linkTo(methodOn(AccountController.class).findAccountById(accountNotificationResponse.accountId())).withRel("account"));
-        accountNotificationRepresentationModel.add(linkTo(methodOn(AccountController.class).findAccountNotifications(accountNotificationResponse.accountId())).withRel("collection"));
+        accountNotificationRepresentationModel.add(linkTo(methodOn(AccountApi.class).findAccountById(accountNotificationResponse.accountId())).withRel("account"));
+        accountNotificationRepresentationModel.add(linkTo(methodOn(AccountApi.class).findAccountNotifications(accountNotificationResponse.accountId())).withRel("collection"));
 
         return accountNotificationRepresentationModel;
     }

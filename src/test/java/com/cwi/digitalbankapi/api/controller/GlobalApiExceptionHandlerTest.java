@@ -51,9 +51,9 @@ class GlobalApiExceptionHandlerTest {
             "sourceAccountId",
             "O campo sourceAccountId e obrigatorio."
         ));
-        Method transferMethod = TransferController.class.getDeclaredMethod(
+        Method transferMethod = TransferApi.class.getDeclaredMethod(
             "transfer",
-            com.cwi.digitalbankapi.application.dto.TransferRequest.class
+            com.cwi.digitalbankapi.application.dto.TransferDTO.class
         );
         MethodParameter methodParameter = new MethodParameter(transferMethod, 0);
         MethodArgumentNotValidException methodArgumentNotValidException = new MethodArgumentNotValidException(
