@@ -1,18 +1,23 @@
 # Digital Bank API
 
-API REST simplificada para um banco digital, construída em `Java 17` com `Spring Boot`, `Maven`, `PostgreSQL`,
-`Docker Compose` e documentação `OpenAPI`.
+API REST para operacoes centrais de um banco digital, construida com `Java 17`, `Spring Boot`, `Maven`, `PostgreSQL`, `Docker Compose` e documentacao `OpenAPI`.
 
-O projeto cobre:
+O projeto foi entregue de forma incremental, com versionamento semantico por historia, foco em qualidade de codigo, testes automatizados, design de API, semantica HTTP, `HAL/HATEOAS` e resiliencia de concorrencia na transferencia entre contas.
 
-- criacao de contas bancarias
+## Visao Geral
+
+A API cobre:
+
+- criacao de conta bancaria
 - consulta de contas
 - transferencia entre contas
 - consulta de movimentacoes financeiras
-- notificacoes apos transferencia concluida
+- consulta de notificacoes geradas por transferencia
 - tratamento padronizado de erros com `key` e `value`
+- documentacao Swagger/OpenAPI ensinando como consumir a API
 - testes unitarios
-- testes funcionais end-to-end com `Jest`
+- testes funcionais end-to-end
+- controle de concorrencia com `lock pessimista`
 
 ## Stack Principal
 
@@ -20,24 +25,19 @@ O projeto cobre:
 - `Spring Boot 3`
 - `Maven`
 - `Spring Data JPA`
+- `Hibernate`
 - `Flyway`
 - `PostgreSQL`
 - `Docker Compose`
 - `springdoc-openapi`
+- `Spring HATEOAS`
 - `JUnit 5`
 - `Mockito / BDDMockito`
 - `Jest`
 - `supertest`
 - `Sequelize`
 
-## Como Subir o Ambiente Completo
-
-O projeto disponibiliza um ambiente local com:
-
-- aplicacao
-- PostgreSQL
-- pgAdmin
-- Swagger UI
+## Como Subir o Ambiente
 
 Antes da primeira subida:
 
@@ -45,13 +45,13 @@ Antes da primeira subida:
 cp .env.example .env
 ```
 
-Subida completa:
+Subir ambiente completo:
 
 ```bash
 make up
 ```
 
-Derrubar tudo:
+Derrubar ambiente:
 
 ```bash
 make down
@@ -63,7 +63,7 @@ Ver logs:
 make logs
 ```
 
-## Portas do Ambiente
+## Enderecos e Portas
 
 - aplicacao: `http://localhost:8080`
 - Swagger UI: `http://localhost:8080/swagger-ui.html`
@@ -71,7 +71,7 @@ make logs
 - PostgreSQL: `localhost:5433`
 - pgAdmin: `http://localhost:5050`
 
-## Como Validar Rapidamente
+## Validacao Rapida
 
 Status da aplicacao:
 
@@ -85,6 +85,12 @@ Health check:
 curl -i http://localhost:8080/actuator/health
 ```
 
+Listar contas:
+
+```bash
+curl -i http://localhost:8080/accounts
+```
+
 Swagger:
 
 ```text
@@ -93,13 +99,13 @@ http://localhost:8080/swagger-ui.html
 
 ## Como Executar os Testes
 
-Suite unitária completa:
+Suite unitaria:
 
 ```bash
 make unit-test
 ```
 
-Suite funcional completa:
+Suite funcional:
 
 ```bash
 make functional-test
@@ -107,108 +113,163 @@ make functional-test
 
 O fluxo funcional:
 
-1. prepara a massa com `seeders + fixtures`
+1. prepara a massa com `fixtures + seeders`
 2. executa toda a suite `Jest`
-3. valida endpoints e estado final da API
-4. executa rollback total ao fim
+3. valida payload, status code, contrato de erro e estado final por API
+4. executa rollback total da massa de teste
 
 ## Endpoints Disponiveis
 
 - `GET /api/status`
-  Objetivo: verificar disponibilidade basica da API
+  Endpoint tecnico de disponibilidade da API.
 
 - `GET /accounts`
-  Objetivo: listar contas carregadas na base
+  Lista contas bancarias disponiveis.
 
 - `POST /accounts`
-  Objetivo: criar uma nova conta bancaria com `201 Created`, `Location` e body em `HAL`
+  Cria uma conta bancaria com `201 Created`, header `Location` e body em `HAL`.
 
 - `GET /accounts/{accountId}`
-  Objetivo: consultar uma conta especifica
-
-- `POST /transfers`
-  Objetivo: transferir saldo entre duas contas
+  Consulta uma conta especifica.
 
 - `GET /accounts/{accountId}/movements`
-  Objetivo: consultar movimentacoes financeiras da conta
+  Consulta movimentacoes financeiras da conta.
 
 - `GET /accounts/{accountId}/notifications`
-  Objetivo: consultar notificacoes registradas para a conta
+  Consulta notificacoes registradas para a conta.
+
+- `POST /transfers`
+  Executa transferencia entre contas com protecao transacional e resiliencia de concorrencia.
+
+## Contrato da API
+
+### Estilo de resposta
+
+- recursos principais expostos com semantica HTTP coerente
+- responses navegaveis com `HAL`
+- links HATEOAS para guiar o proximo passo do consumidor
+- erros padronizados com `key` e `value`
+
+### Exemplo de jornada de uso
+
+1. criar conta em `POST /accounts`
+2. consultar a conta criada em `GET /accounts/{accountId}`
+3. transferir saldo via `POST /transfers`
+4. consultar movimentacoes em `GET /accounts/{accountId}/movements`
+5. consultar notificacoes em `GET /accounts/{accountId}/notifications`
 
 ## Estrutura Arquitetural
 
-O projeto segue uma separacao pragmatica inspirada em DDD:
+O projeto segue uma separacao pragmatica em camadas:
 
 - `api`
-  Controllers e contratos HTTP
+  contratos HTTP, controllers, assemblers e representations
 
 - `application`
-  Services e converters que transformam entrada em objetos de dominio
+  services, DTOs e converters que transformam entrada em objetos de dominio
 
 - `domain`
-  Modelo central do negocio, regras e repositorios do dominio
+  entidades centrais do negocio, regras, especificacoes e contratos de repositorio
 
 - `infrastructure`
-  Persistencia, configuracoes e adaptadores tecnicos
+  persistencia, JPA/Hibernate, configuracoes, Flyway e OpenAPI
 
 - `shared`
-  erros padronizados e objetos compartilhados entre camadas
+  contratos de erro, respostas compartilhadas e excecoes reutilizaveis
 
-## Principais Decisoes Tecnicas
+## Entregas Por Historia
 
-- `Converter antes da regra de negocio`
-  A entrada HTTP e convertida antes da orquestracao principal. Isso ajuda a validar formato e a montar o objeto correto
-  antes de aplicar regra de dominio.
+Cada entrega relevante ficou registrada em `entregas/`:
 
-- `Regras de negocio explicitas`
-  As validacoes centrais de transferencia foram mantidas de forma clara para preservar legibilidade e previsibilidade do
-  fluxo.
+- [HISTORIA-001 - Ambiente Docker e PostgreSQL](entregas/2026-04-06-001-ambiente-docker-e-postgresql.md)
+- [HISTORIA-002 - Estrutura base da aplicacao](entregas/2026-04-07-002-estrutura-base-da-aplicacao.md)
+- [HISTORIA-003 - Gestao basica de contas](entregas/2026-04-07-003-gestao-basica-de-contas.md)
+- [HISTORIA-004 - Transferencia entre contas](entregas/2026-04-07-004-transferencia-entre-contas.md)
+- [HISTORIA-005 - Movimentacoes financeiras](entregas/2026-04-07-005-movimentacoes-financeiras.md)
+- [HISTORIA-006 - Notificacao pos-transferencia](entregas/2026-04-07-006-notificacao-pos-transferencia.md)
+- [HISTORIA-007 - Tratamento de erros e mensagens](entregas/2026-04-07-007-tratamento-de-erros-e-mensagens.md)
+- [HISTORIA-008 - Swagger / OpenAPI](entregas/2026-04-07-008-swagger-openapi.md)
+- [HISTORIA-009 - Testes unitarios](entregas/2026-04-07-009-testes-unitarios.md)
+- [HISTORIA-010 - Testes funcionais](entregas/2026-04-07-010-testes-funcionais.md)
+- [HISTORIA-011 - README e decisoes tecnicas](entregas/2026-04-07-011-readme-e-decisoes-tecnicas.md)
+- [HISTORIA-012 - Fechamento da entrega e versao](entregas/2026-04-07-012-fechamento-da-entrega-e-versao.md)
+- [HISTORIA-013 - Maturidade de Richardson e semantica REST](entregas/2026-04-07-013-maturidade-de-richardson-e-semantica-rest.md)
+- [HISTORIA-014 - Criacao de conta bancaria](entregas/2026-04-08-014-criacao-de-conta-bancaria.md)
+- [HISTORIA-015 - Mapeamento relacional JPA/Hibernate](entregas/2026-04-08-015-mapeamento-relacional-jpa-hibernate.md)
+- [HISTORIA-016 - Alinhamento de padrao de codigo em camadas](entregas/2026-04-07-016-alinhamento-de-padrao-de-codigo-em-camadas.md)
+- [HISTORIA-017 - Unificacao de dominio e persistencia JPA](entregas/2026-04-07-017-unificacao-de-dominio-e-persistencia-jpa.md)
+- [HISTORIA-018 - Padronizacao de nomenclatura arquitetural](entregas/2026-04-07-018-padronizacao-de-nomenclatura-arquitetural.md)
+- [HISTORIA-019 - Experiencia de uso do Swagger e contrato OpenAPI](entregas/2026-04-08-019-experiencia-de-uso-do-swagger-e-contrato-openapi.md)
+- [HISTORIA-020 - Resiliencia de concorrencia na transferencia](entregas/2026-04-08-020-resiliencia-de-concorrencia-na-transferencia.md)
 
-- `Transacao com lock pessimista`
-  A transferencia usa controle transacional e lock pessimista nas contas para reduzir risco de inconsistencia em
-  concorrencia.
+## Decisoes Tecnicas Relevantes
 
-- `Observer para notificacao`
-  A notificacao pos-transferencia foi desacoplada da operacao principal para abrir caminho para futuras evolucoes como
-  fila, e-mail ou SMS.
+### Arquitetura e Engenharia de Software
 
-- `Erro padronizado com key e value`
-  As falhas de negocio e de entrada retornam um contrato uniforme para facilitar teste, leitura e manutencao.
+- separacao clara entre `api`, `application`, `domain`, `infrastructure` e `shared`
+- services como orquestradores de caso de uso, mantendo controllers finos
+- converters para transformar `DTO -> dominio` antes da aplicacao das regras
+- dominio com regras explicitas e objetos centrados no negocio
+- repositorios com contrato de dominio e implementacao de persistencia desacoplada
 
-- `Testes funcionais com seeders e fixtures`
-  A suite funcional usa massa deterministica e validacao end-to-end via API, inclusive confirmando o estado final por
-  `GET` quando aplicavel.
+### Persistencia e Banco
 
-- `Criacao de conta com semantica REST`
-  A abertura de conta usa `POST /accounts`, persiste o recurso, devolve `201 Created`, header `Location` e response
-  `HAL` com links navegaveis.
+- `Spring Data JPA + Hibernate` como base de persistencia relacional
+- `Flyway` para versionamento de schema e carga inicial estavel
+- mapeamento relacional explicito entre conta, movimentacao e notificacao
+- repositorios preparados para consultas de leitura e gravacao com foco no caso de uso
 
-- `Mapeamento relacional explicito na persistencia`
-  A camada JPA/Hibernate explicita as relacoes entre conta, movimentacao e notificacao sem misturar persistencia com o
-  dominio.
+### Concorrencia, Consistencia e Resiliencia
 
-## Estrategia de Testes
+- transferencia executada dentro de transacao
+- uso de `lock pessimista` nas contas envolvidas
+- ordenacao deterministica das contas bloqueadas para reduzir risco de deadlock
+- timeout de lock configurado para evitar espera indefinida
+- tratamento semantico de contencao com `409 Conflict`
+- mensagem intuitiva ao cliente em caso de recurso temporariamente ocupado
+
+### Design de API
+
+- design orientado a recurso
+- semantica correta de `GET` e `POST`
+- responses em `HAL` com `Spring HATEOAS`
+- discoverability via links navegaveis
+- Swagger refletindo request DTOs, response models e erros esperados
+- foco em UX da API: a propria resposta ajuda o consumidor a saber o proximo passo
+
+### Boas Praticas de Codigo
+
+- padronizacao de nomenclatura arquitetural
+- contratos HTTP, DTOs, converters e repositorios com responsabilidade clara
+- tratamento global de excecao para padronizar a borda HTTP
+- eliminacao de redundancias estruturais quando possivel
+- refatoracoes guiadas por comportamento preservado
 
 ### Testes Unitarios
 
-- usam `DisplayName` em portugues
-- seguem `GIVEN / WHEN / THEN`
-- usam `BDDMockito.given`
-- usam `Assertions` do `JUnit`
+- `JUnit 5`
+- `Mockito / BDDMockito`
+- estrutura `GIVEN / WHEN / THEN`
+- foco em services, converters, specifications, handlers e repositorios
+- cobertura de cenarios positivos e de falha
 
 ### Testes Funcionais
 
-- usam `Jest`
-- seguem `GIVEN / WHEN / THEN`
-- separam sucesso e falha em arquivos diferentes
-- usam `seeders + fixtures`
-- validam `status code`, payload, `key/value` e estado final
+- `Jest + supertest + Sequelize`
+- seed controlado no inicio da suite
+- rollback total ao final da suite
+- cobertura de sucesso e falha por endpoint
+- validacao de payload, status code, regras de negocio e estado final da base
+- testes especificos para concorrencia na transferencia
 
-## Banco e Interface de Consulta
+## Banco de Dados e Consulta Visual
 
-O banco local roda em `localhost:5433`.
+O banco local roda em:
 
-Para consulta visual:
+- host: `localhost`
+- porta: `5433`
+
+Interface de consulta visual:
 
 - `pgAdmin`: `http://localhost:5050`
 
@@ -216,9 +277,9 @@ Dentro do `pgAdmin`, o host do banco e:
 
 - `postgres`
 
-As credenciais do ambiente local ficam no `.env`.
+As credenciais locais ficam em `.env`.
 
-## Variaveis Locais do Ambiente
+## Variaveis de Ambiente
 
 - `APPLICATION_PORT`
 - `POSTGRES_PORT`
@@ -231,26 +292,28 @@ As credenciais do ambiente local ficam no `.env`.
 - `PGADMIN_DEFAULT_EMAIL`
 - `PGADMIN_DEFAULT_PASSWORD`
 
-## Observacoes Finais
+## Operacao Local
 
-Esta entrega foi organizada cronologicamente por historias versionadas com commit e tag semantica por fatia concluida.
+Arquivos principais de operacao ficam na raiz do projeto:
 
-Os documentos em `docs/tasks/` e `entregas/` registram:
+- `Dockerfile`
+- `docker-compose.yml`
+- `pom.xml`
+- `Makefile`
+- `README.md`
+- `.env.example`
 
-- o plano de cada historia
-- o progresso operacional
-- o que foi entregue em linguagem tecnica e de negocio
+Arquivos auxiliares do ecossistema Docker ficam em `docker/`.
 
-## Evolucao Arquitetural Implementada
+## Fechamento
 
-O projeto recebeu uma evolucao arquitetural adicional na `HISTORIA-013`.
+Este projeto foi construido com foco em:
 
-Essa entrega introduziu:
+- qualidade tecnica
+- clareza arquitetural
+- design de API
+- resiliencia de concorrencia
+- testabilidade
+- rastreabilidade de entregas
 
-- `Spring HATEOAS`
-- responses em `HAL`
-- links navegaveis entre recursos relacionados
-- Swagger refletindo os DTOs e responses HATEOAS
-
-Na pratica, a API deixou de apenas expor recursos com bons verbos HTTP e passou a guiar melhor o consumidor por meio dos
-links retornados nas respostas.
+O resultado final nao e apenas uma API que funciona. E uma API com contrato bem documentado, fluxo de uso ensinavel pelo Swagger, comportamento validado por testes automatizados e decisoes tecnicas defensaveis em uma apresentacao tecnica.
