@@ -1,6 +1,6 @@
 # Digital Bank API
 
-API REST simplificada para um banco digital, construída em `Java 17` com `Spring Boot`, `Gradle`, `PostgreSQL`,
+API REST simplificada para um banco digital, construída em `Java 17` com `Spring Boot`, `Maven`, `PostgreSQL`,
 `Docker Compose` e documentação `OpenAPI`.
 
 O projeto cobre:
@@ -18,7 +18,7 @@ O projeto cobre:
 
 - `Java 17`
 - `Spring Boot 3`
-- `Gradle`
+- `Maven`
 - `Spring Data JPA`
 - `Flyway`
 - `PostgreSQL`

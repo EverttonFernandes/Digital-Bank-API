@@ -29,7 +29,7 @@ banco com portas claras e comportamento previsível.
 
 ## O Que Foi Entregue
 
-- foi criada a base Gradle da API com Spring Boot
+- foi criada a base Maven da API com Spring Boot
 - foi criado um bootstrap mínimo da aplicação para responder HTTP
 - foi configurado PostgreSQL como banco principal da stack local
 - foi configurado pgAdmin para inspecao web do banco
@@ -98,7 +98,7 @@ PostgreSQL e pgAdmin, e `Makefile` para simplificar a operação do ambiente.
 
 ## Evidências de Validação
 
-- `make unit-test` executado com sucesso via Gradle em container
+- `make unit-test` executado com sucesso via Maven em container
 - `docker compose up --build -d` executado com sucesso
 - `docker compose ps` confirmando aplicação em `8080`, PostgreSQL em `5433` e pgAdmin em `5050`
 - `GET /api/status` retornando `200 OK`
@@ -110,8 +110,7 @@ PostgreSQL e pgAdmin, e `Makefile` para simplificar a operação do ambiente.
 
 ## Arquivos ou Módulos Mais Relevantes
 
-- `build.gradle`
-- `settings.gradle`
+- `pom.xml`
 - `Makefile`
 - `Dockerfile`
 - `docker-compose.yml`

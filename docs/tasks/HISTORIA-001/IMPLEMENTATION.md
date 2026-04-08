@@ -197,9 +197,10 @@ Arquivos esperados nesta entrega:
 
 ### Iteração 2
 
-- O caminho de build foi endurecido para Gradle em container via `Makefile`, eliminando dependência do Gradle local.
-- O alvo `make unit-test` foi ajustado para executar em workspace temporário dentro do container, evitando falhas de
-  permissão no repositório local.
+- O caminho de build foi endurecido para Maven via `Makefile`, eliminando dependência de ferramentas locais além do
+  Docker para a suíte unitária.
+- O alvo `make unit-test` foi ajustado para executar `mvn test` em container, evitando falhas de permissão no
+  repositório local.
 - O `pgAdmin` foi corrigido com e-mail válido e passou a subir corretamente na porta `5050`.
 - Foi adicionado `spring-boot-starter-validation` e removida a configuração explícita do dialeto PostgreSQL para
   eliminar warnings desnecessários do bootstrap.

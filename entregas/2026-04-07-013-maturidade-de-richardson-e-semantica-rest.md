@@ -107,7 +107,7 @@ proprios controllers.
 
 ## Arquivos ou Modulos Mais Relevantes
 
-- `build.gradle`
+- `pom.xml`
 - `Makefile`
 - `src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountController.java`
 - `src/main/java/com/avaliadora/digitalbankapi/api/controller/TransferController.java`

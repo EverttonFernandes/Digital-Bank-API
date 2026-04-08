@@ -32,7 +32,7 @@ PROXIMA_ACAO_RECOMENDADA:
 - Isolar os arquivos da `HISTORIA-013`, criar o commit da entrega e fechar a tag `v0.13.0`.
 
 ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
-- build.gradle
+- pom.xml
 - Makefile
 - src/main/java/com/avaliadora/digitalbankapi/api/controller/AccountController.java
 - src/main/java/com/avaliadora/digitalbankapi/api/controller/TransferController.java
@@ -61,4 +61,4 @@ RISCOS_ABERTOS:
 
 OBSERVACOES_DE_CONTEXTO:
 - A historia esta sendo conduzida com TDD e foco forte em ausencia de regressao funcional.
-- Foi necessario corrigir o comando de `make unit-test` para evitar estouro de disco ao copiar o workspace completo para dentro do container de Gradle.
+- Foi necessario corrigir o comando de `make unit-test` para evitar estouro de disco ao copiar o workspace completo para dentro do container de build.

@@ -80,7 +80,7 @@ Organizar o código base em camadas coerentes com `arquitetura.md`:
 
 ### Build e Configuração
 
-- preparar `build.gradle`
+- preparar `pom.xml`
 - configurar aplicação Spring Boot
 - preparar configuração inicial para banco
 
@@ -125,7 +125,7 @@ está correta e pronta para receber as histórias funcionais.
 
 Arquivos esperados nesta entrega:
 
-- `build.gradle`
+- `pom.xml`
 - classe principal da aplicação
 - arquivos de configuração Spring
 - estrutura de pacotes da aplicação

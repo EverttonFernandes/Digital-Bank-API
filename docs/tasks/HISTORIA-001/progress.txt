@@ -9,8 +9,8 @@ ULTIMA_HIPOTESE_DE_TRABALHO:
 - Um bootstrap minimo em Spring Boot com Swagger seria suficiente para validar a infraestrutura isolada antes da HISTORIA-002.
 
 ULTIMO_RESULTADO_OBSERVADO:
-- A base de build foi migrada para Gradle.
-- O alvo `make unit-test` passou com Gradle em container usando workspace temporario.
+- A base de build foi migrada para Maven.
+- O alvo `make unit-test` passou com Maven em container usando workspace temporario.
 - Docker Compose subiu PostgreSQL, aplicacao e pgAdmin.
 - A aplicacao respondeu em /api/status e /actuator/health.
 - O Swagger respondeu via /swagger-ui.html com redirecionamento para /swagger-ui/index.html.
@@ -33,8 +33,7 @@ PROXIMA_ACAO_RECOMENDADA:
 - Iniciar a HISTORIA-002 estruturando as camadas da aplicacao sobre a base ja executavel.
 
 ARQUIVOS_RELEVANTES_MODIFICADOS_NA_ULTIMA_ITERACAO:
-- build.gradle
-- settings.gradle
+- pom.xml
 - Dockerfile
 - docker-compose.yml
 - Makefile
@@ -48,4 +47,4 @@ RISCOS_ABERTOS:
 
 OBSERVACOES_DE_CONTEXTO:
 - Esta historia cobre a base operacional necessaria para a continuidade cronologica do backlog.
-- A execucao de testes do projeto deve continuar via Gradle em container para nao depender do Gradle local da maquina.
+- A execucao de testes do projeto deve continuar via Maven em container para nao depender do Maven local da maquina.
