@@ -1,0 +1,22 @@
+STATUS DA HISTORIA: DONE
+
+HISTORIA ATUAL:
+- HISTORIA-020
+
+OBJETIVO:
+- retornar mensagem intuitiva e status HTTP semântico quando contas estiverem ocupadas por outra transferência concorrente
+
+HIPOTESE ATUAL:
+- lock timeout explícito mais captura de exceção de contenção elimina risco de erro 500 inesperado para o cliente
+
+PROXIMA ACAO:
+- historia concluida e pronta para fechamento semantico
+
+GATES OBRIGATORIOS:
+- make unit-test
+- make functional-test
+
+RESULTADO FINAL:
+- lock timeout explicito configurado
+- contenção concorrente traduzida para resposta semantica
+- swagger da transferencia atualizado com response 409

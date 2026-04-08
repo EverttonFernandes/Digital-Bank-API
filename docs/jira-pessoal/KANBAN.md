@@ -64,6 +64,7 @@ O guardião desta organização é o subagente `ralph-loop/product-manager`.
   domínio e entities
 - `HISTORIA-018` Padronizar a nomenclatura arquitetural das classes ao estilo do `wishlist-api`
 - `HISTORIA-019` Transformar o Swagger/OpenAPI em uma experiência guiada de uso da API, com exemplos reais e respostas pedagógicas
+- `HISTORIA-020` Tornar a contenção concorrente da transferência resiliente, com `409 Conflict` e mensagem intuitiva
 
 ## Backlog de Evolucao Funcional
 

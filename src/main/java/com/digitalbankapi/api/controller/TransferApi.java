@@ -93,6 +93,18 @@ public class TransferApi {
                                     value = OpenApiExamples.ACCOUNT_NOT_FOUND_ERROR
                             )
                     )
+            ),
+            @ApiResponse(
+                    responseCode = "409",
+                    description = "Uma das contas esta temporariamente ocupada por outra transferencia concorrente.",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiErrorResponse.class),
+                            examples = @ExampleObject(
+                                    name = "ContaEmProcessamento",
+                                    summary = "Exemplo de contenção concorrente",
+                                    value = OpenApiExamples.ACCOUNT_RESOURCE_BUSY_ERROR
+                            )
+                    )
             )
     })
     public TransferRepresentationModel transfer(@Valid @RequestBody TransferDTO transferRequest) {

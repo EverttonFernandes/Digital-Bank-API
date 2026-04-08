@@ -3,6 +3,7 @@ package com.digitalbankapi.application.service;
 import com.digitalbankapi.application.converter.TransferDTOConverter;
 import com.digitalbankapi.application.dto.TransferDTO;
 import com.digitalbankapi.application.dto.TransferResponseDTO;
+import com.digitalbankapi.domain.account.exception.AccountResourceBusyException;
 import com.digitalbankapi.domain.account.exception.AccountNotFoundException;
 import com.digitalbankapi.domain.account.model.Account;
 import com.digitalbankapi.domain.account.repository.AccountRepository;
@@ -11,6 +12,7 @@ import com.digitalbankapi.domain.statement.model.AccountMovement;
 import com.digitalbankapi.domain.statement.repository.AccountMovementRepository;
 import com.digitalbankapi.domain.transfer.model.Transfer;
 import com.digitalbankapi.domain.transfer.specification.CompositeTransferSpecification;
+import org.springframework.dao.PessimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,10 +45,7 @@ public class TransferService {
 
     @Transactional
     public TransferResponseDTO transfer(TransferDTO transferRequest) {
-        List<Account> lockedAccountList = accountRepository.findAccountsByIdentifiersWithPessimisticLock(
-                transferRequest.sourceAccountId(),
-                transferRequest.targetAccountId()
-        );
+        List<Account> lockedAccountList = findLockedAccounts(transferRequest);
 
         Account sourceAccount = lockedAccountList.stream()
                 .filter(account -> account.getId().equals(transferRequest.sourceAccountId()))
@@ -81,5 +80,16 @@ public class TransferService {
                 sourceAccount.getBalance(),
                 targetAccount.getBalance()
         );
+    }
+
+    private List<Account> findLockedAccounts(TransferDTO transferRequest) {
+        try {
+            return accountRepository.findAccountsByIdentifiersWithPessimisticLock(
+                    transferRequest.sourceAccountId(),
+                    transferRequest.targetAccountId()
+            );
+        } catch (PessimisticLockingFailureException concurrencyException) {
+            throw new AccountResourceBusyException();
+        }
     }
 }

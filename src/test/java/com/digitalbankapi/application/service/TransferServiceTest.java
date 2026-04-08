@@ -3,6 +3,7 @@ package com.digitalbankapi.application.service;
 import com.digitalbankapi.application.converter.TransferDTOConverter;
 import com.digitalbankapi.application.dto.TransferDTO;
 import com.digitalbankapi.application.dto.TransferResponseDTO;
+import com.digitalbankapi.domain.account.exception.AccountResourceBusyException;
 import com.digitalbankapi.domain.account.exception.AccountNotFoundException;
 import com.digitalbankapi.domain.account.model.Account;
 import com.digitalbankapi.domain.account.repository.AccountRepository;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
+import org.springframework.dao.CannotAcquireLockException;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -84,5 +86,29 @@ class TransferServiceTest {
         // THEN
         Assertions.assertEquals("ACCOUNT_NOT_FOUND", accountNotFoundException.getKey());
         Assertions.assertEquals("Conta nao encontrada para o identificador 99.", accountNotFoundException.getValue());
+    }
+
+    @Test
+    @DisplayName("Deve retornar erro semantico quando as contas estiverem ocupadas por outra transferencia concorrente")
+    void shouldReturnSemanticErrorWhenAccountsAreBusyByAnotherConcurrentTransfer() {
+        // GIVEN
+        TransferDTO transferRequest = new TransferDTO(1L, 2L, new BigDecimal("10.00"));
+
+        BDDMockito.given(accountRepository.findAccountsByIdentifiersWithPessimisticLock(1L, 2L))
+                .willThrow(new CannotAcquireLockException("lock timeout"));
+
+        // WHEN
+        AccountResourceBusyException accountResourceBusyException = Assertions.assertThrows(
+                AccountResourceBusyException.class,
+                () -> transferService.transfer(transferRequest)
+        );
+
+        // THEN
+        Assertions.assertEquals("ACCOUNT_RESOURCE_BUSY", accountResourceBusyException.getKey());
+        Assertions.assertEquals(
+                "Uma das contas envolvidas esta temporariamente em processamento. Tente novamente em instantes.",
+                accountResourceBusyException.getValue()
+        );
+        Assertions.assertEquals(org.springframework.http.HttpStatus.CONFLICT, accountResourceBusyException.getHttpStatus());
     }
 }

@@ -1,6 +1,7 @@
 package com.digitalbankapi.api.controller;
 
 import com.digitalbankapi.domain.transfer.exception.TransferAmountMustBePositiveException;
+import com.digitalbankapi.domain.account.exception.AccountResourceBusyException;
 import com.digitalbankapi.shared.response.ApiErrorResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -39,6 +40,28 @@ class GlobalApiExceptionHandlerTest {
                 .getStatusCode());
         Assertions.assertEquals("TRANSFER_AMOUNT_MUST_BE_POSITIVE", apiErrorResponse.key());
         Assertions.assertEquals("O valor da transferencia deve ser maior que zero.", apiErrorResponse.value());
+    }
+
+    @Test
+    @DisplayName("Deve retornar conflito quando a conta estiver ocupada por outra operacao concorrente")
+    void shouldReturnConflictWhenAccountIsBusyByAnotherConcurrentOperation() {
+        // GIVEN
+        AccountResourceBusyException accountResourceBusyException = new AccountResourceBusyException();
+
+        // WHEN
+        ApiErrorResponse apiErrorResponse = globalApiExceptionHandler
+                .handleBusinessException(accountResourceBusyException)
+                .getBody();
+
+        // THEN
+        Assertions.assertEquals(HttpStatus.CONFLICT, globalApiExceptionHandler
+                .handleBusinessException(accountResourceBusyException)
+                .getStatusCode());
+        Assertions.assertEquals("ACCOUNT_RESOURCE_BUSY", apiErrorResponse.key());
+        Assertions.assertEquals(
+                "Uma das contas envolvidas esta temporariamente em processamento. Tente novamente em instantes.",
+                apiErrorResponse.value()
+        );
     }
 
     @Test

@@ -192,6 +192,13 @@ public final class OpenApiExamples {
             }
             """;
 
+    public static final String ACCOUNT_RESOURCE_BUSY_ERROR = """
+            {
+              "key": "ACCOUNT_RESOURCE_BUSY",
+              "value": "Uma das contas envolvidas esta temporariamente em processamento. Tente novamente em instantes."
+            }
+            """;
+
     private OpenApiExamples() {
     }
 }
